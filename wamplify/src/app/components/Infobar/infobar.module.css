@@ -1,0 +1,44 @@
+.container {
+    grid-area: bottom;
+
+    background: var(--n800);
+    border-top: 1px solid var(--n600);
+
+    font-size: 0.9rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.message {
+    color: var(--n400);
+    user-select: none;
+    transition: color 200ms ease;
+}
+
+.message:hover {
+    color: var(--n200);
+}
+
+.credits {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+
+    font-weight: 700;
+    user-select: none;
+
+    color: var(--n400);
+}
+
+.credits a {
+    cursor: pointer;
+    transition: color 200ms ease;
+}
+
+.credits a:hover  {
+    color: var(--n100);
+}
