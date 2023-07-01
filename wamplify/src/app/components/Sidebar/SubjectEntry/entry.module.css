@@ -1,0 +1,6 @@
+.container {
+    width: 100%;
+    min-height: 25rem;
+    background: var(--900);
+    border: 1px solid var(--border-colour);
+}

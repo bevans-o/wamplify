@@ -14,12 +14,16 @@
   --a300: #EC2C88;
   --a500: #b12b6c;
   --a700: #58354A;
+
+
+  --border-colour: var(--n600);
 }
 
 * {
   margin: 0;
   padding: 0;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 body {
@@ -29,4 +33,18 @@ body {
 .debug {
   background: #961d1d;
   border: 1px solid #a62929;
+}
+
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+}
+ 
+*::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+*::-webkit-scrollbar-thumb {
+  background-color: var(--n500);
+  outline: 1px solid var(--n400);
 }
