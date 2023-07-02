@@ -2,18 +2,20 @@
   width: 100vw;
   height: 100vh;
 
+  max-width: 100vw;
+  max-height: 100vh;
+
   font-weight: 600;
   letter-spacing: 0.2px;
 
+  overflow: hidden;
+
   display: grid;
   grid-template-areas: 
-  "side main"
-  "bottom bottom";
-  grid-template-columns: 24rem 1fr;
-  grid-template-rows: 1fr 2rem;
+    "side main"
+    "bottom bottom";
+  grid-template-columns: 24rem minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) 2rem;
 }
 
 
-.content {
-  grid-area: main;
-}

@@ -2,7 +2,7 @@
     grid-area: side;
 
     display: grid;
-    grid-template-rows: 6rem 1fr;
+    grid-template-rows: 5rem 1fr;
 
     background: var(--n900);
     border-right: 1px solid var(--border-colour);

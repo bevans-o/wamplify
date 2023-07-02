@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
-  --n50: #FFFFFF;
+  --n50: #f0f0f0;
   --n100: #d6cfcf;
   --n200: #857C7C;
   --n300: #6D6D6D;
   --n400: #515151;
   --n500: #484848;
-  --n600: #404040;
+  --n600: #363636;
   --n700: #302F2F;
   --n800: #2B2A2A;
   --n900: #242424;
@@ -24,20 +26,49 @@
   padding: 0;
   text-decoration: none;
   box-sizing: border-box;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--n600) var(--n950);
 }
 
 body {
-  color: white;
+  background: var(--n950);
+  color: var(--n50);
+  font-family: 'Urbanist', sans-serif;
+}
+
+input {
+  background: var(--n950);
+  border: 1px solid var(--n800);
+  
+  max-width: 100%;
+  color: var(--n50);
+  border-radius: 4px;
+  width: 60%;
+  padding: 0.3rem 0.6rem;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.fc {
+  display: flex;
+  flex-direction: column;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-colour);
 }
 
 .debug {
-  background: #961d1d;
-  border: 1px solid #a62929;
+  background: #961d1d !important;
+  border: 1px solid #a62929 !important;
 }
 
 
 *::-webkit-scrollbar {
-  width: 0.5rem;
+  width: 0.3rem;
 }
  
 *::-webkit-scrollbar-track {
@@ -45,6 +76,7 @@ body {
 }
  
 *::-webkit-scrollbar-thumb {
-  background-color: var(--n500);
-  outline: 1px solid var(--n400);
+  background-color: var(--n700);
+  outline: 1px solid var(--n600);
+  border-radius: 1px;
 }

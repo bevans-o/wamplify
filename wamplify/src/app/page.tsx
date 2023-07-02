@@ -1,8 +1,9 @@
-import Image from 'next/image'
 import wamplify from './page.module.css'
 import Infobar from './components/Infobar/Infobar'
 import Sidebar from './components/Sidebar/Sidebar'
 import SubjectEntry from './components/Sidebar/SubjectEntry/SubjectEntry'
+import ContentArea from './components/ContentArea/ContentArea'
+import Wamplifier from './components/ContentArea/Wamplifier/Wamplifier'
 
 export default function Home() {
   return (
@@ -14,9 +15,12 @@ export default function Home() {
         <SubjectEntry/>
       </Sidebar>
 
-      <div className={`${wamplify.content} debug`}>
-
-      </div>
+      <ContentArea>
+        <Wamplifier/>
+        <Wamplifier/>
+        <Wamplifier/>
+        <Wamplifier/>
+      </ContentArea>
 
       <Infobar message="Wamplify 0.0.1"/>
     </main>
