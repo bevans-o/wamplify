@@ -5,7 +5,7 @@ import Divider from '../../misc/Divider'
 function Wamplifier() {
   return (
     <div>
-        <div className={wamplifier.body}>
+        <div className={wamplifier.body + " panel"}>
             <h2></h2>
             <Divider/>
             <div></div>

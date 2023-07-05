@@ -1,24 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 :root {
-  --n50: #f0f0f0;
-  --n100: #d6cfcf;
-  --n200: #857C7C;
-  --n300: #6D6D6D;
-  --n400: #515151;
-  --n500: #484848;
-  --n600: #363636;
-  --n700: #302F2F;
-  --n800: #2B2A2A;
-  --n900: #242424;
-  --n950: #1B1B1B;
+  --n50: #fdf8f2;
+  --n100: #d3c6b9;
+  --n200: #92897d;
+  --n300: #857f77;
+  --n400: #6b6661;
+  --n500: #4d4c4b;
+  --n600: #3d3c3b;
+  --n700: #2d2c2b;
+  --n800: #282727;
+  --n900: #242323;
+  --n950: #1d1c1c;
 
-  --a300: #EC2C88;
-  --a500: #b12b6c;
-  --a700: #58354A;
+  --a100: #f6b9d6;
+  --a300: #ee599f;
+  --a500: #d63f88;
+  --a700: #ce2063;
+  --a900: #87005a;
 
+  --b100: #a5fbec;
+  --b300: #00f2d1;
+  --b500: #00dfb6;
+  --b700: #00bc93;
+  --b900: #008b62;
 
-  --border-colour: var(--n600);
+  --c100: #bcdfff;
+  --c300: #65b7ff;
+  --c500: #2499fe;
+  --c700: #2178dc;
+  --c900: #1c48aa;
+
+  --bad100: #fecfd5;
+  --bad300: #e4797b;
+  --bad500: #f44c43;
+  --bad700: #d33a3b;
+  --bad900: #b82a29;
+
+  --good100: #d7edca;
+  --good300: #a2d585;
+  --good500: #79c350;
+  --good700: #579f3e;
+  --good900: #226823;
+
+  --border-colour: var(--n800);
 }
 
 * {
@@ -39,7 +65,7 @@ body {
 
 input {
   background: var(--n950);
-  border: 1px solid var(--n800);
+  border: 1px solid var(--border-colour);
   
   max-width: 100%;
   color: var(--n50);
@@ -50,15 +76,63 @@ input {
   font-weight: 500;
 }
 
+::-moz-placeholder,
+input::-webkit-input-placeholder,
+::-webkit-input-placeholder,
+::placeholder {
+  color: var(--n300);
+}
+
 .fc {
   display: flex;
   flex-direction: column;
 }
 
+.pad {
+  padding: 1rem;
+}
+
+.text-fix {
+  padding-left: 2px !important;
+}
+
+.text-stronger {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.text-note {
+  font-size: 0.91rem;
+  font-weight: 400;
+  color: var(--n400);
+  line-height: 130%;
+  letter-spacing: 0.2px;
+}
+
+.warning {
+  color: var(--bad500);
+  font-weight: 500;
+}
+
 .divider {
   width: 100%;
-  height: 1px;
+  height: 2px;
   background: var(--border-colour);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.panel {
+  border-radius: 5px;
+  border: 1px solid var(--border-colour);
+  background: var(--n900);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+
+  transition: all 200ms ease;
+}
+
+.panel:hover {
+  background: var(--n800);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 .debug {
@@ -77,6 +151,6 @@ input {
  
 *::-webkit-scrollbar-thumb {
   background-color: var(--n700);
-  outline: 1px solid var(--n600);
+  outline: 1px solid var(--n900);
   border-radius: 1px;
 }

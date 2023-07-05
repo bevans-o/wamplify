@@ -11,6 +11,7 @@ function Sidebar({children} : any) {
 
         <div className={sidebar.content}>
             {children}
+            <button className={sidebar.addSubject + " text-stronger"}>Add another subject</button>
         </div>
     </div>
   )

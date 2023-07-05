@@ -1,21 +1,9 @@
 .body {
-    border: 1px solid var(--n800);
     width: 100%;
     height: 100%;
-    border-radius: 5px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-    background: var(--n900);
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 2rem;
-
-    transition: all 200ms ease;
 }
-
-.body:hover {
-    background: var(--n800);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
-
