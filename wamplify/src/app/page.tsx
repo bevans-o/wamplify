@@ -8,6 +8,7 @@ import Wamplifier from './components/ContentArea/Wamplifier/Wamplifier'
 export default function Home() {
   return (
     <main className={wamplify.main}>
+      
       <Sidebar>
         <SubjectEntry/>
         <SubjectEntry/>
