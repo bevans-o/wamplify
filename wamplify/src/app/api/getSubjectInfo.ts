@@ -44,7 +44,7 @@ function parseAssessmentItem(tableRow : Element) : AssessmentItem {
     let title : string = parseTitle(fields[0])
     console.log("Title: " + title)
     console.log("Hurdle: " + hurdle)
-    let weight : number = Number(fields[2].innerHTML.slice(0,-1))/100
+    let weight : number = Number(fields[2].innerHTML.slice(0,-1));
     console.log("Weight: " + weight)
     let assessmentItem : AssessmentItem = {title: title, weight: weight, isHurdle: hurdle};
     return assessmentItem
@@ -52,8 +52,8 @@ function parseAssessmentItem(tableRow : Element) : AssessmentItem {
 
 function parseTitle(title: Element) : string {
     let text = title.textContent;
-    text?.toLowerCase;
-    return text ?? "none";
+    let sentences = text?.split(".") ?? "none";
+    return sentences[0];
 }
 
 async function getAssessmentTable() {
