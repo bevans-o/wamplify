@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className={wamplify.main}>
       <Sidebar>
-        <SubjectEntry _code={"INFO30005"} _valid={true} _subjectName={"Advanced Interface Prototyping"} _assessmentItems={
+        <SubjectEntry index={1} _code={"INFO30005"} _valid={true} _subjectName={"Advanced Interface Prototyping"} _assessmentItems={
           [
             {
               title: "Assignment 1",
@@ -23,9 +23,9 @@ export default function Home() {
             }
           ]
         }/>
-        <SubjectEntry _code={"lalalala"} _valid={false}/>
-        <SubjectEntry/>
-        <SubjectEntry _code={"MAST10007"} _valid={true} _subjectName={"Linear Algebra"} _assessmentItems={
+        <SubjectEntry index={2} _code={"lalalala"} _valid={false}/>
+        <SubjectEntry index={3}/>
+        <SubjectEntry index={4} _code={"MAST10007"} _valid={true} _subjectName={"Linear Algebra"} _assessmentItems={
           [
             {
               title: "Assignment 1",
