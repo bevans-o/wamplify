@@ -7,7 +7,7 @@ import SubjectSearch from './SubjectSearch';
 
 
 
-function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, index} : any) {
+function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any) {
   const [subjectCode, setSubjectCode] = useState(_code ? _code : "");
   const [valid, setValid] = useState(_valid ? _valid : false);
   const [assessmentItems, setAssessmentItems] = useState(_assessmentItems ? _assessmentItems : []);
@@ -26,14 +26,20 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, index} : a
     console.log(`call getPredictiveSearch(${subjectInput.value}) | return array of subject name / code pairs`)
   }
 
+  const onSubjectSelect = (code: string) => {
+    setSubjectCode(code);
+    console.log(`call getSubjectAssessments(${code}) | return array of assessment items`);
+  }
+
   return (
-    <div className={entry.container + " panel"}>
+    <div className={entry.container + " panel"} id={`SubjectEntry--${id}`} tabIndex={-1}>
       <div className="fc pad">
         
         <SubjectSearch 
           value={subjectCode} 
+          id={id}
           onChange={(event: React.SyntheticEvent) => onSubjectChange(event)} 
-          onSelect={() => console.log("selected")}
+          onSelect={(code: string) => onSubjectSelect(code)}
         />
 
         {subjectName && 

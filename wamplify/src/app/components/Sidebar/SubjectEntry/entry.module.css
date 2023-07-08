@@ -31,6 +31,13 @@
     position: relative;
 }
 
+.search input:disabled {
+    background: transparent;
+    padding: 0 0 0 2px;
+    border: none;
+    min-height: fit-content;
+}
+
 .search__results {
     position: absolute;
     width: 100%;
@@ -51,11 +58,11 @@
     transition: max-height 200ms ease;
 }
 
-.search input:focus-within {
+.search[data-focus="true"] input {
     z-index: 2;
 }
 
-input:focus-within + .search__results {
+.search[data-focus="true"] .search__results {
     display: flex;
 }
 
