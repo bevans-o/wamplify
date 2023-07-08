@@ -27,6 +27,64 @@
     color: var(--n50);
 }
 
+.search, .search input {
+    position: relative;
+}
+
+.search__results {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    padding: 0.6rem;
+    padding-top: calc(1.5rem + 0.6rem);
+    background: var(--n700);
+    z-index: 1;
+
+    border: 1px solid var(--n600);
+    border-radius: 8px;
+    box-shadow: 0 6px 18px var(--n950);
+
+    transition: max-height 200ms ease;
+}
+
+.search input:focus-within {
+    z-index: 2;
+}
+
+input:focus-within + .search__results {
+    display: flex;
+}
+
+.search__result {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+    padding: 0.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+
+    transition: all 100ms ease;
+}
+
+.search__result h3 {
+    font-size: 1rem;
+}
+
+.search__result p {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.search__result:hover {
+    background: var(--n100);
+    color: var(--n800);
+}
+
 .warning {
     padding-top: 0.5rem;
 }

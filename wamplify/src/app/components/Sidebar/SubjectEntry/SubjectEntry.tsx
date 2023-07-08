@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import entry from './entry.module.css'
 import Divider from '../../misc/Divider'
 import AssessmentItemEntry from './AssessmentItemEntry';
+import SubjectSearch from './SubjectSearch';
+
+
+
 
 function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, index} : any) {
   const [subjectCode, setSubjectCode] = useState(_code ? _code : "");
@@ -9,17 +13,28 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, index} : a
   const [assessmentItems, setAssessmentItems] = useState(_assessmentItems ? _assessmentItems : []);
   const [subjectName, setSubjectName] = useState(_subjectName ? _subjectName : "");
 
+  
+
+  useEffect(() => {
+    console.log(subjectCode)
+  }, [subjectCode, valid])
+
   const onSubjectChange = (event: React.SyntheticEvent) => {
     let subjectInput = event.target as HTMLInputElement;
     setSubjectCode(subjectInput.value);
 
-    console.log("#TODO: search for term " + subjectInput.value)
+    console.log(`call getPredictiveSearch(${subjectInput.value}) | return array of subject name / code pairs`)
   }
 
   return (
     <div className={entry.container + " panel"}>
       <div className="fc pad">
-        <input onChange={(event) => onSubjectChange(event)} defaultValue={subjectCode} placeholder="Search for a subject or subject code."/>
+        
+        <SubjectSearch 
+          value={subjectCode} 
+          onChange={(event: React.SyntheticEvent) => onSubjectChange(event)} 
+          onSelect={() => console.log("selected")}
+        />
 
         {subjectName && 
           <h2 className={entry.subject_title + " text-stronger text-fix"}>{subjectName}</h2>

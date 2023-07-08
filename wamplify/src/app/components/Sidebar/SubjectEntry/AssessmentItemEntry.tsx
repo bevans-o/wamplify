@@ -6,7 +6,7 @@ function AssessmentItemEntry({item} : any) {
   const onAssessmentChange = (event: React.SyntheticEvent) => {
     let subjectInput = event.target as HTMLInputElement;
 
-    console.log(`#TODO: verify ${subjectInput.value} for assessment task ${item.title}`)
+    console.log(`call setScore(${item.title}, ${subjectInput.value}) | return valid / invalid score`)
   }
 
   return (
