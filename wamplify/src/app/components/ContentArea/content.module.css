@@ -16,3 +16,11 @@
     height: 50%;
     padding: 0.5rem;
 }
+
+@media only screen and (max-width: 1200px) {
+    .container > * {
+        width: 100%;
+        height: fit-content;
+        padding: 0;
+    }
+}

@@ -6,52 +6,49 @@ import Sidebar from './components/Sidebar/Sidebar'
 import SubjectEntry from './components/Sidebar/SubjectEntry/SubjectEntry'
 import ContentArea from './components/ContentArea/ContentArea'
 import Wamplifier from './components/ContentArea/Wamplifier/Wamplifier'
+import { useEffect, useState } from 'react'
+
+interface Assessment {
+  title: string,
+  weight: number
+}
+
+interface Subject {
+  name: string,
+  code: string,
+  assessments: Assessment[]
+}
 
 export default function Home() {
+  const [subjects, setSubjects] = useState<Subject[]>([]);
+
+  const newSubject = () => {
+    var newArray: Subject[] = [...subjects];
+    newArray.push({
+      name: "",
+      code: "",
+      assessments: []
+    });
+    setSubjects(newArray);
+  }
+
+  useEffect(() => {
+    newSubject();
+  }, [])
+
+
   return (
     <main className={wamplify.main}>
-      <Sidebar>
-        <SubjectEntry id={1} _code={"INFO30005"} _valid={true} _subjectName={"Advanced Interface Prototyping"} _assessmentItems={
-          [
-            {
-              title: "Assignment 1",
-              weight: 30
-            },
-            {
-              title: "Assignment 2",
-              weight: 70
-            }
-          ]
-        }/>
-        <SubjectEntry id={2} _code={"lalalala"} _valid={false}/>
-        <SubjectEntry id={3}/>
-        <SubjectEntry id={4} _code={"MAST10007"} _valid={true} _subjectName={"Linear Algebra"} _assessmentItems={
-          [
-            {
-              title: "Assignment 1",
-              weight: 30
-            },
-            {
-              title: "Assignment 2",
-              weight: 70
-            },
-            {
-              title: "Assignment 3",
-              weight: 70
-            },
-            {
-              title: "Assignment 4 - an assignment with an extremely long name that really should be much shorter but the subject coordinator struggles with conciseness",
-              weight: 70
-            }
-          ]
-        }/>
+      <Sidebar addNew={() => newSubject()}>
+        {subjects.map((subject: Subject, index) => 
+          <SubjectEntry id={index}/>
+        )}
       </Sidebar>
 
       <ContentArea>
-        <Wamplifier/>
-        <Wamplifier/>
-        <Wamplifier/>
-        <Wamplifier/>
+        {subjects.map((subject: Subject, index) => 
+          <Wamplifier/>
+        )}
       </ContentArea>
 
       <Infobar message="Wamplify 0.0.1"/>

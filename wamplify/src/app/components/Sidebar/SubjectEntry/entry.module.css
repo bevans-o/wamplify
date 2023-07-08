@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .container input {
@@ -147,4 +148,40 @@
     text-align: right;
     font-size: 1rem;
     min-height: 2rem;
+}
+
+.remove {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 99999px;
+    color: transparent;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 0 8px var(--n950);
+    background: var(--bad500);
+    bottom: calc(100% - 15px);
+    left: calc(100% - 15px);
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+
+    transition: opacity 100ms ease;
+}
+
+.container:hover .remove {
+    opacity: 0.7;
+    pointer-events: all;
+}
+
+.container:hover .remove:hover {
+    opacity: 1;
+}
+
+.remove svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: var(--bad100);
 }

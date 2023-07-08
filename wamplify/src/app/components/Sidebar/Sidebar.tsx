@@ -2,7 +2,7 @@ import React from 'react'
 import sidebar from './sidebar.module.css'
 import Logo from './Logo/Logo'
 
-function Sidebar({children} : any) {
+function Sidebar({addNew, children} : any) {
   return (
     <div className={sidebar.container}>
         <header className={sidebar.header}>
@@ -11,7 +11,12 @@ function Sidebar({children} : any) {
 
         <div className={sidebar.content}>
             {children}
-            <button className={sidebar.addSubject + " text-stronger"}>Add another subject</button>
+            <button 
+              className={sidebar.addSubject + " text-stronger"}
+              onClick={() => addNew()}
+            >
+              Add another subject
+            </button>
         </div>
     </div>
   )
