@@ -12,7 +12,7 @@ function AssessmentItemEntry({item} : any) {
   return (
     <div className={entry.assessment__container}>
         <p className='text-stronger'>{item.title}</p>
-        <input onChange={(event) => onAssessmentChange(event)} defaultValue={item.weight}/>
+        <input onChange={(event) => onAssessmentChange(event)} defaultValue=""/>
     </div>
   )
 }

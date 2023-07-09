@@ -92,6 +92,10 @@ input::-webkit-input-placeholder,
   padding: 1.2rem;
 }
 
+.pad-2 {
+  padding: 2rem;
+}
+
 .text-fix {
   padding-left: 2px !important;
 }
@@ -118,7 +122,19 @@ input::-webkit-input-placeholder,
   width: 100%;
   height: 2px;
   background: var(--border-colour);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+
+  transition: background 200ms ease;
+}
+
+.logo {
+  width: 8rem;
+  padding-top: 0.5rem;
+  color: var(--a300);
+}
+
+.logo svg {
+  width: 100%;
 }
 
 .panel {
@@ -133,6 +149,10 @@ input::-webkit-input-placeholder,
 .panel:hover {
   background: var(--n800);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.panel:hover .divider {
+  background: var(--n700);
 }
 
 .debug {
@@ -153,4 +173,48 @@ input::-webkit-input-placeholder,
   background-color: var(--n700);
   outline: 1px solid var(--n900);
   border-radius: 1px;
+}
+
+
+/* MUI slider */
+.slider {
+  color: var(--a500);
+  height: 0.5rem;
+  transition: all 200ms ease;
+  overflow: visible;
+
+  isolation: isolate;
+}
+
+.slider:hover {
+  color: var(--a300);
+}
+
+.slider .MuiSlider-thumb {
+  background: linear-gradient(180deg, var(--n50) 0%, var(--n200) 100%);
+  border: none;
+}
+
+.slider .MuiSlider-thumb::after {
+  content: '';
+  background: var(--a500);
+  width: 0.8rem;
+  height: 0.8rem;
+  position: absolute;
+}
+
+.slider .MuiSlider-mark {
+  background: var(--n950);
+  border-left: 1px solid var(--n700);
+  width: 2px;
+  border-radius: 0;
+  height: 2rem;
+  translate: 0 0.5rem;
+  z-index: -1;
+}
+
+.slider .MuiSlider-markLabel {
+  color: var(--n400);
+  font-family: inherit;
+  padding-top: 1rem;
 }

@@ -8,15 +8,17 @@ import ContentArea from './components/ContentArea/ContentArea'
 import Wamplifier from './components/ContentArea/Wamplifier/Wamplifier'
 import { useEffect, useState } from 'react'
 
-interface Assessment {
+export interface Assessment {
   title: string,
-  weight: number
+  weight: number,
+  score: number
 }
 
-interface Subject {
+export interface Subject {
   name: string,
   code: string,
-  assessments: Assessment[]
+  incompleteAssessments: Assessment[],
+  completeAssessments: Assessment[]
 }
 
 export default function Home() {
@@ -27,7 +29,8 @@ export default function Home() {
     newArray.push({
       name: "",
       code: "",
-      assessments: []
+      incompleteAssessments: [],
+      completeAssessments: []
     });
     setSubjects(newArray);
   }
@@ -46,9 +49,6 @@ export default function Home() {
       </Sidebar>
 
       <ContentArea>
-        {subjects.map((subject: Subject, index) => 
-          <Wamplifier/>
-        )}
       </ContentArea>
 
       <Infobar message="Wamplify 0.0.1"/>

@@ -13,19 +13,23 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any)
   const [assessmentItems, setAssessmentItems] = useState(_assessmentItems ? _assessmentItems : [
     {
       title: "Assignment 1",
-      weight: 30
+      weight: 30,
+      score: -1
     },
     {
       title: "Assignment 2",
-      weight: 70
+      weight: 70,
+      score: -1
     },
     {
       title: "Assignment 3",
-      weight: 70
+      weight: 70,
+      score: -1
     },
     {
       title: "Assignment 4 - an assignment with an extremely long name that really should be much shorter but the subject coordinator struggles with conciseness",
-      weight: 70
+      weight: 70,
+      score: -1
     }
   ]);
   const [subjectName, setSubjectName] = useState(_subjectName ? _subjectName : "Designing Novel Interactions");
