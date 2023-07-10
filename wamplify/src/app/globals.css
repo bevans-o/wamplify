@@ -15,7 +15,7 @@
   --n950: #1d1c1c;
 
   --a100: #f6b9d6;
-  --a300: #ee599f;
+  --a300: #f369a9;
   --a500: #d63f88;
   --a700: #ce2063;
   --a900: #87005a;
@@ -74,6 +74,8 @@ input {
   padding: 0.3rem 0.6rem;
   font-family: inherit;
   font-weight: 500;
+
+  transition: all 200ms ease;
 }
 
 ::-moz-placeholder,
@@ -130,11 +132,17 @@ input::-webkit-input-placeholder,
 .logo {
   width: 8rem;
   padding-top: 0.5rem;
-  color: var(--a300);
+  color: var(--a500);
+
+  transition: color 200ms ease;
 }
 
 .logo svg {
   width: 100%;
+}
+
+.logo:hover {
+  color: var(--a300);
 }
 
 .panel {
@@ -153,6 +161,10 @@ input::-webkit-input-placeholder,
 
 .panel:hover .divider {
   background: var(--n700);
+}
+
+.panel:hover input {
+  border: 1px solid var(--n600);
 }
 
 .debug {
@@ -179,7 +191,7 @@ input::-webkit-input-placeholder,
 /* MUI slider */
 .slider {
   color: var(--a500);
-  height: 0.5rem;
+  height: 0.4rem;
   transition: all 200ms ease;
   overflow: visible;
 
@@ -191,16 +203,48 @@ input::-webkit-input-placeholder,
 }
 
 .slider .MuiSlider-thumb {
-  background: linear-gradient(180deg, var(--n50) 0%, var(--n200) 100%);
+  background: var(--a500);
   border: none;
+  height: 18px;
+  width: 18px;
+
+  transition: all 200ms ease;
+}
+
+.slider:hover .MuiSlider-thumb {
+  background: var(--a300);
+  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.2);
 }
 
 .slider .MuiSlider-thumb::after {
   content: '';
   background: var(--a500);
-  width: 0.8rem;
-  height: 0.8rem;
+  background: transparent;
+  width: 12px;
+  height: 12px;
   position: absolute;
+}
+
+.slider .MuiSlider-track {
+  
+}
+
+.slider .MuiSlider-rail {
+  --padding: 4px;
+  opacity: 1;
+  background: var(--n950);
+  border: 1px solid var(--n700);
+  height: calc(0.4rem + 2 * var(--padding));
+  width: calc(100% + 2 * var(--padding));
+  translate: calc(-1 * var(--padding));
+  transition: all 200ms ease;
+}
+
+.panel:hover .slider .MuiSlider-rail {
+  background: var(--n900);
+  border: 1px solid var(--n600);
+
+  
 }
 
 .slider .MuiSlider-mark {
@@ -209,7 +253,7 @@ input::-webkit-input-placeholder,
   width: 2px;
   border-radius: 0;
   height: 2rem;
-  translate: 0 0.5rem;
+  translate: 1px 0.5rem;
   z-index: -1;
 }
 
@@ -217,4 +261,30 @@ input::-webkit-input-placeholder,
   color: var(--n400);
   font-family: inherit;
   padding-top: 1rem;
+  translate: 1px;
+}
+
+.slider .MuiSlider-thumb:hover {
+  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.4);
+}
+
+.slider .MuiSlider-thumb.Mui-active {
+  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.6);
+}
+
+.slider .MuiSlider-thumb.Mui-focusVisible {
+  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.6);
+}
+
+.slider .MuiSlider-valueLabel {
+  background: var(--n50);
+  border-radius: 99999px;
+  font-family: inherit;
+  color: var(--n800);
+  padding: 0.2rem 0.8rem;
+  top: -8px;
+}
+
+.slider .MuiSlider-valueLabel::before {
+  display: none;
 }

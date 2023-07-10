@@ -40,17 +40,23 @@ function Wamplifier({_subject}: any) {
           <Divider/>
 
           <div className={wamplifier.assessmentContainer + " fc pad"}>
-            <div className={wamplifier.assessments}>
-              {_subject.completeAssessments.map((assessment: Assessment, index: number) => 
-                <WamplifierAssessment assessment={assessment} complete={true} key={index}/>
-              )}
-            </div>
-            <div>
-              {_subject.incompleteAssessments.map((assessment: Assessment, index: number) => 
-                <WamplifierAssessment assessment={assessment} complete={false} key={index}/>
-              )}
+            <div> 
+              <h3>Complete</h3>
+              <div className={wamplifier.assessments + " " + wamplifier.complete}>
+                {_subject.completeAssessments.map((assessment: Assessment, index: number) => 
+                  <WamplifierAssessment assessment={assessment} complete={true} key={index}/>
+                )}
+              </div>
             </div>
             
+            <div>
+              <h3>Incomplete</h3>
+              <div className={wamplifier.assessments}>
+                {_subject.incompleteAssessments.map((assessment: Assessment, index: number) => 
+                  <WamplifierAssessment assessment={assessment} complete={false} key={index}/>
+                )}
+              </div>
+            </div>
           </div>
 
           <Divider/>
@@ -61,11 +67,28 @@ function Wamplifier({_subject}: any) {
                 aria-label="Target Score"
                 defaultValue={50}
                 step={1}
-                min={48}
+                min={50}
                 valueLabelDisplay="auto"
                 marks={sliderMarks}
                 className="slider"
               />
+            </div>
+
+            <div className={wamplifier.scores}>
+              <div>
+                <span>
+                  Your current average
+                </span>
+                <input/>
+              </div>
+
+              <div>
+                <span>
+                  Your wamplified score
+                </span>
+                <input/>
+              </div>
+              
             </div>
           </div>
 

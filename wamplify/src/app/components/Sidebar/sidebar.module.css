@@ -41,17 +41,15 @@
     font-weight: 400;
     text-transform: uppercase;
     font-size: 0.91rem;
-    background: var(--a300);
+    background: var(--a500);
     color: var(--n50);
     cursor: pointer;
-    opacity: 0.8;
     box-shadow: 0px 2px 8px 0px transparent;
 
     transition: all 200ms ease;
 }
 
 .addSubject:hover {
-    opacity: 1;
-    background: var(--a500);
-    box-shadow: 0px 0px 20px -15px var(--a300);
+    background: var(--a300);
+    box-shadow: 0px 0px 15px -8px var(--a300);
 }
