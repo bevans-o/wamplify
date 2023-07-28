@@ -84,7 +84,7 @@
     border-radius: 10px;
 }
 
-.assessment.complete:hover {
+.body:hover .assessment.complete {
     background: var(--n700);
     border: 1px solid var(--n600);
 }
@@ -115,7 +115,7 @@
 }
 
 .scores input {
-    width: 4rem;
+    width: 4.5rem;
     height: 3rem;
 
     text-align: right;

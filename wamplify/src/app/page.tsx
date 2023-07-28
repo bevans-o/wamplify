@@ -51,7 +51,7 @@ export default function Home() {
       <ContentArea>
       </ContentArea>
 
-      <Infobar message="Wamplify 0.0.1"/>
+      <Infobar version="0.0.2" message="Subject scores are estimates!"/>
     </main>
   )
 }

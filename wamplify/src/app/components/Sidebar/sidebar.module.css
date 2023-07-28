@@ -46,6 +46,12 @@
     cursor: pointer;
     box-shadow: 0px 2px 8px 0px transparent;
 
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    fill: var(--n50);
+
     transition: all 200ms ease;
 }
 

@@ -241,10 +241,7 @@ input::-webkit-input-placeholder,
 }
 
 .panel:hover .slider .MuiSlider-rail {
-  background: var(--n900);
   border: 1px solid var(--n600);
-
-  
 }
 
 .slider .MuiSlider-mark {
@@ -265,24 +262,22 @@ input::-webkit-input-placeholder,
 }
 
 .slider .MuiSlider-thumb:hover {
-  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.2);
 }
 
-.slider .MuiSlider-thumb.Mui-active {
-  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.6);
-}
-
+.slider .MuiSlider-thumb.Mui-active,
 .slider .MuiSlider-thumb.Mui-focusVisible {
-  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.3);
 }
 
 .slider .MuiSlider-valueLabel {
-  background: var(--n50);
+  display: none;
+  /* background: var(--n50);
   border-radius: 99999px;
   font-family: inherit;
   color: var(--n800);
   padding: 0.2rem 0.8rem;
-  top: -8px;
+  top: -8px; */
 }
 
 .slider .MuiSlider-valueLabel::before {

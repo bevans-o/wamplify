@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import wamplifier from './wamplifier.module.css'
 import Divider from '../../misc/Divider'
 import { Assessment } from '@/app/page'
@@ -29,6 +29,9 @@ const sliderMarks = [
 ];
 
 function Wamplifier({_subject}: any) {
+  const [targetScore, setTargetScore] = useState(50);
+
+
   return (
     <div>
         <div className={wamplifier.body + " panel"}>
@@ -65,12 +68,20 @@ function Wamplifier({_subject}: any) {
             <div className={wamplifier.slider}>
               <Slider
                 aria-label="Target Score"
-                defaultValue={50}
+                value={targetScore}
                 step={1}
                 min={50}
                 valueLabelDisplay="auto"
                 marks={sliderMarks}
                 className="slider"
+                onChange={(e, value) => {
+                  if (Array.isArray(value)) {
+                    setTargetScore(value[0]);
+                  }
+                  else {
+                    setTargetScore(value)
+                  }
+                }}
               />
             </div>
 
@@ -86,7 +97,11 @@ function Wamplifier({_subject}: any) {
                 <span>
                   Your wamplified score
                 </span>
-                <input/>
+                <input 
+                  value={targetScore}
+                  onChange={(e) => {
+                    setTargetScore(parseInt(e.target.value));
+                  }}/>
               </div>
               
             </div>

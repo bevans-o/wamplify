@@ -13,19 +13,26 @@
     padding: 0.5rem;
 }
 
+.container > * {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.version,
 .message {
     color: var(--n400);
     user-select: none;
     transition: color 200ms ease;
 }
 
-.message:hover {
-    color: var(--n200);
+.version::after {
+    content: "|";
+    padding: 0 0.6rem;
 }
 
 .credits {
-    display: flex;
-    flex-direction: row;
     gap: 0.25rem;
 
     font-weight: 700;
@@ -39,6 +46,7 @@
     transition: color 200ms ease;
 }
 
+.message:hover,
 .credits a:hover  {
     color: var(--n100);
 }
