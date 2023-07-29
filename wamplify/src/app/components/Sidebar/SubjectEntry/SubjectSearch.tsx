@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import entry from './entry.module.css'
 
-interface SearchResult {
-  name: string,
-  code: string
-}
 
 function SubjectSearch({value, onChange, onSelect, id, searchResults} : any) {
   const [focused, setFocused] = useState(false);
