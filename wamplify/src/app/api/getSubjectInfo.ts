@@ -7,21 +7,10 @@ interface AssessmentItem {
     isHurdle: Boolean;
 }
 
-interface SubjectEntry {
-    title: string;
-    code: string;
-    assessmentItems: Array<AssessmentItem>;
-}
-
-interface Score {
-    assessmentItem: AssessmentItem;
-    score: Score;
-}
-
 async function fetchSubjectPage(url: string) {
     const HTMLData = axios
         .get(url)
-        .then(res => res.data)
+        .then((res: { data: any; }) => res.data)
         .catch((error: AxiosError) => {
             console.error(error.toJSON());
         });
@@ -56,12 +45,7 @@ function parseTitle(title: Element) : string {
     return sentences[0];
 }
 
-async function getAssessmentTable() {
-    const url = "https://handbook.unimelb.edu.au/2023/subjects/swen20003/assessment";
+async function getAssessmentTable(subjectCode: string) {
+    const url = "https://handbook.unimelb.edu.au/2023/subjects/" + subjectCode +"/assessment";
     extractData(await fetchSubjectPage(url));
 }
-
-
-
-
-getAssessmentTable();
