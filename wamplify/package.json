@@ -16,9 +16,12 @@
     "@types/node": "20.3.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
+    "axios": "1.4.0",
+    "cheerio": "^1.0.0-rc.12",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "framer-motion": "^10.12.18",
+    "jsdom": "22.1.0",
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -26,5 +29,10 @@
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.1"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }

@@ -3,9 +3,13 @@ import entry from './entry.module.css'
 import Divider from '../../misc/Divider'
 import AssessmentItemEntry from './AssessmentItemEntry';
 import SubjectSearch from './SubjectSearch';
+import initialSubjectList from '../../../api/Subjects_2023.json';
 
 
-
+interface SearchResult {
+  code: string,
+  name: string
+}
 
 function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any) {
   const [subjectCode, setSubjectCode] = useState(_code ? _code : "");
@@ -33,6 +37,7 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any)
     }
   ]);
   const [subjectName, setSubjectName] = useState(_subjectName ? _subjectName : "Designing Novel Interactions");
+  const [searchResults, setSearchResults] = useState<SearchResult[]>(initialSubjectList);
 
   
 
@@ -45,6 +50,9 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any)
     setSubjectCode(subjectInput.value);
 
     console.log(`call getPredictiveSearch(${subjectInput.value}) | return array of subject name / code pairs`)
+    // something something something
+
+    // setSearchResults(subjectArray)
   }
 
   const onSubjectSelect = (code: string) => {
@@ -67,6 +75,7 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any)
           id={id}
           onChange={(event: React.SyntheticEvent) => onSearchChange(event)} 
           onSelect={(code: string) => onSubjectSelect(code)}
+          searchResults={searchResults}
         />
 
         {subjectName && valid &&
