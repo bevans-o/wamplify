@@ -23,16 +23,6 @@ function SubjectSearch({value, onChange, onSelect, id, searchResults} : any) {
     
   }, [])
 
-  function unlock(event: React.SyntheticEvent) {
-    // if desired, reenables editing on subject code
-
-    // var input = event.target as HTMLElement;
-    // if (input.getAttribute('disabled') === 'disabled') {
-    //   input.removeAttribute('disabled');
-    //   input.focus();
-    // }
-  }
-
   function onResultClick(code: string) {
     const subjectEntry : HTMLElement | null = document.querySelector(`#SubjectEntry--${id}`);
     const subjectSearchInput : HTMLElement | null = document.querySelector(`#SubjectSearch--${id} input`);
@@ -46,15 +36,14 @@ function SubjectSearch({value, onChange, onSelect, id, searchResults} : any) {
   return (
     <label className={entry.search} id={`SubjectSearch--${id}`} data-focus={focused}>
       <input 
-        onChange={(event) => onChange(event)} 
-        onClick={(event) => unlock(event)}
+        onChange={(event) => onChange(event)}
         value={value} 
         placeholder="Search for a subject or subject code."
       />
       
       {value != "" && 
       <ul className={entry.search__results}>
-      {searchResults?.map((result, index) => 
+      {searchResults?.map((result, index: number) => 
         <li tabIndex={-1} onClick={() => onResultClick(result.code)} className={entry.search__result} key={index}>
           <h3>{result.name}</h3>
           <p>{result.code}</p>

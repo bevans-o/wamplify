@@ -189,6 +189,7 @@ input::-webkit-input-placeholder,
 
 
 /* MUI slider */
+
 .slider {
   color: var(--a500);
   height: 0.4rem;
@@ -226,7 +227,7 @@ input::-webkit-input-placeholder,
 }
 
 .slider .MuiSlider-track {
-  
+  color: var(--a500);
 }
 
 .slider .MuiSlider-rail {
@@ -282,4 +283,30 @@ input::-webkit-input-placeholder,
 
 .slider .MuiSlider-valueLabel::before {
   display: none;
+}
+
+.MuiDialog-container {
+  padding-bottom: 15%;
+}
+
+
+/* SWIPER.JS */
+
+.swiper {
+  padding: 0 4rem !important;
+}
+
+.swiper-slide {
+  width: auto !important;
+  height: fit-content;
+  padding: 6rem 2rem calc(5vh + 5rem);
+}
+
+.swiper-slide > div {
+  height: 100%;
+  min-width: 36rem;
+}
+
+.swiper-slide:last-child {
+  padding-right: 40vw;
 }

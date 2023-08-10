@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import header from './header.module.css'
-import Logo from '../Sidebar/Logo/Logo'
+import Logo from '../Logo/Logo'
 import Button from '../Button/Button'
 import Dialog from '@mui/material/Dialog'
 import ModalPanel from '../ModalPanel/ModalPanel'
