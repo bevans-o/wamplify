@@ -6,6 +6,7 @@ import { Subject, Assessment } from '@/app/page'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import Button from '../Button/Button';
+import AddIcon from '@mui/icons-material/Add';
 
 function ContentArea() {
 
@@ -47,12 +48,12 @@ function ContentArea() {
           )}
 
           <SwiperSlide>
-            <Button 
-                text="Add Subject"
-                onClick={() => newSubject()}
-              >
-              Add another subject
-            </Button>
+            <div className='swiper-no-swiping'>
+              <button onClick={() => newSubject()} className={content.add}>
+                <h3>Add a Subject</h3>
+                <AddIcon fontSize='large'/>
+              </button>
+            </div>
           </SwiperSlide>
           
         </Swiper>
