@@ -2,8 +2,8 @@
 
 import wamplify from './page.module.css'
 import Infobar from './components/Infobar/Infobar'
-import ContentArea from './components/ContentArea/ContentArea'
-import Wamplifier from './components/ContentArea/Wamplifier/Wamplifier'
+import PanelSlider from './components/PanelSlider/PanelSlider'
+import Wamplifier from './components/Wamplifier/Wamplifier'
 import { useEffect, useState } from 'react'
 import {Subject} from './types/types'
 import Header from './components/Header/Header'
@@ -30,7 +30,7 @@ export default function Home() {
     <main className={wamplify.main}>
       <Header/>
 
-      <ContentArea/>
+      <PanelSlider/>
 
       <Infobar version="0.0.2" message="Subject scores are estimates!"/>
     </main>

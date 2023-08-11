@@ -1,14 +1,14 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import content from './content.module.css'
-import Wamplifier from './Wamplifier/Wamplifier'
+import slider from './slider.module.css'
+import Wamplifier from '../Wamplifier/Wamplifier'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import Button from '../Button/Button';
 import AddIcon from '@mui/icons-material/Add';
 import { Subject } from '@/app/types/types';
 
-function ContentArea() {
+function PanelSlider() {
 
   const [subjects, setSubjects] = useState<Subject[]>([]);
 
@@ -29,7 +29,7 @@ function ContentArea() {
   
 
   return (
-    <div className={content.container}>
+    <div className={slider.container}>
         <Swiper
           slidesPerView={'auto'}
           spaceBetween={0}
@@ -38,7 +38,7 @@ function ContentArea() {
           freeMode={true}
           preventClicks={false}
           modules={[FreeMode]}
-          className={content.swiper}
+          className={slider.swiper}
         >
           {subjects.map((subject: Subject, index: number) => 
             <SwiperSlide>
@@ -48,7 +48,7 @@ function ContentArea() {
 
           <SwiperSlide>
             <div className='swiper-no-swiping'>
-              <button onClick={() => newSubject()} className={content.add}>
+              <button onClick={() => newSubject()} className={slider.add}>
                 <h3>Add a Subject</h3>
                 <AddIcon fontSize='large'/>
               </button>
@@ -60,4 +60,4 @@ function ContentArea() {
   )
 }
 
-export default ContentArea
+export default PanelSlider

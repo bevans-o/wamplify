@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import wamplifier from './wamplifier.module.css'
-import Divider from '../../misc/Divider'
+import Divider from '../Divider/Divider'
 import WamplifierAssessment from './WamplifierAssessment'
 import Slider from '@mui/material/Slider';
 import { Assessment, Subject } from '@/app/types/types';

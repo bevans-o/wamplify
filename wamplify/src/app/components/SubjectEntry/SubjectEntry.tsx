@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import entry from './entry.module.css'
-import Divider from '../misc/Divider'
+import Divider from '../Divider/Divider'
 import AssessmentItemEntry from './AssessmentItemEntry';
 import SubjectSearch from './SubjectSearch';
 import { SearchResult, Subject } from '@/app/types/types';
