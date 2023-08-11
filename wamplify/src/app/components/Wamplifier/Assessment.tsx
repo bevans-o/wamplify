@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import wamplifier from './wamplifier.module.css'
 
-function WamplifierAssessment({assessment, complete} : any) {
+function Assessment({assessment, complete} : any) {
   const [score, setScoreInput] = useState("");
   const [focused, setFocused] = useState(false);
 
@@ -33,4 +33,4 @@ function WamplifierAssessment({assessment, complete} : any) {
   )
 }
 
-export default WamplifierAssessment
+export default Assessment

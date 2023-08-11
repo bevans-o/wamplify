@@ -43,7 +43,7 @@ function PanelSlider() {
         >
           {subjects.map((subject: Subject, index: number) => 
             <SwiperSlide key={index}>
-                <Wamplifier subject={subject}/>
+                <Wamplifier subject={subject} id={index}/>
             </SwiperSlide>
           )}
 

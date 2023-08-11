@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import wamplifier from './wamplifier.module.css'
 import Divider from '../Divider/Divider'
-import WamplifierAssessment from './WamplifierAssessment'
+import AssessmentInput from './Assessment'
 import Slider from '@mui/material/Slider';
 import { Assessment, Subject } from '@/app/types/types';
+import SubjectSearch from './SubjectSearch/SubjectSearch';
+
 
 const sliderMarks = [
   {
@@ -30,17 +32,23 @@ const sliderMarks = [
 
 interface WamplifierProps {
   subject: Subject;
+  id: number; 
 }
 
-function Wamplifier({subject}: WamplifierProps) {
+function Wamplifier({id}: WamplifierProps) {
   const [targetScore, setTargetScore] = useState(50);
+  const [subject, setSubject] = useState<Subject>({name: "", code: "", assessments: []});
+
+  const onSubjectSelect = (code: string) => {
+    console.log(`TODO: implement and call getSubject(${code})`);
+  }
 
   return (
-    <div>
-        <div className={wamplifier.body + " panel"}>
+        <div className={wamplifier.body + " panel"} tabIndex={-1} id={`Wamplifier--${id}`}>
           <div className={wamplifier.header + " fc pad"}>
             <h2 className={wamplifier.title}>{subject.name}</h2>
             <h3 className={wamplifier.code}>{subject.code}</h3>
+            <SubjectSearch id={id} onSelect={(code : string) => onSubjectSelect(code)}/>
           </div>
             
           <Divider/>
@@ -50,7 +58,7 @@ function Wamplifier({subject}: WamplifierProps) {
               <h3>Complete</h3>
               <div className={wamplifier.assessments + " " + wamplifier.complete}>
                 {subject.assessments.map((assessment: Assessment, index: number) => 
-                  <WamplifierAssessment assessment={assessment} complete={true} key={index}/>
+                  <AssessmentInput assessment={assessment} complete={true} key={index}/>
                 )}
               </div>
             </div>
@@ -59,7 +67,7 @@ function Wamplifier({subject}: WamplifierProps) {
               <h3>Incomplete</h3>
               <div className={wamplifier.assessments}>
                 {subject.assessments.map((assessment: Assessment, index: number) => 
-                  <WamplifierAssessment assessment={assessment} complete={false} key={index}/>
+                  <AssessmentInput assessment={assessment} complete={false} key={index}/>
                 )}
               </div>
             </div>
@@ -111,7 +119,6 @@ function Wamplifier({subject}: WamplifierProps) {
           </div>
 
         </div>
-    </div>
   )
 }
 
