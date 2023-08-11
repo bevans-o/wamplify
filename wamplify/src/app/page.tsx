@@ -6,6 +6,7 @@ import ContentArea from './components/ContentArea/ContentArea'
 import Wamplifier from './components/ContentArea/Wamplifier/Wamplifier'
 import { useEffect, useState } from 'react'
 import {Subject} from './types/types'
+import Header from './components/Header/Header'
 
 export default function Home() {
   const [subjects, setSubjects] = useState<Subject[]>([]);

@@ -13,7 +13,6 @@ function WamplifierAssessment({assessment, complete} : any) {
 
   const onScoreChange = (event: React.SyntheticEvent) => {
     let scoreInput = event.target as HTMLInputElement;
-    set
   }
 
 

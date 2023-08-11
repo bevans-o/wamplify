@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import entry from './entry.module.css'
-import { SearchResult } from './SubjectEntry'
+import { SearchResult } from '@/app/types/types';
 
 function SubjectSearch({value, onChange, onSelect, id, searchResults} : any) {
   const [focused, setFocused] = useState(false);

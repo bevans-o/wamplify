@@ -2,11 +2,11 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import content from './content.module.css'
 import Wamplifier from './Wamplifier/Wamplifier'
-import { Subject, Assessment } from '@/app/page'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import Button from '../Button/Button';
 import AddIcon from '@mui/icons-material/Add';
+import { Subject } from '@/app/types/types';
 
 function ContentArea() {
 
@@ -17,8 +17,7 @@ function ContentArea() {
     newArray.push({
       name: "",
       code: "",
-      incompleteAssessments: [],
-      completeAssessments: []
+      assessments: []
     });
     setSubjects(newArray);
   }
@@ -43,7 +42,7 @@ function ContentArea() {
         >
           {subjects.map((subject: Subject, index: number) => 
             <SwiperSlide>
-                <Wamplifier _subject={subject}/>
+                <Wamplifier subject={subject}/>
             </SwiperSlide>
           )}
 

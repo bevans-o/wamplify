@@ -3,8 +3,8 @@ import entry from './entry.module.css'
 import Divider from '../misc/Divider'
 import AssessmentItemEntry from './AssessmentItemEntry';
 import SubjectSearch from './SubjectSearch';
-import initialSubjectList from '../../../api/Subjects_2023.json';
-import { SearchResult } from '@/app/types/types';
+import { SearchResult, Subject } from '@/app/types/types';
+import { getPredictiveSearch } from '@/app/api/subjectSearch';
 
 function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any) {
   const [subjectCode, setSubjectCode] = useState(_code ? _code : "");
@@ -32,25 +32,19 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any)
     }
   ]);
   const [subjectName, setSubjectName] = useState(_subjectName ? _subjectName : "Designing Novel Interactions");
-  const [searchResults, setSearchResults] = useState<SearchResult[]>(initialSubjectList);
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
 
 
   useEffect(() => {
 
   }, [subjectCode, valid])
+  
 
   const onSearchChange = (event: React.SyntheticEvent) => {
     let subjectInput = event.target as HTMLInputElement;
-    setSubjectCode(subjectInput.value);
-
-    console.log(`call getPredictiveSearch(${subjectInput.value}) | return array of subject name / code pairs`)
-
-    let matches = initialSubjectList.filter(subject => {
-      return subject.code.toLowerCase().includes(subjectInput.value.toLowerCase()) || subject.name.toLowerCase().includes(subjectInput.value.toLowerCase())
-    }).slice(0,6);
-
-    setSearchResults(matches)
+    setSubjectCode(subjectInput.value);  
+    setSearchResults(getPredictiveSearch(subjectInput.value, 6))
   }
 
   const onSubjectSelect = (code: string) => {

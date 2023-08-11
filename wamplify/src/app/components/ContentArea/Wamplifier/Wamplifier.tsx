@@ -3,7 +3,7 @@ import wamplifier from './wamplifier.module.css'
 import Divider from '../../misc/Divider'
 import WamplifierAssessment from './WamplifierAssessment'
 import Slider from '@mui/material/Slider';
-import { Assessment } from '@/app/types/types';
+import { Assessment, Subject } from '@/app/types/types';
 
 const sliderMarks = [
   {
@@ -28,15 +28,19 @@ const sliderMarks = [
   },
 ];
 
-function Wamplifier({_subject}: any) {
+interface WamplifierProps {
+  subject: Subject;
+}
+
+function Wamplifier({subject}: WamplifierProps) {
   const [targetScore, setTargetScore] = useState(50);
 
   return (
     <div>
         <div className={wamplifier.body + " panel"}>
           <div className={wamplifier.header + " fc pad"}>
-            <h2 className={wamplifier.title}>{_subject.name}</h2>
-            <h3 className={wamplifier.code}>{_subject.code}</h3>
+            <h2 className={wamplifier.title}>{subject.name}</h2>
+            <h3 className={wamplifier.code}>{subject.code}</h3>
           </div>
             
           <Divider/>
@@ -45,7 +49,7 @@ function Wamplifier({_subject}: any) {
             <div> 
               <h3>Complete</h3>
               <div className={wamplifier.assessments + " " + wamplifier.complete}>
-                {_subject.completeAssessments.map((assessment: Assessment, index: number) => 
+                {subject.assessments.map((assessment: Assessment, index: number) => 
                   <WamplifierAssessment assessment={assessment} complete={true} key={index}/>
                 )}
               </div>
@@ -54,7 +58,7 @@ function Wamplifier({_subject}: any) {
             <div>
               <h3>Incomplete</h3>
               <div className={wamplifier.assessments}>
-                {_subject.incompleteAssessments.map((assessment: Assessment, index: number) => 
+                {subject.assessments.map((assessment: Assessment, index: number) => 
                   <WamplifierAssessment assessment={assessment} complete={false} key={index}/>
                 )}
               </div>
