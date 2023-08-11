@@ -45,7 +45,7 @@ function parseTitle(title: Element) : string {
     return sentences[0];
 }
 
-async function getAssessmentTable(subjectCode: string) {
+export async function getAssessmentItems(subjectCode: string) {
     const url = "https://handbook.unimelb.edu.au/2023/subjects/" + subjectCode +"/assessment";
     extractData(await fetchSubjectPage(url));
 }

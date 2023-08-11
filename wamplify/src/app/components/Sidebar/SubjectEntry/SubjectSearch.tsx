@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import entry from './entry.module.css'
-
+import { SearchResult } from './SubjectEntry'
 
 function SubjectSearch({value, onChange, onSelect, id, searchResults} : any) {
   const [focused, setFocused] = useState(false);
@@ -54,7 +54,7 @@ function SubjectSearch({value, onChange, onSelect, id, searchResults} : any) {
       
       {value != "" && 
       <ul className={entry.search__results}>
-      {searchResults?.map((result, index) => 
+      {searchResults?.map((result : SearchResult, index : number) => 
         <li tabIndex={-1} onClick={() => onResultClick(result.code)} className={entry.search__result} key={index}>
           <h3>{result.name}</h3>
           <p>{result.code}</p>

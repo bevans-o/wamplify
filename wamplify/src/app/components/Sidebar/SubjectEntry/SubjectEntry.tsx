@@ -4,9 +4,10 @@ import Divider from '../../misc/Divider'
 import AssessmentItemEntry from './AssessmentItemEntry';
 import SubjectSearch from './SubjectSearch';
 import initialSubjectList from '../../../api/Subjects_2023.json';
+import { getAssessmentItems } from '@/app/api/getSubjectInfo';
 
 
-interface SearchResult {
+export interface SearchResult {
   code: string,
   name: string
 }
@@ -50,14 +51,18 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any)
     setSubjectCode(subjectInput.value);
 
     console.log(`call getPredictiveSearch(${subjectInput.value}) | return array of subject name / code pairs`)
-    // something something something
 
-    // setSearchResults(subjectArray)
+    let matches = initialSubjectList.filter(subject => {
+      return subject.code.toLowerCase().includes(subjectInput.value.toLowerCase()) || subject.name.toLowerCase().includes(subjectInput.value.toLowerCase())
+    }).slice(0,6);
+
+    setSearchResults(matches)
   }
 
   const onSubjectSelect = (code: string) => {
     setSubjectCode(code);
     setValid(true);
+    //console.log(getAssessmentItems(code));
     console.log(`call getSubjectAssessments(${code}) | return array of assessment items`);
   }
 
