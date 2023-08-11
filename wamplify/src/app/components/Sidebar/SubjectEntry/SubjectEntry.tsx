@@ -4,13 +4,7 @@ import Divider from '../../misc/Divider'
 import AssessmentItemEntry from './AssessmentItemEntry';
 import SubjectSearch from './SubjectSearch';
 import initialSubjectList from '../../../api/Subjects_2023.json';
-import { getAssessmentItems } from '@/app/api/getSubjectInfo';
-
-
-export interface SearchResult {
-  code: string,
-  name: string
-}
+import { SearchResult } from '@/app/types/types';
 
 function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any) {
   const [subjectCode, setSubjectCode] = useState(_code ? _code : "");
@@ -40,7 +34,7 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any)
   const [subjectName, setSubjectName] = useState(_subjectName ? _subjectName : "Designing Novel Interactions");
   const [searchResults, setSearchResults] = useState<SearchResult[]>(initialSubjectList);
 
-  
+
 
   useEffect(() => {
 
@@ -74,11 +68,11 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any)
       </button>
 
       <div className="fc pad">
-        
-        <SubjectSearch 
-          value={subjectCode} 
+
+        <SubjectSearch
+          value={subjectCode}
           id={id}
-          onChange={(event: React.SyntheticEvent) => onSearchChange(event)} 
+          onChange={(event: React.SyntheticEvent) => onSearchChange(event)}
           onSelect={(code: string) => onSubjectSelect(code)}
           searchResults={searchResults}
         />
@@ -87,14 +81,14 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any)
           <h2 className={entry.subject_title + " text-stronger text-fix"}>{subjectName}</h2>
         }
 
-        {!valid && subjectCode && 
+        {!valid && subjectCode &&
           <p className={entry.warning + " text-note warning text-fix"}>Please enter a valid subject code!</p>
         }
 
       </div>
 
-      
-      {valid && 
+
+      {valid &&
         <>
           <Divider/>
           <div className="fc pad">
@@ -108,7 +102,7 @@ function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any)
             </div>
           </div>
         </>
-      }      
+      }
     </div>
   )
 }

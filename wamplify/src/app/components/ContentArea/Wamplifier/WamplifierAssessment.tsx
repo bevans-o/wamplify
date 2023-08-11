@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import wamplifier from './wamplifier.module.css'
 
 function WamplifierAssessment({assessment, complete} : any) {
+  const [score, setScoreInput] = useState("");
+  const [focused, setFocused] = useState(false);
+
+  useEffect(() => {
+    const score : HTMLElement | null = document.querySelector(``)
+
+
+  })
+
+  const onScoreChange = (event: React.SyntheticEvent) => {
+    let scoreInput = event.target as HTMLInputElement;
+    set
+  }
+
+
+
   return (
     <div className={wamplifier.assessment + " " + (complete ? wamplifier.complete : "")}>
       <span className={wamplifier.assessmentTitle}>{assessment.title}</span>
