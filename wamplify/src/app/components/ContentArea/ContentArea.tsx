@@ -1,125 +1,62 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
 import content from './content.module.css'
 import Wamplifier from './Wamplifier/Wamplifier'
 import { Subject, Assessment } from '@/app/page'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper/modules';
+import Button from '../Button/Button';
+import AddIcon from '@mui/icons-material/Add';
 
-function ContentArea({children} : any) {
+function ContentArea() {
 
-  const testSubjects : Subject[] = [
-    {
-      name: "People, Culture, Society, Language, Power, Self & Other",
-      code: "ANTH30121",
-      incompleteAssessments: [
-        {
-          title: "pee pee wee wee",
-          weight: 30,
-          score: -1
-        },
-        {
-          title: "essay with quite long title investigating the collision of causality and effectuationism",
-          weight: 40,
-          score: -1
-        }
-      ],
-      completeAssessments: [
-        {
-          title: "completed assessment",
-          weight: 30,
-          score: 23
-        }
-      ]
-    },
-    {
-      name: "Advanced Interface Prototyping",
-      code: "INFO30005",
-      incompleteAssessments: [
-        {
-          title: "Assignment 2",
-          weight: 70,
-          score: -1
-        }
-      ],
-      completeAssessments: [
-        {
-          title: "Assignment 1",
-          weight: 30,
-          score: 30
-        }
-      ]
-    },
-    {
-      name: "Advanced Studies in Kahooting",
-      code: "QUIZ90002",
-      incompleteAssessments: [
-        {
-          title: "another one",
-          weight: 5,
-          score: -1
-        },
-        {
-          title: "exam",
-          weight: 50,
-          score: -1
-        }
-      ],
-      completeAssessments: [
-        {
-          title: "little annoying quiz",
-          weight: 5,
-          score: 4
-        },
-        {
-          title: "little annoying quiz",
-          weight: 5,
-          score: 3
-        },
-        {
-          title: "little annoying quiz",
-          weight: 5,
-          score: 4.5
-        },
-        {
-          title: "little annoying quiz",
-          weight: 5,
-          score: 3
-        },
-        {
-          title: "little annoying quiz",
-          weight: 5,
-          score: 4
-        },
-        {
-          title: "little annoying quiz",
-          weight: 5,
-          score: 5
-        },
-        {
-          title: "little annoying quiz",
-          weight: 5,
-          score: 5
-        },
-        {
-          title: "little annoying quiz",
-          weight: 5,
-          score: 2
-        },
-        {
-          title: "little annoying quiz",
-          weight: 5,
-          score: 3
-        }
-      ]
-    }
-  ]
+  const [subjects, setSubjects] = useState<Subject[]>([]);
 
+  const newSubject = () => {
+    var newArray: Subject[] = [...subjects];
+    newArray.push({
+      name: "",
+      code: "",
+      incompleteAssessments: [],
+      completeAssessments: []
+    });
+    setSubjects(newArray);
+  }
+
+  useEffect(() => {
+    newSubject();
+  }, [])
+
+  
 
   return (
     <div className={content.container}>
-        {children}
+        <Swiper
+          slidesPerView={'auto'}
+          spaceBetween={0}
+          grabCursor={true}
+          mousewheel={true}
+          freeMode={true}
+          preventClicks={false}
+          modules={[FreeMode]}
+          className={content.swiper}
+        >
+          {subjects.map((subject: Subject, index: number) => 
+            <SwiperSlide>
+                <Wamplifier _subject={subject}/>
+            </SwiperSlide>
+          )}
 
-        {testSubjects.map((subject: Subject, index) => 
-          <Wamplifier _subject={subject}/>
-        )}
+          <SwiperSlide>
+            <div className='swiper-no-swiping'>
+              <button onClick={() => newSubject()} className={content.add}>
+                <h3>Add a Subject</h3>
+                <AddIcon fontSize='large'/>
+              </button>
+            </div>
+          </SwiperSlide>
+          
+        </Swiper>
     </div>
   )
 }

@@ -1,0 +1,62 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.primary {
+    color: var(--n50);
+    background: var(--a500);
+
+    transition: background 200ms ease;
+}
+
+.primary:hover {
+    background: var(--a300);
+}
+
+.secondary {
+    color: var(--a300);
+    background: transparent;
+    border: 1px solid var(--a300);
+
+    transition: all 200ms ease;
+}
+
+.secondary:hover {
+    color: var(--a100);
+    border-color: var(--a100);
+    background: var(--n800);
+}
+
+.tertiary {
+    color: var(--n300);
+    background: var(--n800);
+    border: 1px solid var(--n300);
+}
+
+.small {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 99999px;
+    border-width: 2px;
+}
+
+.medium {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.large {
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+}

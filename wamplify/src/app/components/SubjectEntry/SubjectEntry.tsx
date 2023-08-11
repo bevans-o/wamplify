@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import entry from './entry.module.css'
-import Divider from '../../misc/Divider'
+import Divider from '../misc/Divider'
 import AssessmentItemEntry from './AssessmentItemEntry';
 import SubjectSearch from './SubjectSearch';
 import initialSubjectList from '../../../api/Subjects_2023.json';

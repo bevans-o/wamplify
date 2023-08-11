@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
 :root {
   --n50: #fdf8f2;
@@ -60,7 +60,7 @@
 body {
   background: var(--n950);
   color: var(--n50);
-  font-family: 'Urbanist', sans-serif;
+  font-family: 'Cabin', sans-serif;
 }
 
 input {
@@ -189,6 +189,7 @@ input::-webkit-input-placeholder,
 
 
 /* MUI slider */
+
 .slider {
   color: var(--a500);
   height: 0.4rem;
@@ -226,7 +227,7 @@ input::-webkit-input-placeholder,
 }
 
 .slider .MuiSlider-track {
-  
+  color: var(--a500);
 }
 
 .slider .MuiSlider-rail {
@@ -282,4 +283,30 @@ input::-webkit-input-placeholder,
 
 .slider .MuiSlider-valueLabel::before {
   display: none;
+}
+
+.MuiDialog-container {
+  padding-bottom: 15%;
+}
+
+
+/* SWIPER.JS */
+
+.swiper {
+  padding: 0 4rem !important;
+}
+
+.swiper-slide {
+  width: auto !important;
+  height: fit-content;
+  padding: 6rem 2rem calc(5vh + 5rem);
+}
+
+.swiper-slide > div {
+  height: 100%;
+  min-width: 36rem;
+}
+
+.swiper-slide:last-child {
+  padding-right: 40vw;
 }

@@ -72,7 +72,7 @@ function Wamplifier({_subject}: any) {
                 min={50}
                 valueLabelDisplay="auto"
                 marks={sliderMarks}
-                className="slider"
+                className="slider swiper-no-swiping"
                 onChange={(e, value) => {
                   if (Array.isArray(value)) {
                     setTargetScore(value[0]);
