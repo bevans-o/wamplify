@@ -273,12 +273,6 @@ input::-webkit-input-placeholder,
 
 .slider .MuiSlider-valueLabel {
   display: none;
-  /* background: var(--n50);
-  border-radius: 99999px;
-  font-family: inherit;
-  color: var(--n800);
-  padding: 0.2rem 0.8rem;
-  top: -8px; */
 }
 
 .slider .MuiSlider-valueLabel::before {
@@ -294,6 +288,7 @@ input::-webkit-input-placeholder,
 
 .swiper {
   padding: 0 4rem !important;
+  height: 100%;
 }
 
 .swiper-slide {
