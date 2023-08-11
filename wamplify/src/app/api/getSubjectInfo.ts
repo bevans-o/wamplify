@@ -1,11 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import {JSDOM} from 'jsdom';
+import { AssessmentItem } from '../components/Sidebar/SubjectEntry/AssessmentItemEntry';
 
-interface AssessmentItem {
-    title: string;
-    weight: Number;
-    isHurdle: Boolean;
-}
 
 async function fetchSubjectPage(url: string) {
     const HTMLData = axios

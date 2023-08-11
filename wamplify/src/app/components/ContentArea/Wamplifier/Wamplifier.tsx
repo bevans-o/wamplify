@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import wamplifier from './wamplifier.module.css'
 import Divider from '../../misc/Divider'
-import { Assessment } from '@/app/page'
 import WamplifierAssessment from './WamplifierAssessment'
 import Slider from '@mui/material/Slider';
+import { Assessment } from '@/app/types/types';
 
 const sliderMarks = [
   {
@@ -30,7 +30,6 @@ const sliderMarks = [
 
 function Wamplifier({_subject}: any) {
   const [targetScore, setTargetScore] = useState(50);
-
 
   return (
     <div>

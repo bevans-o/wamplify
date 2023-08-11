@@ -1,5 +1,6 @@
 import React from 'react'
 import entry from './entry.module.css'
+import { Assessment } from '@/app/types/types';
 
 function AssessmentItemEntry({item} : any) {
 

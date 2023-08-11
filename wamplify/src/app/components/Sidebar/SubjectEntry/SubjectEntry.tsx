@@ -4,12 +4,7 @@ import Divider from '../../misc/Divider'
 import AssessmentItemEntry from './AssessmentItemEntry';
 import SubjectSearch from './SubjectSearch';
 import initialSubjectList from '../../../api/Subjects_2023.json';
-
-
-interface SearchResult {
-  code: string,
-  name: string
-}
+import { SearchResult } from '@/app/types/types';
 
 function SubjectEntry({_code, _valid, _assessmentItems, _subjectName, id} : any) {
   const [subjectCode, setSubjectCode] = useState(_code ? _code : "");

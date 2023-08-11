@@ -7,19 +7,7 @@ import SubjectEntry from './components/Sidebar/SubjectEntry/SubjectEntry'
 import ContentArea from './components/ContentArea/ContentArea'
 import Wamplifier from './components/ContentArea/Wamplifier/Wamplifier'
 import { useEffect, useState } from 'react'
-
-export interface Assessment {
-  title: string,
-  weight: number,
-  score: number
-}
-
-export interface Subject {
-  name: string,
-  code: string,
-  incompleteAssessments: Assessment[],
-  completeAssessments: Assessment[]
-}
+import {Subject} from './types/types'
 
 export default function Home() {
   const [subjects, setSubjects] = useState<Subject[]>([]);
@@ -29,8 +17,7 @@ export default function Home() {
     newArray.push({
       name: "",
       code: "",
-      incompleteAssessments: [],
-      completeAssessments: []
+      assessments: [],
     });
     setSubjects(newArray);
   }
