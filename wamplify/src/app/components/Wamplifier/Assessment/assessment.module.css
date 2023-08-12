@@ -1,0 +1,54 @@
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+
+    padding: 0.75rem 0;
+
+    border-bottom: 1px solid var(--n900);
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 10rem;
+    
+    color: var(--n100);
+}
+
+.description {
+    font-size: 0.825rem;
+    color: var(--n300);
+}
+
+.container input {
+    width: 4rem;
+    height: 2.5rem;
+    z-index: 1;
+}
+
+.wire {
+    position: absolute;
+    width: 1.5px;
+    height: 2.5rem;
+    background: var(--n600);
+    right: 2rem;
+    bottom: 3.25rem;
+}
+
+.wire.wireHighlight {
+    height: 2.75rem;
+    background: linear-gradient(0deg, var(--n600) 0%, var(--a500) 100%);
+}

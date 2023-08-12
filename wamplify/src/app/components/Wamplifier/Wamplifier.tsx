@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import wamplifier from './wamplifier.module.css'
 import Divider from '../Divider/Divider'
-import AssessmentInput from './Assessment'
+import AssessmentInput from './Assessment/Assessment'
 import Slider from '@mui/material/Slider'
 import CircularProgress from '@mui/material/CircularProgress'
+import CloseIcon from '@mui/icons-material/Close';
 import { Assessment, SearchResult, Subject } from '@/app/types/types';
 import SubjectSearch from './SubjectSearch/SubjectSearch';
 
@@ -57,40 +58,39 @@ function Wamplifier({id}: WamplifierProps) {
         <div className={wamplifier.body + " panel"} tabIndex={-1} id={`Wamplifier--${id}`}>
           <div className={wamplifier.header + " fc pad"}>
             { subject.name != "" &&
-            <>
-            <h2 className={wamplifier.title}>{subject.name}</h2>
-            <h3 className={wamplifier.code}>{subject.code}</h3>
-            </>
+            <div className='fc'>
+              <h2 className={wamplifier.title}>{subject.name}</h2>
+              <h3 className={wamplifier.code}>{subject.code}</h3>
+            </div>
             }
             
             { subject.name === "" && !isLoading &&
               <SubjectSearch id={id} onSelect={(subject : SearchResult) => onSubjectSelect(subject)}/>  
             }
+
+            <button>
+              <CloseIcon/>
+            </button>
           </div>
             
           <Divider/>
 
           { isLoading && <CircularProgress/>}
 
-          { !isLoading && <div className={wamplifier.assessmentContainer + " fc pad"}>
-            <div> 
-              <h3>Complete</h3>
-              <div className={wamplifier.assessments + " " + wamplifier.complete}>
-                {subject.assessments.map((assessment: Assessment, index: number) => 
-                  <AssessmentInput assessment={assessment} complete={true} key={index}/>
-                )}
+          { !isLoading && 
+            <div className={wamplifier.assessmentContainer}>
+              <div className={wamplifier.currentRate}>
+                <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
+                <div className={wamplifier.currentScore}>100</div>
               </div>
-            </div>
-            
-            <div>
-              <h3>Incomplete</h3>
+
               <div className={wamplifier.assessments}>
                 {subject.assessments.map((assessment: Assessment, index: number) => 
-                  <AssessmentInput assessment={assessment} complete={false} key={index}/>
+                  <AssessmentInput assessment={assessment} highlighted={index < 2} key={index}/>
                 )}
               </div>
             </div>
-          </div>}
+          }
 
           <Divider/>
 

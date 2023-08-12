@@ -2,23 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
 :root {
-  --n50: #fdf8f2;
-  --n100: #d3c6b9;
-  --n200: #b8b3ac;
+  --n50: #fffefc;
+  --n100: #f0e9e2;
+  --n200: #c5c0b8;
   --n300: #857f77;
   --n400: #6b6661;
   --n500: #4d4c4b;
-  --n600: #3d3c3b;
-  --n700: #2d2c2b;
-  --n800: #282727;
-  --n900: #242323;
-  --n950: #1d1c1c;
+  --n600: #302f2e;
+  --n700: #1d1c1b;
+  --n800: #141414;
+  --n900: #0f0f0f;
+  --n950: #020202;
 
   --a100: #f6b9d6;
   --a300: #f369a9;
   --a500: #d63f88;
   --a700: #ce2063;
-  --a900: #87005a;
+  --a900: #c24a9a40;
 
   --b100: #a5fbec;
   --b300: #00f2d1;
@@ -64,12 +64,12 @@ body {
 }
 
 input {
-  background: var(--n950);
-  border: 1px solid var(--border-colour);
+  background: var(--n900);
+  border: 1px solid var(--n700);
   
   max-width: 100%;
   color: var(--n50);
-  border-radius: 4px;
+  border-radius: 2px;
   width: 60%;
   padding: 0.3rem 0.6rem;
   font-family: inherit;
@@ -90,14 +90,6 @@ input::-webkit-input-placeholder,
   flex-direction: column;
 }
 
-.pad {
-  padding: 1.2rem;
-}
-
-.pad-2 {
-  padding: 2rem;
-}
-
 .text-fix {
   padding-left: 2px !important;
 }
@@ -107,14 +99,6 @@ input::-webkit-input-placeholder,
   font-weight: 600;
 }
 
-.text-note {
-  font-size: 0.91rem;
-  font-weight: 400;
-  color: var(--n400);
-  line-height: 130%;
-  letter-spacing: 0.2px;
-}
-
 .warning {
   color: var(--bad500);
   font-weight: 500;
@@ -122,8 +106,8 @@ input::-webkit-input-placeholder,
 
 .divider {
   width: 100%;
-  height: 2px;
-  background: var(--border-colour);
+  height: 1px;
+  background: var(--n600);
   border-top: 1px solid rgba(0, 0, 0, 0.2);
 
   transition: background 200ms ease;
@@ -146,32 +130,16 @@ input::-webkit-input-placeholder,
 }
 
 .panel {
-  border-radius: 5px;
-  border: 1px solid var(--border-colour);
   background: var(--n900);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-
-  transition: all 200ms ease;
-}
-
-.panel:hover {
-  background: var(--n800);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
-
-.panel:hover .divider {
-  background: var(--n700);
-}
-
-.panel:hover input {
+  background: linear-gradient(250deg, rgb(18, 20, 20)0%,var(--n800) 80%);
   border: 1px solid var(--n600);
+  border-radius: 2px;
 }
 
 .debug {
   background: #961d1d !important;
   border: 1px solid #a62929 !important;
 }
-
 
 *::-webkit-scrollbar {
   width: 0.3rem;
@@ -234,7 +202,7 @@ input::-webkit-input-placeholder,
   --padding: 4px;
   opacity: 1;
   background: var(--n950);
-  border: 1px solid var(--n700);
+  border: 1px solid var(--n800);
   height: calc(0.4rem + 2 * var(--padding));
   width: calc(100% + 2 * var(--padding));
   translate: calc(-1 * var(--padding));
@@ -242,7 +210,7 @@ input::-webkit-input-placeholder,
 }
 
 .panel:hover .slider .MuiSlider-rail {
-  border: 1px solid var(--n600);
+  border: 1px solid var(--n700);
 }
 
 .slider .MuiSlider-mark {
@@ -287,14 +255,15 @@ input::-webkit-input-placeholder,
 /* SWIPER.JS */
 
 .swiper {
-  padding: 0 0.25rem !important;
   height: 100%;
+  padding: 0 0.5rem !important;
 }
 
 .swiper-slide {
   width: auto !important;
-  height: fit-content;
-  padding: 6rem 2rem calc(5vh + 5rem);
+  height: 100%;
+
+  padding: 1rem 0.5rem;
 }
 
 .swiper-slide > div {
@@ -304,12 +273,4 @@ input::-webkit-input-placeholder,
 
 .swiper-slide:last-child {
   padding-right: 40vw;
-}
-
-
-/* testing full height */
-.swiper-slide {
-  width: auto !important;
-  height: 100%;
-  padding: 0.5rem 0.25rem;
 }
