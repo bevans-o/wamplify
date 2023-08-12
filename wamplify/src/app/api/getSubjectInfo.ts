@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import {JSDOM} from 'jsdom';
-import { Assessment } from '../types/types';
+import { Assessment, SearchResult, Subject } from '../types/types';
 
 
 async function fetchSubjectPage(url: string) {
@@ -20,18 +20,16 @@ async function fetchSubjectPage(url: string) {
     let assessmentItems : Array<Assessment> = []
     const subjectInfo = document.querySelectorAll(".assessment-details tbody tr");
     subjectInfo.forEach((assessment) => assessmentItems.push(parseAssessment(assessment)));
-    return document;
+    return assessmentItems;
 }
 
 function parseAssessment(tableRow : Element) : Assessment {
     const fields = tableRow.querySelectorAll("td")
     let hurdle = fields[0].textContent?.includes("Hurdle");
     let title : string = parseTitle(fields[0])
-    console.log("Title: " + title)
-    console.log("Hurdle: " + hurdle)
+
     let weight : number = Number(fields[2].innerHTML.slice(0,-1));
-    console.log("Weight: " + weight)
-    let assessmentItem : Assessment = {title: title, weight: weight, score: -1};
+    let assessmentItem : Assessment = {title: title, weight: weight};
     return assessmentItem
 }
 
@@ -41,7 +39,13 @@ function parseTitle(title: Element) : string {
     return sentences[0];
 }
 
-export async function getAssessments(subjectCode: string) {
-    const url = "https://handbook.unimelb.edu.au/2023/subjects/" + subjectCode +"/assessment";
-    extractData(await fetchSubjectPage(url));
+export async function getSubjectInfo(subject: SearchResult) : Promise<Subject> {
+    const url = "https://handbook.unimelb.edu.au/2023/subjects/" + subject.code +"/assessment";
+    let assessments = extractData(await fetchSubjectPage(url));
+    let result : Subject = {
+        name : subject.name,
+        code : subject.code,
+        assessments : assessments
+    }
+    return result
 }
