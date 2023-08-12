@@ -43,7 +43,6 @@ function Wamplifier({id}: WamplifierProps) {
   const [isLoading, setLoading] = useState(false);
 
   const onSubjectSelect = (subject: SearchResult) => {
-    //console.log(`TODO: implement and call getSubject(${code})`);
     setLoading(true);
     axios.post("/api/getSubjectInfo", subject)
     .then((res) => {
@@ -57,9 +56,16 @@ function Wamplifier({id}: WamplifierProps) {
   return (
         <div className={wamplifier.body + " panel"} tabIndex={-1} id={`Wamplifier--${id}`}>
           <div className={wamplifier.header + " fc pad"}>
+            { subject.name != "" &&
+            <>
             <h2 className={wamplifier.title}>{subject.name}</h2>
             <h3 className={wamplifier.code}>{subject.code}</h3>
-            <SubjectSearch id={id} onSelect={(subject : SearchResult) => onSubjectSelect(subject)}/>
+            </>
+            }
+            
+            { subject.name === "" && !isLoading &&
+              <SubjectSearch id={id} onSelect={(subject : SearchResult) => onSubjectSelect(subject)}/>  
+            }
           </div>
             
           <Divider/>

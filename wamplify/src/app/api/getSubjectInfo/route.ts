@@ -1,8 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import {JSDOM} from 'jsdom';
 import { Assessment, SearchResult, Subject, SubjectInfoRequest } from '../../types/types';
-import { NextApiRequest, NextApiResponse } from 'next';
-import { headers } from 'next/dist/client/components/headers';
 import { NextResponse } from 'next/server';
 
 
