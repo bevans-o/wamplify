@@ -6,7 +6,7 @@ function Assessment({assessment, complete} : any) {
   const [focused, setFocused] = useState(false);
 
   useEffect(() => {
-    const score : HTMLElement | null = document.querySelector(``)
+    //const score : HTMLElement | null = document.querySelector(``)
 
 
   })

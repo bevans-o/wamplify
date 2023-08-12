@@ -11,6 +11,9 @@ module.exports = {
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.externals = [nodeExternals()];
+      config.node = {
+        net: 'empty'
+      }
     }
 
     return config;

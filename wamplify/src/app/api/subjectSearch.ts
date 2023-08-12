@@ -1,5 +1,5 @@
 import { SearchResult } from '../types/types';
-import initialSubjectList from './Subjects_2023.json'
+import initialSubjectList from '../utils/Subjects_2023.json'
 
 
 export function getPredictiveSearch(searchTerm: string, count: number) {

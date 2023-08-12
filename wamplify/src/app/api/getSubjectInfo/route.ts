@@ -1,7 +1,19 @@
 import axios, { AxiosError } from 'axios';
 import {JSDOM} from 'jsdom';
-import { Assessment, SearchResult, Subject } from '../types/types';
+import { Assessment, SearchResult, Subject, SubjectInfoRequest } from '../../types/types';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { headers } from 'next/dist/client/components/headers';
+import { NextResponse } from 'next/server';
 
+
+export async function POST(req: Request, res: Response) {
+    const request = await req.json();
+
+    const response = await getSubjectInfo(request);
+
+    return NextResponse.json(response);
+
+}
 
 async function fetchSubjectPage(url: string) {
     const HTMLData = axios
@@ -25,11 +37,11 @@ async function fetchSubjectPage(url: string) {
 
 function parseAssessment(tableRow : Element) : Assessment {
     const fields = tableRow.querySelectorAll("td")
-    let hurdle = fields[0].textContent?.includes("Hurdle");
+    let hurdle = fields[0].textContent?.includes("Hurdle") ? true : false ;
     let title : string = parseTitle(fields[0])
 
     let weight : number = Number(fields[2].innerHTML.slice(0,-1));
-    let assessmentItem : Assessment = {title: title, weight: weight};
+    let assessmentItem : Assessment = {title: title, weight: weight, hurdle: hurdle};
     return assessmentItem
 }
 
@@ -39,7 +51,7 @@ function parseTitle(title: Element) : string {
     return sentences[0];
 }
 
-export async function getSubjectInfo(subject: SearchResult) : Promise<Subject> {
+async function getSubjectInfo(subject: SearchResult) : Promise<Subject> {
     const url = "https://handbook.unimelb.edu.au/2023/subjects/" + subject.code +"/assessment";
     let assessments = extractData(await fetchSubjectPage(url));
     let result : Subject = {
