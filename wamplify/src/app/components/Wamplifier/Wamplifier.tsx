@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import wamplifier from './wamplifier.module.css'
 import Divider from '../Divider/Divider'
 import AssessmentInput from './Assessment'
-import Slider from '@mui/material/Slider';
-import { Assessment, Subject } from '@/app/types/types';
+import Slider from '@mui/material/Slider'
+import CircularProgress from '@mui/material/CircularProgress'
+import { Assessment, SearchResult, Subject } from '@/app/types/types';
 import SubjectSearch from './SubjectSearch/SubjectSearch';
 
 
@@ -38,22 +40,33 @@ interface WamplifierProps {
 function Wamplifier({id}: WamplifierProps) {
   const [targetScore, setTargetScore] = useState(50);
   const [subject, setSubject] = useState<Subject>({name: "", code: "", assessments: []});
+  const [isLoading, setLoading] = useState(false);
 
-  const onSubjectSelect = (code: string) => {
-    console.log(`TODO: implement and call getSubject(${code})`);
+  const onSubjectSelect = (subject: SearchResult) => {
+    //console.log(`TODO: implement and call getSubject(${code})`);
+    setLoading(true);
+    axios.post("/api/getSubjectInfo", subject)
+    .then((res) => {
+      setSubject(res.data);
+      setLoading(false);
+    })
+    .catch((error) => console.log(error));
   }
+    
 
   return (
         <div className={wamplifier.body + " panel"} tabIndex={-1} id={`Wamplifier--${id}`}>
           <div className={wamplifier.header + " fc pad"}>
             <h2 className={wamplifier.title}>{subject.name}</h2>
             <h3 className={wamplifier.code}>{subject.code}</h3>
-            <SubjectSearch id={id} onSelect={(code : string) => onSubjectSelect(code)}/>
+            <SubjectSearch id={id} onSelect={(subject : SearchResult) => onSubjectSelect(subject)}/>
           </div>
             
           <Divider/>
 
-          <div className={wamplifier.assessmentContainer + " fc pad"}>
+          { isLoading && <CircularProgress/>}
+
+          { !isLoading && <div className={wamplifier.assessmentContainer + " fc pad"}>
             <div> 
               <h3>Complete</h3>
               <div className={wamplifier.assessments + " " + wamplifier.complete}>
@@ -71,7 +84,7 @@ function Wamplifier({id}: WamplifierProps) {
                 )}
               </div>
             </div>
-          </div>
+          </div>}
 
           <Divider/>
 
@@ -117,7 +130,7 @@ function Wamplifier({id}: WamplifierProps) {
               
             </div>
           </div>
-
+        
         </div>
   )
 }
