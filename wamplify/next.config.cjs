@@ -4,6 +4,14 @@ const nodeExternals = require('webpack-node-externals');
 
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    outputFileTracingExcludes: {
+      '*': [
+        'node_modules/canvas',
+      ],
+    },
+    outputFileTracingIgnores: ['**canvas**']
+  },
 };
 
 module.exports = {
