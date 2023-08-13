@@ -7,40 +7,45 @@
     overflow: hidden;
 }
 
+.addContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: 2px dashed transparent;
+
+    transition: border-color 200ms ease;
+}
+
+.addContainer:hover {
+    border-color: var(--n700);
+}
+
 .add {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    padding-bottom: 8rem;
+    padding: 1rem;
 
-    border-radius: 5px;
-    border: 2px solid transparent;
+    border-radius: 99999px;
+    border: 4px solid var(--a500);
     background: transparent;
     cursor: pointer;
-    opacity: 0.3;
-    color: var(--a700);
+    color: var(--a500);
     font-family: inherit;
 
     transition: background 100ms ease, color 100ms ease, border-color 100ms ease;
 }
 
 .add svg {
-    height: 4rem;
-    width: 4rem;
-}
-
-.add h3 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    text-transform: uppercase;
+    height: 3rem;
+    width: 3rem;
 }
 
 .add:hover {
-    color: var(--a500);
-    border-color: var(--a300);
-    background: var(--n50);
+    color: var(--a100);
+    border-color: var(--a100);
+    background: var(--a500);
 }
