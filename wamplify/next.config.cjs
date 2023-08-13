@@ -4,6 +4,14 @@ const nodeExternals = require('webpack-node-externals');
 
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    outputFileTracingRoot: path.join(__dirname, '../../'),
+    outputFileTracingExcludes: {
+      '*': [
+        'node_modules/canvas',
+      ],
+    },
+  }
 };
 
 module.exports = {
