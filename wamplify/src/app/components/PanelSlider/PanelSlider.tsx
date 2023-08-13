@@ -8,19 +8,21 @@ import 'swiper/css';
 import Button from '../Button/Button';
 import AddIcon from '@mui/icons-material/Add';
 import { Subject } from '@/app/types/types';
+import generateID from '@/app/utils/scripts/generateId';
 
 function PanelSlider() {
 
-  const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [wamplifiers, setWamplifiers] = useState<string[]>([]);
 
   const newSubject = () => {
-    var newArray: Subject[] = [...subjects];
-    newArray.push({
-      name: "",
-      code: "",
-      assessments: []
-    });
-    setSubjects(newArray);
+    var newArray: string[] = [...wamplifiers];
+    newArray.push(generateID(24))
+    setWamplifiers(newArray);
+  }
+
+  const removeSubject = (id: string) => {
+    var newArray: string[] = wamplifiers.filter((item) => item != id);
+    setWamplifiers(newArray);
   }
 
   useEffect(() => {
@@ -41,9 +43,9 @@ function PanelSlider() {
           preventClicks={false}
           modules={[FreeMode]}
         >
-          {subjects.map((subject: Subject, index: number) => 
-            <SwiperSlide key={index}>
-                <Wamplifier subject={subject} id={index}/>
+          {wamplifiers.map((id: string, index: number) => 
+            <SwiperSlide key={id}>
+                <Wamplifier key={id} id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)}/>
             </SwiperSlide>
           )}
 

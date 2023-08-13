@@ -34,11 +34,11 @@ const sliderMarks = [
 ];
 
 interface WamplifierProps {
-  subject: Subject;
-  id: number; 
+  id: string; 
+  onDelete: Function;
 }
 
-function Wamplifier({id}: WamplifierProps) {
+function Wamplifier({id, onDelete}: WamplifierProps) {
   const [targetScore, setTargetScore] = useState(50);
   const [subject, setSubject] = useState<Subject>({name: "", code: "", assessments: []});
   const [isLoading, setLoading] = useState(false);
@@ -69,7 +69,7 @@ function Wamplifier({id}: WamplifierProps) {
             }
 
             <button className={wamplifier.close}>
-              <CloseIcon fontSize='medium'/>
+              <CloseIcon fontSize='medium' onClick={() => onDelete(id)}/>
             </button>
           </div>
             
