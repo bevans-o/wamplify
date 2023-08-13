@@ -56,7 +56,7 @@ function Wamplifier({id}: WamplifierProps) {
 
   return (
         <div className={wamplifier.body + " panel"} tabIndex={-1} id={`Wamplifier--${id}`}>
-          <div className={wamplifier.header + " fc pad"}>
+          <div className={wamplifier.header}>
             { subject.name != "" &&
             <div className='fc'>
               <h2 className={wamplifier.title}>{subject.name}</h2>
@@ -68,8 +68,8 @@ function Wamplifier({id}: WamplifierProps) {
               <SubjectSearch id={id} onSelect={(subject : SearchResult) => onSubjectSelect(subject)}/>  
             }
 
-            <button>
-              <CloseIcon/>
+            <button className={wamplifier.close}>
+              <CloseIcon fontSize='medium'/>
             </button>
           </div>
             
@@ -94,47 +94,46 @@ function Wamplifier({id}: WamplifierProps) {
 
           <Divider/>
 
-          <div className={wamplifier.controls + " pad"}>
-            <div className={wamplifier.slider}>
-              <Slider
-                aria-label="Target Score"
-                value={targetScore}
-                step={1}
-                min={50}
-                valueLabelDisplay="auto"
-                marks={sliderMarks}
-                className="slider swiper-no-swiping"
-                onChange={(e, value) => {
-                  if (Array.isArray(value)) {
-                    setTargetScore(value[0]);
-                  }
-                  else {
-                    setTargetScore(value)
-                  }
-                }}
-              />
+          <div>
+            <div className={wamplifier.controls}>
+              <div className={wamplifier.note}>Set your target score. Your incomplete assessments will reflect the required scores.</div>
+            
+              <div className={wamplifier.slider}>
+                <Slider
+                  aria-label="Target Score"
+                  value={targetScore}
+                  step={1}
+                  min={50}
+                  max={100}
+                  valueLabelDisplay="auto"
+                  marks={sliderMarks}
+                  className="slider swiper-no-swiping"
+                  onChange={(e, value) => {
+                    if (Array.isArray(value)) {
+                      setTargetScore(value[0]);
+                    }
+                    else {
+                      setTargetScore(value)
+                    }
+                  }}
+                />
+              </div>
+              
             </div>
 
-            <div className={wamplifier.scores}>
-              <div>
-                <span>
-                  Your current average
-                </span>
-                <input/>
-              </div>
-
-              <div>
-                <span>
-                  Your wamplified score
-                </span>
+            <div className={wamplifier.footer}>
+              <div className={wamplifier.target}>
+                <div className={wamplifier.targetText}>
+                  Your target for <span>{subject.code}</span> is
+                </div>
                 <input 
                   value={targetScore}
                   onChange={(e) => {
                     setTargetScore(parseInt(e.target.value));
                   }}/>
               </div>
-              
             </div>
+            
           </div>
         
         </div>

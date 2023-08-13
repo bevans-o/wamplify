@@ -20,8 +20,12 @@ function Assessment({assessment, highlighted} : any) {
   return (
     <div className={assessmentItem.container}>
       <div className={assessmentItem.text}>
-        <span className={assessmentItem.title}>{assessment.title}</span>
-        <span className={assessmentItem.description}>TODO: descriptions</span>
+        <span className={assessmentItem.title}>
+          {assessment.title}
+        </span>
+        <span className={assessmentItem.description}>
+          TODO: descriptions
+        </span>
       </div>
 
       <input/>

@@ -2,35 +2,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
 :root {
+  --pink100: #f6b9d6;
+  --pink300: #f369a9;
+  --pink500: #d63f88;
+  --pink700: #d83e79;
+  --pink900: #c24a9a40;
+
+  --orange100: #f6d5b9;
+  --orange300: #f39569;
+  --orange500: #d67b3f;
+  --orange700: #ce6620;
+  --orange900: #c27a4a25;
+
+
   --n50: #fffefc;
   --n100: #f0e9e2;
   --n200: #c5c0b8;
   --n300: #857f77;
   --n400: #6b6661;
   --n500: #4d4c4b;
-  --n600: #302f2e;
+  --n600: #242322;
   --n700: #1d1c1b;
   --n800: #141414;
   --n900: #0f0f0f;
   --n950: #020202;
 
-  --a100: #f6b9d6;
-  --a300: #f369a9;
-  --a500: #d63f88;
-  --a700: #ce2063;
-  --a900: #c24a9a40;
+  --a100: var(--orange100);
+  --a300: var(--orange300);
+  --a500: var(--orange500);
+  --a700: var(--orange700);
+  --a900: var(--orange900);
 
   --b100: #a5fbec;
   --b300: #00f2d1;
   --b500: #00dfb6;
   --b700: #00bc93;
   --b900: #008b62;
-
-  --c100: #bcdfff;
-  --c300: #65b7ff;
-  --c500: #2499fe;
-  --c700: #2178dc;
-  --c900: #1c48aa;
 
   --bad100: #fecfd5;
   --bad300: #e4797b;
@@ -45,6 +52,7 @@
   --good900: #226823;
 
   --border-colour: var(--n800);
+  --wamp-width: 36rem;
 }
 
 * {
@@ -159,7 +167,7 @@ input::-webkit-input-placeholder,
 /* MUI slider */
 
 .slider {
-  color: var(--a500);
+  color: var(--a300);
   height: 0.4rem;
   transition: all 200ms ease;
   overflow: visible;
@@ -172,49 +180,36 @@ input::-webkit-input-placeholder,
 }
 
 .slider .MuiSlider-thumb {
-  background: var(--a500);
+  background: var(--a300);
   border: none;
-  height: 18px;
-  width: 18px;
+  height: 14px;
+  width: 14px;
 
   transition: all 200ms ease;
 }
 
 .slider:hover .MuiSlider-thumb {
-  background: var(--a300);
+  background: var(--a100);
   box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.2);
 }
 
-.slider .MuiSlider-thumb::after {
-  content: '';
-  background: var(--a500);
-  background: transparent;
-  width: 12px;
-  height: 12px;
-  position: absolute;
-}
-
 .slider .MuiSlider-track {
-  color: var(--a500);
+  color: var(--a300);
 }
 
 .slider .MuiSlider-rail {
-  --padding: 4px;
+  --padding: 3px;
   opacity: 1;
-  background: var(--n950);
-  border: 1px solid var(--n800);
+  background: var(--n900);
+  border: 1px solid var(--n700);
   height: calc(0.4rem + 2 * var(--padding));
   width: calc(100% + 2 * var(--padding));
   translate: calc(-1 * var(--padding));
   transition: all 200ms ease;
 }
 
-.panel:hover .slider .MuiSlider-rail {
-  border: 1px solid var(--n700);
-}
-
 .slider .MuiSlider-mark {
-  background: var(--n950);
+  background: var(--n900);
   border-left: 1px solid var(--n700);
   width: 2px;
   border-radius: 0;
@@ -228,6 +223,13 @@ input::-webkit-input-placeholder,
   font-family: inherit;
   padding-top: 1rem;
   translate: 1px;
+
+  transition: color 500ms ease, text-shadow 500ms ease;
+}
+
+.slider .MuiSlider-markLabelActive {
+  color: var(--a100);
+  text-shadow: 0 0 10px var(--a900);
 }
 
 .slider .MuiSlider-thumb:hover {
@@ -263,12 +265,12 @@ input::-webkit-input-placeholder,
   width: auto !important;
   height: 100%;
 
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 0.5rem 1rem;
 }
 
 .swiper-slide > div {
   height: 100%;
-  width: 36rem;
+  width: var(--wamp-width);
 }
 
 .swiper-slide:last-child {

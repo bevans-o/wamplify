@@ -15,5 +15,5 @@
     "main"
     "bottom";
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto minmax(0, 1fr) 2rem;
+  grid-template-rows: auto minmax(0, 1fr) auto;
 }
