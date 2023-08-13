@@ -3,131 +3,162 @@
     height: 100%;
     min-height: 20rem;
 
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
     user-select: none;
+
+    --wamp-padding: 2rem;
+}
+
+.header {
+    max-width: var(--wamp-width);
+    padding: var(--wamp-padding);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    height: 7.25rem;
+}
+
+.header > div {
+    max-width: 90%;
+    flex-grow: 2;
 }
 
 .title {
-    font-size: 1.2rem;
+    font-size: 1.375rem;
+    font-weight: 100;
+    letter-spacing: 0.3px;
     line-height: 130%;
     padding-bottom: 0.2rem;
+
+    
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .code {
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 600;
     color: var(--n400);
 }
 
-.assessmentContainer {
-    gap: 1rem;
+.close {
+    background: none;
+    border: none;
+    color: var(--n400);
+    cursor: pointer;
+    translate: 0 3px;
+
+    transition: color 100ms ease;
 }
 
-.assessmentContainer h3 {
+.close:hover {
+    color: var(--n200);
+}
+
+.header,
+.assessmentContainer {
+    border-bottom: 2px solid var(--n900);
+}
+
+.assessmentContainer {
+    padding: var(--wamp-padding);
+    gap: 1rem;
+
+    overflow-y: auto;
+}
+
+.currentRate {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0.625rem 0.5rem 0.5rem 1rem;
+    border: 1.5px solid var(--a300);
+    background: var(--n900);
+    border-radius: 6px;
+
+    color: var(--n200);
+    font-size: 0.85rem;
+}
+
+.currentScore {
+    border: 2px solid var(--a500);
+    padding: 0.25rem 0.75rem;
+    color: var(--a500);
+    background: var(--a900);
+    border-radius: 5px;
+    box-shadow: 0 2px 0 var(--a700);
+    translate: 0 -2px;
     font-size: 1rem;
-    padding-left: 2px;
-    color: var(--n500);
-    padding-bottom: 0.4rem;
 }
 
 .assessments {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 2rem;
+    row-gap: 0;
+    column-gap: 1.5rem;
+    padding: 2rem 0;
 }
 
-.assessments.complete {
-    gap: 0.5rem;
-}
-
-.assessment {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 1.2rem;
-    align-items: center;
-    color: var(--n200);
-    padding-left: 2px;
-
-    transition: all 200ms ease;
-}
-
-.assessment:hover {
-    color: var(--n50);
-}
-
-.assessment input {
-    width: 5rem;
-}
-
-.assessmentTitle {
-    flex-grow: 2;
-    white-space: ellipsis;
-    line-clamp: 2;
-    width: 100%;
-    overflow: hidden;
-
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    text-wrap: balance;
-
-    max-height: 5rem;
-}
-
-.assessment.complete {
+.note {
+    font-size: 0.875rem;
+    font-weight: 200;
     color: var(--n300);
-    font-size: 0.9rem;
-    background: var(--n800);
-    border: 1px solid var(--n700);
-    padding: 0.4rem 0.8rem;
-    border-radius: 10px;
-}
-
-.body:hover .assessment.complete {
-    background: var(--n700);
-    border: 1px solid var(--n600);
+    padding-bottom: 0.75rem;
 }
 
 .controls {
-    flex-grow: 2;
+    padding: var(--wamp-padding)
 }
 
 .slider {
-    padding: 0 0.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0.5rem;
 }
 
-.scores {
+.footer {
+    padding: 0.5rem;
+}
+
+.target {
+    width: 100%;
+    background: var(--a700);
+    padding: 0.5rem;
     display: flex;
-    align-items: center;
     justify-content: flex-end;
-    gap: 1.2rem;
-
-    font-size: 0.8rem;
-    color: var(--n400);
-}
-
-.scores > * {
-    display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 1rem;
+    border: 2px solid var(--a500);
+    box-shadow: 0 2px 6px var(--n950), 0 2px 0 var(--a700);
+    border-radius: 4px;
+
+    translate: 0 -2px;
 }
 
-.scores input {
+.targetText {
+    color: var(--n600);
+}
+
+.targetText span {
+    color: var(--n700);
+    font-weight: 900;
+}
+
+.target input {
     width: 4.5rem;
-    height: 3rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 6px var(--n950), inset 0 2px 0 var(--a700);
+    border: 2px solid var(--a500);
+    background:  linear-gradient(var(--a900), var(--a900)), linear-gradient(var(--n800), var(--n800));
 
-    text-align: right;
-    color: var(--a300);
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-.scores span {
-    max-width: 7rem;
-    text-wrap: balance;
+    font-size: 1.625rem;
+    font-weight: 100;
     text-align: right;
 }
 

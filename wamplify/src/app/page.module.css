@@ -6,7 +6,6 @@
   max-height: 100vh;
 
   font-weight: 600;
-  letter-spacing: 0.2px;
 
   overflow: hidden;
 
@@ -16,5 +15,5 @@
     "main"
     "bottom";
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto minmax(0, 1fr) 2rem;
+  grid-template-rows: auto minmax(0, 1fr) auto;
 }

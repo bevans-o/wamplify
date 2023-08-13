@@ -1,16 +1,17 @@
 .container {
     grid-area: bottom;
 
-    background: var(--n700);
-    border-top: 1px solid var(--border-colour);
+    background: var(--n800);
+    border-top: 0px solid var(--n600);
+    box-shadow: 0 -4px 0px 0px black;
 
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 0.625rem;
 }
 
 .container > * {
@@ -25,6 +26,7 @@
     color: var(--n400);
     user-select: none;
     transition: color 200ms ease;
+    font-weight: 300;
 }
 
 .version::after {
@@ -33,15 +35,16 @@
 }
 
 .credits {
-    gap: 0.25rem;
+    gap: 0.2rem;
 
-    font-weight: 700;
+    font-weight: 400;
     user-select: none;
 
     color: var(--n400);
 }
 
 .credits a {
+    font-weight: 600;
     cursor: pointer;
     transition: color 200ms ease;
 }

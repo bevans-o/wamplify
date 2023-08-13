@@ -10,6 +10,7 @@ function Infobar({version, message} : any) {
       </div>
         
       <div className={infobar.credits}>
+        👹
         <a>Risa</a>
         <span>&</span>
         <a>Ben</a>
