@@ -4,7 +4,7 @@ import { SearchResult } from '@/app/types/types';
 import { getPredictiveSearch } from '@/app/api/subjectSearch';
 
 interface SubjectSearchProps {
-  id: number,
+  id: string,
   onSelect: Function,
   resultLimit?: number
 }
