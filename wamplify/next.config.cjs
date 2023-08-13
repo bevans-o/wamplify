@@ -5,13 +5,12 @@ const nodeExternals = require('webpack-node-externals');
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    outputFileTracingExcludes: {
-      '*': [
-        'node_modules/canvas',
-      ],
-    },
-    outputFileTracingIgnores: ['**canvas**']
+    outputFileTracingExcludes:  ['**canvas**']
   },
+  webpack: (config) => {
+    config.externals = [...config.externals, "canvas", "jsdom"]
+    return config
+  }
 };
 
 module.exports = {
