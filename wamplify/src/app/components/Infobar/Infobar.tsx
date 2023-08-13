@@ -11,9 +11,9 @@ function Infobar({version, message} : any) {
         
       <div className={infobar.credits}>
         👹
-        <a>Risa</a>
+        <a target='_blank' href='https://www.linkedin.com/in/risa-pais/'>Risa</a>
         <span>&</span>
-        <a>Ben</a>
+        <a target='_blank' href='https://www.linkedin.com/in/ben-evans-48b4111ab/'>Ben</a>
       </div>
     </div>
   )
