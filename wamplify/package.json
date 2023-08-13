@@ -38,8 +38,5 @@
     "fs": false,
     "path": false,
     "os": false
-  },
-  "overrides": {
-    "canvas" : "../_EXCLUDED_"
   }
 }
