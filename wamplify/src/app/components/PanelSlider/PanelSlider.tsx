@@ -1,35 +1,27 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import slider from './slider.module.css'
 import Wamplifier from '../Wamplifier/Wamplifier'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import 'swiper/css';
-import Button from '../Button/Button';
 import AddIcon from '@mui/icons-material/Add';
-import { Subject } from '@/app/types/types';
 import generateID from '@/app/utils/scripts/generateId';
 
 function PanelSlider() {
 
-  const [wamplifiers, setWamplifiers] = useState<string[]>([]);
+  const [wamplifiers, setWamplifiers] = useState<string[]>([generateID(32)]);
 
   const newSubject = () => {
     var newArray: string[] = [...wamplifiers];
-    newArray.push(generateID(24))
+    newArray.push(generateID(32))
     setWamplifiers(newArray);
   }
 
   const removeSubject = (id: string) => {
     var newArray: string[] = wamplifiers.filter((item) => item != id);
     setWamplifiers(newArray);
-  }
-
-  useEffect(() => {
-    newSubject();
-  }, [])
-
-  
+  }  
 
   return (
     <div className={slider.container}>
@@ -45,7 +37,7 @@ function PanelSlider() {
         >
           {wamplifiers.map((id: string, index: number) => 
             <SwiperSlide key={id}>
-                <Wamplifier key={id} id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)}/>
+                <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)}/>
             </SwiperSlide>
           )}
 
