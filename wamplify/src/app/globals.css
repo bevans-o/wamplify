@@ -272,15 +272,6 @@ input::-webkit-input-placeholder,
   padding: 0.5rem 0.5rem 1rem;
 }
 
-.swiper-slide > div {
-  height: 100%;
-  width: var(--wamp-width);
-}
-
-.swiper-slide:last-child {
-  padding-right: 40vw;
-}
-
 
 @media (max-width: 800px) {
   :root {

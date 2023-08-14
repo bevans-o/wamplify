@@ -44,14 +44,20 @@
     width: 3rem;
 }
 
-.add:hover,
-.add:active {
+.add:hover {
     color: var(--a100);
     border-color: var(--a100);
     background: var(--a500);
 }
 
+.padSlide {
+    padding-right: 40vw;
+}
 
+.addContainer {
+    height: 100%;
+    width: var(--wamp-width);
+}
 
 
 

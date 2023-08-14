@@ -62,7 +62,7 @@ function PanelSlider() {
             </SwiperSlide>
           )}
 
-          <SwiperSlide>
+          <SwiperSlide className={slider.finalSlide}>
             <div className={slider.addContainer}>
               <button onClick={() => newSubject()} className={slider.add + " swiper-no-swiping"}>
                 <AddIcon fontSize='large'/>

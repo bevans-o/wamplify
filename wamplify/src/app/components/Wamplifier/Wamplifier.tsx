@@ -9,6 +9,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Assessment, SearchResult, Subject } from '@/app/types/types';
 import SubjectSearch from './SubjectSearch/SubjectSearch';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode, Scrollbar, Mousewheel } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/scrollbar';
+
 
 const sliderMarks = [
   {
@@ -78,18 +85,27 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
           { isLoading && <CircularProgress/>}
 
           { !isLoading && 
-            <div className={wamplifier.assessmentContainer}>
-              <div className={wamplifier.currentRate}>
-                <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
-                <div className={wamplifier.currentScore}>100</div>
-              </div>
+            <Swiper direction={'vertical'}
+              slidesPerView={'auto'}
+              freeMode={true}
+              scrollbar={true}
+              mousewheel={true}
+              modules={[FreeMode, Scrollbar, Mousewheel]}
+            >
+              <SwiperSlide className={wamplifier.assessmentContainer}>
+                <div className={wamplifier.currentRate}>
+                  <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
+                  <div className={wamplifier.currentScore}>100</div>
+                </div>
+              
 
-              <div className={wamplifier.assessments}>
-                {subject.assessments.map((assessment: Assessment, index: number) => 
-                  <AssessmentInput assessment={assessment} highlighted={index < 2} key={index}/>
-                )}
-              </div>
-            </div>
+                <div className={wamplifier.assessments}>
+                  {subject.assessments.map((assessment: Assessment, index: number) => 
+                    <AssessmentInput assessment={assessment} highlighted={index < 2} key={index}/>
+                  )}
+                </div>
+              </SwiperSlide>
+            </Swiper>
           }
 
           <Divider/>

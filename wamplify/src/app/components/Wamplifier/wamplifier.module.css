@@ -67,8 +67,6 @@
 .assessmentContainer {
     padding: var(--wamp-padding);
     gap: 1rem;
-
-    overflow-y: auto;
 }
 
 .currentRate {
@@ -160,6 +158,11 @@
     font-size: 1.625rem;
     font-weight: 100;
     text-align: right;
+}
+
+.container {
+    height: 100%;
+    width: var(--wamp-width);
 }
 
 @media (max-width: 800px) {
