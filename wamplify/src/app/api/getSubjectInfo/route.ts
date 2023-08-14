@@ -39,7 +39,7 @@ function parseAssessment(tableRow : Element) : Assessment {
     let title : string = parseTitle(fields[0])
 
     let weight : number = Number(fields[2].innerHTML.slice(0,-1));
-    let assessmentItem : Assessment = {title: title, weight: weight, hurdle: hurdle};
+    let assessmentItem : Assessment = {title: title, weight: weight, hurdle: hurdle, score: 0, completed: false};
     return assessmentItem
 }
 

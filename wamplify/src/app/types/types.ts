@@ -5,6 +5,8 @@ export interface Assessment {
     subtitle?: string,
     weight: number,
     hurdle: boolean,
+    score: number,
+    completed: boolean
 }
   
 export interface Subject {

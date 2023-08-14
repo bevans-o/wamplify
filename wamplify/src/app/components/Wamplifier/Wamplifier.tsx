@@ -8,6 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import CloseIcon from '@mui/icons-material/Close';
 import { Assessment, SearchResult, Subject } from '@/app/types/types';
 import SubjectSearch from './SubjectSearch/SubjectSearch';
+import calculateSubjectAverage from '@/app/utils/scripts/calculateSubjectAverage'
 
 
 const sliderMarks = [
@@ -41,6 +42,7 @@ interface WamplifierProps {
 function Wamplifier({id, onDelete}: WamplifierProps) {
   const [targetScore, setTargetScore] = useState(50);
   const [subject, setSubject] = useState<Subject>({name: "", code: "", assessments: []});
+  const [averageMark, setAverageMark] =  useState(calculateSubjectAverage(subject.assessments));
   const [isLoading, setLoading] = useState(false);
 
   const onSubjectSelect = (subject: SearchResult) => {
@@ -81,12 +83,12 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
             <div className={wamplifier.assessmentContainer}>
               <div className={wamplifier.currentRate}>
                 <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
-                <div className={wamplifier.currentScore}>100</div>
+                <div className={wamplifier.currentScore}>{averageMark}</div>
               </div>
 
               <div className={wamplifier.assessments}>
                 {subject.assessments.map((assessment: Assessment, index: number) => 
-                  <AssessmentInput assessment={assessment} highlighted={index < 2} key={index}/>
+                  <AssessmentInput assessment={assessment} highlighted={index < 2} onChange={() => setAverageMark(calculateSubjectAverage(subject.assessments))} key={index}/>
                 )}
               </div>
             </div>

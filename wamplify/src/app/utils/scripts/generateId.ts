@@ -10,3 +10,4 @@ export default function generateID(length: number) {
     
     return id;
 }
+
