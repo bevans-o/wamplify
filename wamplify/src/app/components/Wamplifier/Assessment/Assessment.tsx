@@ -72,7 +72,7 @@ function Assessment({assessment, highlighted, onChange} : AssessmentProps) {
     //otherwise sets new input field value and assessment score
     if (isValid(score)) {
       let subjectScore = getAssessmentScore(scoreInput.value);
-      setScoreInput(subjectScore.toString() + "%")
+      setScoreInput(subjectScore.toFixed().toString() + "%")
       assessment.score = subjectScore
       assessment.completed = true;
     }
@@ -89,7 +89,7 @@ function Assessment({assessment, highlighted, onChange} : AssessmentProps) {
           {assessment.title}
         </span>
         <span className={assessmentItem.description}>
-          {assessment.weight + "%"}
+          {assessment.weight > 0 ? assessment.weight + "%" : "No Weight"}
         </span>
       </div>
 
