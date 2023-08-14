@@ -50,11 +50,11 @@ function PanelSlider() {
           spaceBetween={0}
           grabCursor={true}
           mousewheel={true}
-          freeMode={true}
+          freeMode={!mobile}
           preventClicks={false}
           modules={[FreeMode]}
           cssMode={mobile}
-          className={slider.desktop}
+          className={slider.swiper}
         >
           {wamplifiers.map((id: string, index: number) => 
             <SwiperSlide key={id}>

@@ -52,35 +52,25 @@
 
 
 
-/* separate slider for mobile (for performance) */
-.mobile {
-    display: none;
-    width: 100%;
-    height: 100%;
 
-    padding: 0 1rem 1rem;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-}
-
-.mobile > * {
-    min-width: 92vw;
-    scroll-snap-align: start;
-    flex-grow: 1;
-    padding-left: 1rem;
-}
 
 
 @media (max-width: 800px) {
-    .mobile {
-        display: flex;
+    .swiper {
+        width: 100%;
+        height: 100%;
+
+        padding: 0 1rem 1rem;
     }
 
-    
+    .swiper > * {
+        min-width: 92vw;
+        scroll-snap-align: start;
+        flex-grow: 1;
+        padding-left: 1rem;
+    }
 
-    .mobile > *:last-child {
+    .swiper > *:last-child {
         min-width: 50vw;
         padding-left: 0;
         margin-left: 1rem;
