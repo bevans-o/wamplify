@@ -280,3 +280,17 @@ input::-webkit-input-placeholder,
 .swiper-slide:last-child {
   padding-right: 40vw;
 }
+
+
+@media (max-width: 800px) {
+  
+  .slider .MuiSlider-mark {
+    height: 1rem;
+    translate: 1px 0.5rem;
+  }
+
+  .slider .MuiSlider-markLabel {
+    padding-top: 0.1rem;
+    font-size: 0.75rem;
+  }
+}

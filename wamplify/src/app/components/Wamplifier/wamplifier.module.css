@@ -162,8 +162,44 @@
     text-align: right;
 }
 
-@media only screen and (max-width: 1200px) {
+@media (max-width: 800px) {
+    .body {
+        --wamp-padding: 0.8rem;
+    }
+
+    .header {
+        height: 4.5rem;
+    }
+
+    .currentRate {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+    }
+
+    .note {
+        font-size: 0.75rem;
+    }
+
     .slider {
-        padding: 0;
+        padding: 0 0.5rem;
+    }
+
+    .target {
+        padding: 0.25rem;
+        gap: 0.5rem;
+    }
+
+    .targetText {
+        font-size: 0.875rem;
+    }
+
+    .target input {
+        width: 3.9rem;
+        height: 2rem;
+        font-size: 1.375rem;
+    }
+
+    .assessments {
+        grid-template-columns: minmax(0, 1fr);
     }
 }

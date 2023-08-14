@@ -26,7 +26,7 @@ function SubjectSearch({id, onSelect, resultLimit=6} : SubjectSearchProps) {
     // make sure focus is leaving the subject list before blurring
     subjectSearchInput?.addEventListener("focusout", (event) => {
       if (!subjectSearch?.contains(event.relatedTarget as HTMLElement)) {
-        setTimeout(() => setFocused(false), 500)
+        setTimeout(() => setFocused(false), 200)
       }
     })
 

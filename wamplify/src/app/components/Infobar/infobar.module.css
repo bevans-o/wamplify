@@ -43,10 +43,13 @@
     color: var(--n400);
 }
 
-.credits a {
+.credits a,
+.credits a:visited {
     font-weight: 600;
     cursor: pointer;
     transition: color 200ms ease;
+    text-decoration: none;
+    color: inherit;
 }
 
 .message:hover,
