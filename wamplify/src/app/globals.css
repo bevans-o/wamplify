@@ -283,6 +283,9 @@ input::-webkit-input-placeholder,
 
 
 @media (max-width: 800px) {
+  :root {
+    --wamp-width: 90vw;
+  }
   
   .slider .MuiSlider-mark {
     height: 1rem;
@@ -292,5 +295,9 @@ input::-webkit-input-placeholder,
   .slider .MuiSlider-markLabel {
     padding-top: 0.1rem;
     font-size: 0.75rem;
+  }
+
+  .swiper-slide {
+    padding: 0 0.5rem 0.5rem;
   }
 }

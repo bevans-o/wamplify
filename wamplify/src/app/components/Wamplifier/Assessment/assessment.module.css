@@ -52,3 +52,9 @@
     height: 2.75rem;
     background: linear-gradient(0deg, var(--n600) 0%, var(--a500) 100%);
 }
+
+@media (max-width: 800px) {
+    .title {
+        width: 13rem;
+    }
+}
