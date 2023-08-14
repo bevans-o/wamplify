@@ -1,5 +1,4 @@
 import { Assessment } from "@/app/types/types";
-import { EscalatorSharp } from "@mui/icons-material";
 
 export default function calculateSubjectAverage(assessments :Assessment[]) {
     let sum = 0;
@@ -20,12 +19,11 @@ export default function calculateSubjectAverage(assessments :Assessment[]) {
     
     else {
         let average = sum/count;
-        console.log(average);
         assessments.forEach((assessment) => {
             if (!assessment.completed && assessment.weight > 0) {
                 subjectScore += average * (assessment.weight/100);
             }
         });
     }
-    return subjectScore.toFixed(0)
+    return subjectScore
 }
