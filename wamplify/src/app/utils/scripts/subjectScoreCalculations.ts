@@ -1,6 +1,6 @@
 import { Assessment } from "@/app/types/types";
 
-export default function calculateSubjectAverage(assessments :Assessment[]) {
+export function calculateSubjectAverage(assessments :Assessment[]) {
     let sum = 0;
     let subjectScore = 0;
     let count = 0;
@@ -26,4 +26,21 @@ export default function calculateSubjectAverage(assessments :Assessment[]) {
         });
     }
     return subjectScore
+}
+
+export function getMaxScore(assessments: Assessment[]) {
+    let maxScore = 100;
+    let hurdleMet = true;
+    assessments.forEach((assessment) => {
+        if (assessment.completed && assessment.weight > 0) {
+            maxScore -= assessment.weight - (assessment.score * (assessment.weight)/100);
+            if (assessment.hurdle && assessment.score < 50) {
+                hurdleMet = false;
+            }
+        }
+    });
+
+    return hurdleMet ? maxScore : Math.min(49, maxScore);
+
+
 }

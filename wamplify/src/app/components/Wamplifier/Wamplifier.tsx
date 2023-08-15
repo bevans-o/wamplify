@@ -5,10 +5,10 @@ import Divider from '../Divider/Divider'
 import AssessmentInput from './Assessment/Assessment'
 import Slider from '@mui/material/Slider'
 import CircularProgress from '@mui/material/CircularProgress'
-import CloseIcon from '@mui/icons-material/Close';
-import { Assessment, SearchResult, Subject } from '@/app/types/types';
+import CloseIcon from '@mui/icons-material/Close'
+import { Assessment, SearchResult, Subject } from '@/app/types/types'
 import SubjectSearch from './SubjectSearch/SubjectSearch';
-import calculateSubjectAverage from '@/app/utils/scripts/calculateSubjectAverage'
+import { calculateSubjectAverage, getMaxScore } from '@/app/utils/scripts/subjectScoreCalculations'
 
 
 const sliderMarks = [
@@ -41,6 +41,7 @@ interface WamplifierProps {
 
 function Wamplifier({id, onDelete}: WamplifierProps) {
   const [targetScore, setTargetScore] = useState(50);
+  const [maxScore, setMaxScore] = useState(100);
   const [subject, setSubject] = useState<Subject>({name: "", code: "", assessments: []});
   const [averageMark, setAverageMark] =  useState(calculateSubjectAverage(subject.assessments));
   const [isLoading, setLoading] = useState(false);
@@ -88,7 +89,11 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
 
               <div className={wamplifier.assessments}>
                 {subject.assessments.map((assessment: Assessment, index: number) => 
-                  <AssessmentInput assessment={assessment} highlighted={index < 2} onChange={() => setAverageMark(calculateSubjectAverage(subject.assessments))} key={index}/>
+                  <AssessmentInput assessment={assessment} highlighted={index < 2} onChange={() =>  {
+                    setAverageMark(calculateSubjectAverage(subject.assessments));
+                    setMaxScore(getMaxScore(subject.assessments));
+                  }
+                  } key={index}/>
                 )}
               </div>
             </div>
@@ -106,7 +111,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   value={targetScore}
                   step={1}
                   min={50}
-                  max={100}
+                  max={maxScore}
                   valueLabelDisplay="auto"
                   marks={sliderMarks}
                   className="slider swiper-no-swiping"
