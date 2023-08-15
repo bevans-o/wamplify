@@ -21,15 +21,23 @@ async function fetchSubjectPage(url: string) {
             console.error(error.toJSON());
         });
 
-    
     const dom = new JSDOM(await HTMLData);
+
     return  dom.window.document;
 }
 
  function extractData(document: Document) {
     let assessmentItems : Array<Assessment> = []
-    const subjectInfo = document.querySelectorAll(".assessment-details tbody tr");
-    subjectInfo.forEach((assessment) => assessmentItems.push(parseAssessment(assessment)));
+    const assessmentTable = document.querySelector(".assessment-details")
+    const subjectInfo = assessmentTable?.querySelectorAll("tbody tr");
+    let totalWeight = 0;
+    subjectInfo?.forEach((assessment) => {
+        if (totalWeight < 100) {
+            const assessmentItem = parseAssessment(assessment);
+            assessmentItems.push(assessmentItem)
+            totalWeight += assessmentItem.weight;
+        }
+    });
     return assessmentItems;
 }
 
@@ -38,8 +46,9 @@ function parseAssessment(tableRow : Element) : Assessment {
     let hurdle = fields[0].textContent?.includes("Hurdle") ? true : false ;
     let title : string = parseTitle(fields[0])
 
-    let weight : number = Number(fields[2].innerHTML.slice(0,-1));
-    let assessmentItem : Assessment = {title: title, weight: weight, hurdle: hurdle};
+    let weight : number = parseInt(fields[2].innerHTML.slice(0,-1));
+    if (isNaN(weight)) { weight = 0}
+    let assessmentItem : Assessment = {title: title, weight: weight, hurdle: hurdle, score: 0, completed: false};
     return assessmentItem
 }
 
