@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import slider from './slider.module.css'
 import Wamplifier from '../Wamplifier/Wamplifier'
@@ -10,6 +10,7 @@ import generateID from '@/app/utils/scripts/generateId';
 
 function PanelSlider() {
 
+  const [mobile, setMobile] = useState(false);
   const [wamplifiers, setWamplifiers] = useState<string[]>([generateID(32)]);
 
   const newSubject = () => {
@@ -23,6 +24,23 @@ function PanelSlider() {
     setWamplifiers(newArray);
   }  
 
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 800) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    // unsubscribe on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className={slider.container}>
 
@@ -30,18 +48,20 @@ function PanelSlider() {
           slidesPerView={'auto'}
           spaceBetween={0}
           grabCursor={true}
-          mousewheel={true}
-          freeMode={true}
+          centeredSlides={mobile}
+          freeMode={!mobile}
           preventClicks={false}
           modules={[FreeMode]}
+          cssMode={mobile}
+          className={slider.swiper}
         >
           {wamplifiers.map((id: string, index: number) => 
-            <SwiperSlide key={id}>
+            <SwiperSlide key={id} className={slider.swiperSlide}>
                 <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)}/>
             </SwiperSlide>
           )}
 
-          <SwiperSlide>
+          <SwiperSlide className={slider.swiperSlide}>
             <div className={slider.addContainer}>
               <button onClick={() => newSubject()} className={slider.add + " swiper-no-swiping"}>
                 <AddIcon fontSize='large'/>

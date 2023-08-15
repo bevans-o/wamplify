@@ -65,8 +65,8 @@
   scrollbar-color: var(--n600) var(--n950);
 }
 
-a:visited {
-  color: inherit;
+a, a:visited {
+  color: var(--n300);
 }
 
 body {
@@ -257,26 +257,18 @@ input::-webkit-input-placeholder,
   padding-bottom: 15%;
 }
 
+@media (max-width: 800px) {
+  :root {
+    --wamp-width: 90vw;
+  }
+  
+  .slider .MuiSlider-mark {
+    height: 1rem;
+    translate: 1px 0.5rem;
+  }
 
-/* SWIPER.JS */
-
-.swiper {
-  height: 100%;
-  padding: 0 0.5rem !important;
-}
-
-.swiper-slide {
-  width: auto !important;
-  height: 100%;
-
-  padding: 0.5rem 0.5rem 1rem;
-}
-
-.swiper-slide > div {
-  height: 100%;
-  width: var(--wamp-width);
-}
-
-.swiper-slide:last-child {
-  padding-right: 40vw;
+  .slider .MuiSlider-markLabel {
+    padding-top: 0.1rem;
+    font-size: 0.75rem;
+  }
 }

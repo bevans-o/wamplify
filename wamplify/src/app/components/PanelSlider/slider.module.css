@@ -17,10 +17,6 @@
     transition: border-color 200ms ease;
 }
 
-.addContainer:hover {
-    border-color: var(--n700);
-}
-
 .add {
     display: flex;
     flex-direction: column;
@@ -44,8 +40,49 @@
     width: 3rem;
 }
 
-.add:hover {
-    color: var(--a100);
-    border-color: var(--a100);
-    background: var(--a500);
+@media (pointer: fine) {
+    .add:hover {
+        color: var(--a100);
+        border-color: var(--a100);
+        background: var(--a500);
+    }
+
+    .addContainer:hover {
+        border-color: var(--n700);
+    }
+}
+
+
+.addContainer {
+    height: 100%;
+    width: var(--wamp-width);
+}
+
+.swiper {
+    height: 100%;
+    padding: 0 0.5rem !important;
+}
+
+.swiperSlide {
+    width: auto !important;
+    height: 100%;
+  
+    padding: 0.5rem 0.5rem 1rem;
+  }
+
+
+@media (max-width: 800px) {
+    .addContainer {
+        border-color: var(--n700);
+    }
+
+    .add:hover {
+        color: var(--a500);
+        border-color: var(--a500);
+        background: transparent;
+    }
+
+    .swiperSlide {
+        padding: 0 0.5rem 1rem;
+    }
 }

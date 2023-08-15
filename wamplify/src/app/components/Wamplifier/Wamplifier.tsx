@@ -10,6 +10,12 @@ import { Assessment, SearchResult, Subject } from '@/app/types/types'
 import SubjectSearch from './SubjectSearch/SubjectSearch';
 import { calculateSubjectAverage, getMaxScore, getRemainingTarget } from '@/app/utils/scripts/subjectScoreCalculations'
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode, Mousewheel } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
+
 
 const sliderMarks = [
   {
@@ -103,23 +109,36 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
           { isLoading && <CircularProgress/>}
 
           { !isLoading && 
-            <div className={wamplifier.assessmentContainer}>
-              <div className={wamplifier.currentRate}>
-                <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
-                <div className={wamplifier.currentScore}>{averageMark.toFixed(0)}</div>
-              </div>
+            <Swiper direction={'vertical'}
+              slidesPerView={'auto'}
+              freeMode={true}
+              mousewheel={true}
+              grabCursor={true}
+              modules={[FreeMode, Mousewheel]}
+              className={wamplifier.swiper}
+            >
+              <SwiperSlide className={wamplifier.assessmentContainer}>
+                  <div className={wamplifier.currentRate}>
+                    <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
+                    <div className={wamplifier.currentScore}>{averageMark.toFixed(0)}</div>
+                  </div>
 
-              <div className={wamplifier.assessments}>
-                {subject.assessments.map((assessment: Assessment, index: number) => 
-                  <AssessmentInput assessment={assessment} highlighted={index < 2} onChange={() =>  {
-                    setAverageMark(calculateSubjectAverage(subject.assessments));
-                    setMaxScore(getMaxScore(subject.assessments));
-                    updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
-                  }
-                  } key={index} targetScore={targetScore}/>
-                )}
-              </div>
-            </div>
+                  <div className={wamplifier.assessments}>
+                    {subject.assessments.map((assessment: Assessment, index: number) => 
+                      <AssessmentInput 
+                        assessment={assessment} 
+                        highlighted={index < 2} 
+                        onChange={() =>  {
+                          setAverageMark(calculateSubjectAverage(subject.assessments));
+                          setMaxScore(getMaxScore(subject.assessments));
+                          updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
+                        }} 
+                      key={index} targetScore={targetScore}/>
+                    )}
+                  </div>
+                
+              </SwiperSlide>
+            </Swiper>
           }
 
           <Divider/>
