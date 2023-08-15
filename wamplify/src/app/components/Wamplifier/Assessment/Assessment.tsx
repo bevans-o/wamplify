@@ -66,8 +66,10 @@ function Assessment({assessment, highlighted, onChange} : AssessmentProps) {
     //resets subject if input is nothing
     if (scoreInput.value.length == 0){
       assessment.completed = false;
+      assessment.score = 0;
+      onChange();
       return;
-    }
+    } 
 
     //otherwise sets new input field value and assessment score
     if (isValid(score)) {
@@ -75,9 +77,10 @@ function Assessment({assessment, highlighted, onChange} : AssessmentProps) {
       setScoreInput(subjectScore.toFixed().toString() + "%")
       assessment.score = subjectScore
       assessment.completed = true;
+      onChange();
     }
 
-    onChange();
+    
   }
 
 

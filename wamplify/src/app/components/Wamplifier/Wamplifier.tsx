@@ -84,7 +84,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
             <div className={wamplifier.assessmentContainer}>
               <div className={wamplifier.currentRate}>
                 <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
-                <div className={wamplifier.currentScore}>{averageMark}</div>
+                <div className={wamplifier.currentScore}>{averageMark.toFixed(0)}</div>
               </div>
 
               <div className={wamplifier.assessments}>
@@ -134,7 +134,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   Your target for <span>{subject.code}</span> is
                 </div>
                 <input 
-                  value={targetScore}
+                  value={targetScore.toFixed(0)}
                   onChange={(e) => {
                     setTargetScore(parseInt(e.target.value));
                   }}/>
