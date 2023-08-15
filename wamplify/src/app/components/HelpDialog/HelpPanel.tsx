@@ -1,9 +1,10 @@
 import React from 'react'
+import help from '../HelpDialog/help.module.css'
 
 function ModalPanel({children} : any) {
    
   return (
-    <div className="panel pad-2 fc dialog" style={{maxWidth: "24rem", gap: "1.5rem"}}>
+    <div className={`${help.panel} panel`}>
       {children}
     </div>
   )

@@ -15,13 +15,14 @@
 
 .primary {
     color: var(--n50);
-    background: var(--a500);
+    background: var(--a700);
+    border: 2px solid var(--a500);
 
     transition: background 200ms ease;
 }
 
 .primary:hover {
-    background: var(--a300);
+    background: var(--a500);
 }
 
 .secondary {
