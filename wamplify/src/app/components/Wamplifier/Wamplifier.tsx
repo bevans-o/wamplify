@@ -159,6 +159,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                 <input 
                   value={targetScore.toFixed(0)}
                   onChange={(e) => {
+                    !isNaN(Number(e.target.value)) && Number(e.target.value) <= 100 &&
                     setTargetScore(parseInt(e.target.value == "" ? "0" : e.target.value));
                   }}
                   />
