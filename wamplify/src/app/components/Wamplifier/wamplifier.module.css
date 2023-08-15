@@ -4,7 +4,7 @@
     min-height: 20rem;
 
     display: grid;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
     user-select: none;
 
     --wamp-padding: 2rem;
@@ -60,7 +60,7 @@
 }
 
 .header,
-.assessmentContainer {
+.swiper {
     border-bottom: 2px solid var(--n900);
 }
 
@@ -160,10 +160,27 @@
     text-align: right;
 }
 
-.container {
+.body {
     height: 100%;
     width: var(--wamp-width);
 }
+
+.swiper {
+    width: 100%;
+    overflow: auto !important;
+}
+
+.assessmentSwiperSlide {
+    padding: 0;
+}
+
+/*
+.swiper {
+    margin: 0;
+    padding: 0;
+    max-height: 100%;
+}
+*/
 
 @media (max-width: 800px) {
     .body {
@@ -181,6 +198,7 @@
 
     .note {
         font-size: 0.75rem;
+        padding-bottom: 0;
     }
 
     .slider {
@@ -206,11 +224,16 @@
         font-size: 1rem;
     }
 
+    .controls {
+        padding-bottom: 0;
+    }
+
     .code {
         font-size: 0.9rem;
     }
 
     .assessments {
         grid-template-columns: minmax(0, 1fr);
+        padding: 0.75rem 0;
     }
 }

@@ -49,7 +49,7 @@ function PanelSlider() {
           slidesPerView={'auto'}
           spaceBetween={0}
           grabCursor={true}
-          mousewheel={true}
+          centeredSlides={mobile}
           freeMode={!mobile}
           preventClicks={false}
           modules={[FreeMode]}
@@ -62,7 +62,7 @@ function PanelSlider() {
             </SwiperSlide>
           )}
 
-          <SwiperSlide className={slider.padSlide}>
+          <SwiperSlide>
             <div className={slider.addContainer}>
               <button onClick={() => newSubject()} className={slider.add + " swiper-no-swiping"}>
                 <AddIcon fontSize='large'/>
@@ -71,30 +71,6 @@ function PanelSlider() {
           </SwiperSlide>
           
         </Swiper>
-
-        {/*
-        <div className={slider.mobile}>
-          {wamplifiers.map((id: string, index: number) => 
-            <AnimatePresence>
-              <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ type: "spring", duration: 0.25, bounce: 0.1}}
-              key={id}>
-                  <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)}/>
-              </motion.div>
-            </AnimatePresence>
-            
-          )}
-
-          <div className={slider.addContainer}>
-            <button onClick={() => newSubject()} className={slider.add + " swiper-no-swiping"}>
-              <AddIcon fontSize='large'/>
-            </button>
-          </div>
-        </div>
-        */}
         
     </div>
   )

@@ -57,4 +57,8 @@
     .title {
         width: 13rem;
     }
+
+    .wire.wireHighlight {
+        height: 1.5rem;
+    }
 }

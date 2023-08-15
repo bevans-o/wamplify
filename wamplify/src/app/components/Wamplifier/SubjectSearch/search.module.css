@@ -50,7 +50,7 @@
     padding: 0.6rem;
     padding-top: calc(1.5rem + 0.6rem);
     background: var(--n700);
-    z-index: 1;
+    z-index: 9;
 
     border: 1px solid var(--n600);
     border-radius: 8px;
@@ -60,7 +60,7 @@
 }
 
 .search[data-focus="true"] input {
-    z-index: 2;
+    z-index: 10;
 }
 
 .search[data-focus="true"] .results {

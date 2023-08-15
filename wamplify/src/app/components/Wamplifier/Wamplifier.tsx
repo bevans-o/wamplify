@@ -89,21 +89,26 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
               slidesPerView={'auto'}
               freeMode={true}
               scrollbar={true}
-              mousewheel={true}
+              mousewheel={false}
+              grabCursor={true}
               modules={[FreeMode, Scrollbar, Mousewheel]}
+              className={wamplifier.swiper}
             >
-              <SwiperSlide className={wamplifier.assessmentContainer}>
-                <div className={wamplifier.currentRate}>
-                  <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
-                  <div className={wamplifier.currentScore}>100</div>
-                </div>
-              
+              <SwiperSlide className={wamplifier.assessmentSwiperSlide}>
+                <div className={wamplifier.assessmentContainer}>
+                  <div className={wamplifier.currentRate}>
+                    <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
+                    <div className={wamplifier.currentScore}>100</div>
+                  </div>
+                
 
-                <div className={wamplifier.assessments}>
-                  {subject.assessments.map((assessment: Assessment, index: number) => 
-                    <AssessmentInput assessment={assessment} highlighted={index < 2} key={index}/>
-                  )}
+                  <div className={wamplifier.assessments}>
+                    {subject.assessments.map((assessment: Assessment, index: number) => 
+                      <AssessmentInput assessment={assessment} highlighted={index < 2} key={index}/>
+                    )}
+                  </div>
                 </div>
+                
               </SwiperSlide>
             </Swiper>
           }
