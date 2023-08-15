@@ -7,15 +7,16 @@ interface AssessmentProps {
   assessment: Assessment;
   highlighted: boolean;
   onChange: Function;
+  targetScore: number;
 }
 
-function Assessment({assessment, highlighted, onChange} : AssessmentProps) {
-  const [score, setScoreInput] = useState("");
+function Assessment({assessment, highlighted, onChange, targetScore} : AssessmentProps) {
+  const [score, setScoreInput] = useState(targetScore.toString() + "%");
   const [focused, setFocused] = useState(false);
 
   useEffect(() => {
     //const score : HTMLElement | null = document.querySelector(`input`)
-  })
+  }, )
 
   const isValid = (score : string) => {
     //check numbera/numberb is a valid format
@@ -74,7 +75,7 @@ function Assessment({assessment, highlighted, onChange} : AssessmentProps) {
     //otherwise sets new input field value and assessment score
     if (isValid(score)) {
       let subjectScore = getAssessmentScore(scoreInput.value);
-      setScoreInput(subjectScore.toFixed().toString() + "%")
+      setScoreInput(subjectScore.toString() + "%")
       assessment.score = subjectScore
       assessment.completed = true;
       onChange();
@@ -95,13 +96,28 @@ function Assessment({assessment, highlighted, onChange} : AssessmentProps) {
           {assessment.weight > 0 ? assessment.weight + "%" : "No Weight"}
         </span>
       </div>
+      {
+        (assessment.completed || focused) && 
+        <input 
+        value={score} 
+        onChange={(e) => setScoreInput(e.target.value)}
+        onBlur={(e) => onScoreChange(e)} 
+        className={isValid(score) ? "" : assessmentItem.invalid}
+        />
+      }
 
-      <input value={score} onChange={(e) => setScoreInput(e.target.value)}onBlur={(e) => onScoreChange(e)} className={isValid(score) ? "" : assessmentItem.invalid}/>
+      {
+        (!assessment.completed && !focused) && 
+        <input 
+          value={assessment.desiredScore?.toString() + "%"} 
+          onChange={(e) => { setScoreInput(e.target.value); setFocused(true) }} 
+          onBlur={(e) => onScoreChange(e)} 
+          className={assessmentItem.prediction}
+          />
+      }
 
-      <div className={assessmentItem.wire + " " + (highlighted ? assessmentItem.wireHighlight : "")}></div>
-      
-      
     </div>
+      
   )
 }
 

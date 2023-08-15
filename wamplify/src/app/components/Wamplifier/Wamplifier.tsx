@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import wamplifier from './wamplifier.module.css'
 import Divider from '../Divider/Divider'
@@ -8,7 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import CloseIcon from '@mui/icons-material/Close'
 import { Assessment, SearchResult, Subject } from '@/app/types/types'
 import SubjectSearch from './SubjectSearch/SubjectSearch';
-import { calculateSubjectAverage, getMaxScore } from '@/app/utils/scripts/subjectScoreCalculations'
+import { calculateSubjectAverage, getMaxScore, getRemainingTarget } from '@/app/utils/scripts/subjectScoreCalculations'
 
 
 const sliderMarks = [
@@ -46,16 +46,37 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
   const [averageMark, setAverageMark] =  useState(calculateSubjectAverage(subject.assessments));
   const [isLoading, setLoading] = useState(false);
 
-  const onSubjectSelect = (subject: SearchResult) => {
+
+  
+
+  const onSubjectSelect = (subjectSelection: SearchResult) => {
     setLoading(true);
-    axios.post("/api/getSubjectInfo", subject)
+    axios.post("/api/getSubjectInfo", subjectSelection)
     .then((res) => {
       setSubject(res.data);
       setLoading(false);
-    })
-    .catch((error) => console.log(error));
+    }).catch((error) => console.log(error));
   }
-    
+
+  const updateDesiredScores = (remainingTarget: number) => {
+    let weightRemaining = 100;
+    subject.assessments.forEach((assessment) => {
+      if (assessment.completed) {
+        weightRemaining -= assessment.weight;
+      }
+    })
+    let desiredScore = (remainingTarget/weightRemaining) * 100
+    console.log(remainingTarget + maxScore.toString())
+    subject.assessments.forEach((assessment) => {
+      if (!assessment.completed && assessment.weight > 0){
+        assessment.desiredScore = desiredScore;
+      }
+    });
+  }
+
+  updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
+  
+  
 
   return (
         <div className={wamplifier.body + " panel"} tabIndex={-1} id={`Wamplifier--${id}`}>
@@ -92,8 +113,9 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   <AssessmentInput assessment={assessment} highlighted={index < 2} onChange={() =>  {
                     setAverageMark(calculateSubjectAverage(subject.assessments));
                     setMaxScore(getMaxScore(subject.assessments));
+                    updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
                   }
-                  } key={index}/>
+                  } key={index} targetScore={targetScore}/>
                 )}
               </div>
             </div>

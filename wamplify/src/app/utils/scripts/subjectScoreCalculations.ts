@@ -30,17 +30,24 @@ export function calculateSubjectAverage(assessments :Assessment[]) {
 
 export function getMaxScore(assessments: Assessment[]) {
     let maxScore = 100;
-    let hurdleMet = true;
     assessments.forEach((assessment) => {
         if (assessment.completed && assessment.weight > 0) {
             maxScore -= assessment.weight - (assessment.score * (assessment.weight)/100);
-            if (assessment.hurdle && assessment.score < 50) {
-                hurdleMet = false;
-            }
         }
     });
 
-    return hurdleMet ? maxScore : Math.min(49, maxScore);
+    return maxScore;
 
 
+}
+
+export function getRemainingTarget(assessments: Assessment[], targetScore: number) {
+    let maxScore = targetScore
+    assessments.forEach((assessment) => {
+        if (assessment.completed && assessment.weight > 0) {
+            maxScore -= assessment.score * (assessment.weight/100)
+        }
+    })
+
+    return maxScore;
 }
