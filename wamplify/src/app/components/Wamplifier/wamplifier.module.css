@@ -167,20 +167,11 @@
 
 .swiper {
     width: 100%;
-    overflow: auto !important;
 }
 
 .assessmentSwiperSlide {
     padding: 0;
 }
-
-/*
-.swiper {
-    margin: 0;
-    padding: 0;
-    max-height: 100%;
-}
-*/
 
 @media (max-width: 800px) {
     .body {

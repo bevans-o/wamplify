@@ -54,8 +54,32 @@
 }
 
 @media (max-width: 800px) {
+    .text {
+        flex-grow: 2;
+        gap: 0.125rem;
+    }
+
     .title {
-        width: 13rem;
+        font-size: 0.875rem;
+        width: 12rem;
+    }
+
+    .description {
+        font-size: 0.75rem;
+    }
+
+    .container {
+        padding: 0.5rem 0;
+    }
+
+    .container input {
+        width: 4rem;
+        height: 2rem;
+        z-index: 1;
+    }
+
+    .wire {
+        bottom: 2.5rem;
     }
 
     .wire.wireHighlight {

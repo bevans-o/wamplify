@@ -65,8 +65,8 @@
   scrollbar-color: var(--n600) var(--n950);
 }
 
-a:visited {
-  color: inherit;
+a, a:visited {
+  color: var(--n300);
 }
 
 body {

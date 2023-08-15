@@ -10,11 +10,10 @@ import { Assessment, SearchResult, Subject } from '@/app/types/types';
 import SubjectSearch from './SubjectSearch/SubjectSearch';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Scrollbar, Mousewheel } from 'swiper/modules';
+import { FreeMode, Mousewheel } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import 'swiper/css/scrollbar';
 
 
 const sliderMarks = [
@@ -86,12 +85,11 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
 
           { !isLoading && 
             <Swiper direction={'vertical'}
-              slidesPerView={'auto'}
+              slidesPerView={1}
               freeMode={true}
-              scrollbar={true}
-              mousewheel={false}
+              mousewheel={true}
               grabCursor={true}
-              modules={[FreeMode, Scrollbar, Mousewheel]}
+              modules={[FreeMode, Mousewheel]}
               className={wamplifier.swiper}
             >
               <SwiperSlide className={wamplifier.assessmentSwiperSlide}>
