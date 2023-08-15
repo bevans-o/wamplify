@@ -57,12 +57,12 @@ function PanelSlider() {
           className={slider.swiper}
         >
           {wamplifiers.map((id: string, index: number) => 
-            <SwiperSlide key={id}>
+            <SwiperSlide key={id} className={slider.swiperSlide}>
                 <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)}/>
             </SwiperSlide>
           )}
 
-          <SwiperSlide>
+          <SwiperSlide className={slider.swiperSlide}>
             <div className={slider.addContainer}>
               <button onClick={() => newSubject()} className={slider.add + " swiper-no-swiping"}>
                 <AddIcon fontSize='large'/>

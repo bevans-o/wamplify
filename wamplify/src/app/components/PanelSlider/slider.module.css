@@ -63,7 +63,12 @@
     padding: 0 0.5rem !important;
 }
 
-
+.swiperSlide {
+    width: auto !important;
+    height: 100%;
+  
+    padding: 0.5rem 0.5rem 1rem;
+  }
 
 
 @media (max-width: 800px) {
@@ -75,5 +80,9 @@
         color: var(--a500);
         border-color: var(--a500);
         background: transparent;
+    }
+
+    .swiperSlide {
+        padding: 0 0.5rem 1rem;
     }
 }

@@ -67,6 +67,9 @@
 .assessmentContainer {
     padding: var(--wamp-padding);
     gap: 1rem;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .currentRate {
@@ -101,7 +104,7 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     row-gap: 0;
     column-gap: 1.5rem;
-    padding: 2rem 0;
+    padding-top: 2rem;
 }
 
 .note {
@@ -165,14 +168,6 @@
     width: var(--wamp-width);
 }
 
-.swiper {
-    width: 100%;
-}
-
-.assessmentSwiperSlide {
-    padding: 0;
-}
-
 @media (max-width: 800px) {
     .body {
         --wamp-padding: 0.8rem;
@@ -225,6 +220,6 @@
 
     .assessments {
         grid-template-columns: minmax(0, 1fr);
-        padding: 0.75rem 0;
+        padding-top: 0.75rem;
     }
 }

@@ -85,4 +85,9 @@
     .wire.wireHighlight {
         height: 1.5rem;
     }
+
+    .container:last-child {
+        border-bottom: none;
+    }
+    
 }

@@ -85,15 +85,14 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
 
           { !isLoading && 
             <Swiper direction={'vertical'}
-              slidesPerView={1}
+              slidesPerView={'auto'}
               freeMode={true}
               mousewheel={true}
               grabCursor={true}
               modules={[FreeMode, Mousewheel]}
               className={wamplifier.swiper}
             >
-              <SwiperSlide className={wamplifier.assessmentSwiperSlide}>
-                <div className={wamplifier.assessmentContainer}>
+              <SwiperSlide className={wamplifier.assessmentContainer}>
                   <div className={wamplifier.currentRate}>
                     <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
                     <div className={wamplifier.currentScore}>100</div>
@@ -105,7 +104,6 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                       <AssessmentInput assessment={assessment} highlighted={index < 2} key={index}/>
                     )}
                   </div>
-                </div>
                 
               </SwiperSlide>
             </Swiper>
