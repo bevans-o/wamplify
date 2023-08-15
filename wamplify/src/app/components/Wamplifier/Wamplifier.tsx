@@ -47,7 +47,9 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
   const [isLoading, setLoading] = useState(false);
 
 
-  
+  useEffect(() => {
+    targetScore > maxScore && setTargetScore(maxScore);
+}, [maxScore])
 
   const onSubjectSelect = (subjectSelection: SearchResult) => {
     setLoading(true);
@@ -66,7 +68,6 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
       }
     })
     let desiredScore = (remainingTarget/weightRemaining) * 100
-    console.log(remainingTarget + maxScore.toString())
     subject.assessments.forEach((assessment) => {
       if (!assessment.completed && assessment.weight > 0){
         assessment.desiredScore = desiredScore;
@@ -158,8 +159,9 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                 <input 
                   value={targetScore.toFixed(0)}
                   onChange={(e) => {
-                    setTargetScore(parseInt(e.target.value));
-                  }}/>
+                    setTargetScore(parseInt(e.target.value == "" ? "0" : e.target.value));
+                  }}
+                  />
               </div>
             </div>
             

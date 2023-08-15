@@ -11,12 +11,7 @@ interface AssessmentProps {
 }
 
 function Assessment({assessment, highlighted, onChange, targetScore} : AssessmentProps) {
-  const [score, setScoreInput] = useState(targetScore.toString() + "%");
-  const [focused, setFocused] = useState(false);
-
-  useEffect(() => {
-    //const score : HTMLElement | null = document.querySelector(`input`)
-  }, )
+  const [score, setScoreInput] = useState("");
 
   const isValid = (score : string) => {
     //check numbera/numberb is a valid format
@@ -96,25 +91,14 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
           {assessment.weight > 0 ? assessment.weight + "%" : "No Weight"}
         </span>
       </div>
-      {
-        (assessment.completed || focused) && 
         <input 
+        placeholder={assessment.desiredScore?.toString() + "%"}
+        autoFocus={true}
         value={score} 
         onChange={(e) => setScoreInput(e.target.value)}
         onBlur={(e) => onScoreChange(e)} 
         className={isValid(score) ? "" : assessmentItem.invalid}
         />
-      }
-
-      {
-        (!assessment.completed && !focused) && 
-        <input 
-          value={assessment.desiredScore?.toString() + "%"} 
-          onChange={(e) => { setScoreInput(e.target.value); setFocused(true) }} 
-          onBlur={(e) => onScoreChange(e)} 
-          className={assessmentItem.prediction}
-          />
-      }
 
     </div>
       
