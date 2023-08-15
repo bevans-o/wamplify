@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import wamplifier from './wamplifier.module.css'
 import Divider from '../Divider/Divider'
 import AssessmentInput from './Assessment/Assessment'
 import Slider from '@mui/material/Slider'
 import CircularProgress from '@mui/material/CircularProgress'
-import CloseIcon from '@mui/icons-material/Close';
-import { Assessment, SearchResult, Subject } from '@/app/types/types';
+import CloseIcon from '@mui/icons-material/Close'
+import { Assessment, SearchResult, Subject } from '@/app/types/types'
 import SubjectSearch from './SubjectSearch/SubjectSearch';
+import { calculateSubjectAverage, getMaxScore, getRemainingTarget } from '@/app/utils/scripts/subjectScoreCalculations'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Mousewheel } from 'swiper/modules';
@@ -46,19 +47,43 @@ interface WamplifierProps {
 
 function Wamplifier({id, onDelete}: WamplifierProps) {
   const [targetScore, setTargetScore] = useState(50);
+  const [maxScore, setMaxScore] = useState(100);
   const [subject, setSubject] = useState<Subject>({name: "", code: "", assessments: []});
+  const [averageMark, setAverageMark] =  useState(calculateSubjectAverage(subject.assessments));
   const [isLoading, setLoading] = useState(false);
 
-  const onSubjectSelect = (subject: SearchResult) => {
+
+  useEffect(() => {
+    targetScore > maxScore && setTargetScore(maxScore);
+}, [maxScore])
+
+  const onSubjectSelect = (subjectSelection: SearchResult) => {
     setLoading(true);
-    axios.post("/api/getSubjectInfo", subject)
+    axios.post("/api/getSubjectInfo", subjectSelection)
     .then((res) => {
       setSubject(res.data);
       setLoading(false);
-    })
-    .catch((error) => console.log(error));
+    }).catch((error) => console.log(error));
   }
-    
+
+  const updateDesiredScores = (remainingTarget: number) => {
+    let weightRemaining = 100;
+    subject.assessments.forEach((assessment) => {
+      if (assessment.completed) {
+        weightRemaining -= assessment.weight;
+      }
+    })
+    let desiredScore = (remainingTarget/weightRemaining) * 100
+    subject.assessments.forEach((assessment) => {
+      if (!assessment.completed && assessment.weight > 0){
+        assessment.desiredScore = desiredScore;
+      }
+    });
+  }
+
+  updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
+  
+  
 
   return (
         <div className={wamplifier.body + " panel"} tabIndex={-1} id={`Wamplifier--${id}`}>
@@ -95,13 +120,20 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
               <SwiperSlide className={wamplifier.assessmentContainer}>
                   <div className={wamplifier.currentRate}>
                     <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
-                    <div className={wamplifier.currentScore}>100</div>
+                    <div className={wamplifier.currentScore}>{averageMark.toFixed(0)}</div>
                   </div>
-                
 
                   <div className={wamplifier.assessments}>
                     {subject.assessments.map((assessment: Assessment, index: number) => 
-                      <AssessmentInput assessment={assessment} highlighted={index < 2} key={index}/>
+                      <AssessmentInput 
+                        assessment={assessment} 
+                        highlighted={index < 2} 
+                        onChange={() =>  {
+                          setAverageMark(calculateSubjectAverage(subject.assessments));
+                          setMaxScore(getMaxScore(subject.assessments));
+                          updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
+                        }} 
+                      key={index} targetScore={targetScore}/>
                     )}
                   </div>
                 
@@ -121,7 +153,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   value={targetScore}
                   step={1}
                   min={50}
-                  max={100}
+                  max={maxScore}
                   valueLabelDisplay="auto"
                   marks={sliderMarks}
                   className="slider swiper-no-swiping"
@@ -144,10 +176,12 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   Your target for <span>{subject.code}</span> is
                 </div>
                 <input 
-                  value={targetScore}
+                  value={targetScore.toFixed(0)}
                   onChange={(e) => {
-                    setTargetScore(parseInt(e.target.value));
-                  }}/>
+                    !isNaN(Number(e.target.value)) && Number(e.target.value) <= 100 &&
+                    setTargetScore(parseInt(e.target.value == "" ? "0" : e.target.value));
+                  }}
+                  />
               </div>
             </div>
             
