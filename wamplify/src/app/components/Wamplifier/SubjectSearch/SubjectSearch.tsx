@@ -30,7 +30,7 @@ function SubjectSearch({id, onSelect, resultLimit=6} : SubjectSearchProps) {
       }
     })
 
-  }, [])
+  }, [id])
 
   function onResultClick(result: SearchResult) {
     const subjectSearchInput : HTMLElement | null = document.querySelector(`#SubjectSearch--${id} input`);
@@ -48,11 +48,12 @@ function SubjectSearch({id, onSelect, resultLimit=6} : SubjectSearchProps) {
 
 
   return (
-    <label className={search.search} id={`SubjectSearch--${id}`} data-focus={focused}>
+    <label className={`${search.search} ${(focused ? search.focused : "")}`} id={`SubjectSearch--${id}`}>
       <input
         onChange={(event) => onSearchChange(event)}
         value={value}
         placeholder="Search for a subject or subject code."
+        className={((results.length == 0 && value != "") ? search.noResults : "")}
       />
 
       {results.length != 0 && value != "" &&
@@ -64,12 +65,6 @@ function SubjectSearch({id, onSelect, resultLimit=6} : SubjectSearchProps) {
         </li>
       )}
       </ul>}
-
-      {results.length == 0 && value != "" &&
-        <p className={search.error}>No subjects matching that search term.</p>
-      }
-      
-
     </label>
   )
 }

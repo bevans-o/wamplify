@@ -59,11 +59,11 @@
     transition: max-height 200ms ease;
 }
 
-.search[data-focus="true"] input {
+.search.focused input {
     z-index: 10;
 }
 
-.search[data-focus="true"] .results {
+.search.focused .results {
     display: flex;
 }
 
@@ -93,9 +93,14 @@
     color: var(--n800);
 }
 
-.error {
-    padding-top: 0.75rem;
-    padding-left: 2px;
-    color: var(--bad500);
-    font-size: 0.9rem;
+.noResults {
+    border-color: var(--bad500);
+}
+
+.search.focused .noResults {
+    color: var(--bad100);
+}
+
+.search .noResults:focus-visible {
+    border: 1px solid var(--bad500);
 }
