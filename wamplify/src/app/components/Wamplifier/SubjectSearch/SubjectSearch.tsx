@@ -14,23 +14,9 @@ function SubjectSearch({id, onSelect, resultLimit=6} : SubjectSearchProps) {
   const [value, setValue] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
 
-  useEffect(() => {
-    const subjectSearch : HTMLElement | null = document.querySelector(`#SubjectSearch--${id}`);
-    const subjectSearchInput : HTMLElement | null = document.querySelector(`#SubjectSearch--${id} input`);
-
-    // ensure that dropdown elements receive click events by manually handling focus
-    subjectSearchInput?.addEventListener("focusin", () => {
-      setFocused(true);
-    })
-
-    // make sure focus is leaving the subject list before blurring
-    subjectSearchInput?.addEventListener("focusout", (event) => {
-      if (!subjectSearch?.contains(event.relatedTarget as HTMLElement)) {
-        setTimeout(() => setFocused(false), 200)
-      }
-    })
-
-  }, [id])
+  function onFocusOut() {
+    setTimeout(() => setFocused(false), 200)
+  }
 
   function onResultClick(result: SearchResult) {
     const subjectSearchInput : HTMLElement | null = document.querySelector(`#SubjectSearch--${id} input`);
@@ -51,6 +37,8 @@ function SubjectSearch({id, onSelect, resultLimit=6} : SubjectSearchProps) {
     <label className={`${search.search} ${(focused ? search.focused : "")}`} id={`SubjectSearch--${id}`}>
       <input
         onChange={(event) => onSearchChange(event)}
+        onFocus={() => setFocused(true)}
+        onBlur={() => onFocusOut()}
         value={value}
         placeholder="Search for a subject or subject code."
         className={((results.length == 0 && value != "") ? search.noResults : "")}
