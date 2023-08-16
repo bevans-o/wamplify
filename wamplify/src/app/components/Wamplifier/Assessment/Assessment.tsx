@@ -100,6 +100,8 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
         className={isValid(score) ? "" : assessmentItem.invalid}
         />
 
+      <div className={assessmentItem.wire + " " + (highlighted ? assessmentItem.wireHighlight : "")}></div>
+
     </div>
       
   )
