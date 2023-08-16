@@ -45,7 +45,6 @@ function parseAssessment(tableRow : Element) : Assessment {
     const fields = tableRow.querySelectorAll("td")
     let hurdle = fields[0].textContent?.includes("Hurdle") ? true : false ;
     let title : string = parseTitle(fields[0].querySelector("p") ?? fields[0]);
-    //console.log(title)
     let weight : number = parseInt(fields[2].innerHTML.slice(0,-1));
     if (isNaN(weight)) { weight = 0}
     let assessmentItem : Assessment = {title: title, weight: weight, hurdle: hurdle, score: 0, completed: false};
