@@ -59,7 +59,7 @@ function SubjectSearch({id, onSelect, resultLimit=6} : SubjectSearchProps) {
       {results.length != 0 && value != "" &&
       <ul className={search.results}>
       {results?.map((result : SearchResult, index : number) =>
-        <li tabIndex={-1} onClick={(event) =>  {console.log(event); onResultClick(result) }} className={search.result} key={index}>
+        <li tabIndex={-1} onClick={(event) =>  { onResultClick(result) }} className={search.result} key={index}>
             <h3>{result.name}</h3>
             <p>{result.code}</p>
         </li>
