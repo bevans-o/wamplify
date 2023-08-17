@@ -10,7 +10,7 @@ function LoadingBox({isLoading}: any) {
     <div className={loading.container}>
         { // the array is empty - _a points to empty array slots and is not used
         [...Array(count)].map((_a, i) =>
-            <div className={isLoading ? loading.lightOn : loading.lightOff} style={{animationDelay: `${i * 6}0ms`}}></div>
+            <div key={i} className={isLoading ? loading.lightOn : loading.lightOff} style={{animationDelay: `${i * 6}0ms`}}></div>
         )}
     </div>
   )
