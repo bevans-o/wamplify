@@ -168,6 +168,10 @@
     width: var(--wamp-width);
 }
 
+.swiper {
+    width: 100%;
+}
+
 @media (max-width: 800px) {
     .body {
         --wamp-padding: 0.8rem;
