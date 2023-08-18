@@ -27,11 +27,11 @@
   --n900: #0f0f0f;
   --n950: #020202;
 
-  --a100: var(--orange100);
-  --a300: var(--orange300);
-  --a500: var(--orange500);
-  --a700: var(--orange700);
-  --a900: var(--orange900);
+  --a100: var(--pink100);
+  --a300: var(--pink300);
+  --a500: var(--pink500);
+  --a700: var(--pink700);
+  --a900: var(--pink900);
 
   --b100: #a5fbec;
   --b300: #00f2d1;
@@ -254,6 +254,7 @@ input::-webkit-input-placeholder,
 }
 
 .MuiDialog-container {
+  width: 100vw;
   padding-bottom: 15%;
 }
 

@@ -15,6 +15,8 @@ import { FreeMode, Mousewheel } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
+import LoadingBox from '../LoadingBox/LoadingBox'
+import Logo from '../Logo/Logo'
 
 
 const sliderMarks = [
@@ -95,7 +97,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
             </div>
             }
             
-            { subject.name === "" && !isLoading &&
+            { (subject.name === "" || isLoading) &&
               <SubjectSearch id={id} onSelect={(subject : SearchResult) => onSubjectSelect(subject)}/>  
             }
 
@@ -105,10 +107,16 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
           </div>
             
           <Divider/>
+          
 
-          { isLoading && <CircularProgress/>}
+          { (isLoading || subject.code == "") && 
+          <div className={wamplifier.contentEmpty}>
+            <LoadingBox isLoading={isLoading} rows={3}/>
+            
+          </div>
+          }
 
-          { !isLoading && 
+          { !isLoading && subject.code != "" &&
             <Swiper direction={'vertical'}
               slidesPerView={'auto'}
               freeMode={true}
@@ -143,7 +151,13 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
 
           <Divider/>
 
-          <div>
+          { (isLoading || subject.code == "") && 
+          <div className={wamplifier.footerEmpty}>
+            <LoadingBox isLoading={isLoading} rows={1}/>
+          </div>
+          }
+
+          { !isLoading && subject.code != "" && <div>
             <div className={wamplifier.controls}>
               <div className={wamplifier.note}>Set your target score. Your incomplete assessments will reflect the required scores.</div>
             
@@ -185,7 +199,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
               </div>
             </div>
             
-          </div>
+          </div>}
         
         </div>
   )
