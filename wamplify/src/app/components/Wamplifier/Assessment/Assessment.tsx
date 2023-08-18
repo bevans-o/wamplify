@@ -53,6 +53,7 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
     if (isNaN(a) || a > 100 || a < 0) {
       return false;
     }
+
     return true;
   }
 
@@ -69,9 +70,9 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
 
     //otherwise sets new input field value and assessment score
     if (isValid(score)) {
-      let subjectScore = getAssessmentScore(scoreInput.value);
-      setScoreInput(subjectScore.toString() + "%")
-      assessment.score = subjectScore
+      let assessmentScore = getAssessmentScore(scoreInput.value);
+      setScoreInput(assessmentScore.toString() + "%")
+      assessment.score = assessmentScore
       assessment.completed = true;
       onChange();
     }
