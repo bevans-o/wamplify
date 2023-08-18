@@ -254,6 +254,7 @@ input::-webkit-input-placeholder,
 }
 
 .MuiDialog-container {
+  width: 100vw;
   padding-bottom: 15%;
 }
 
