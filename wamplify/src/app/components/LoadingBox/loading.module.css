@@ -46,3 +46,9 @@
         box-shadow: 0 0 6px 4px transparent;
     }
 }
+
+@media screen and (max-width: 800px) {
+    .container {
+        height: 6rem;
+    }
+}
