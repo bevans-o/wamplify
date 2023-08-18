@@ -16,6 +16,7 @@ import { FreeMode, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import LoadingBox from '../LoadingBox/LoadingBox'
+import Logo from '../Logo/Logo'
 
 
 const sliderMarks = [
@@ -96,7 +97,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
             </div>
             }
             
-            { subject.name === "" && !isLoading &&
+            { (subject.name === "" || isLoading) &&
               <SubjectSearch id={id} onSelect={(subject : SearchResult) => onSubjectSelect(subject)}/>  
             }
 
@@ -108,7 +109,12 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
           <Divider/>
           
 
-          { (isLoading || subject.code == "") && <LoadingBox isLoading={isLoading}/>}
+          { (isLoading || subject.code == "") && 
+          <div className={wamplifier.contentEmpty}>
+            <LoadingBox isLoading={isLoading} rows={3}/>
+            
+          </div>
+          }
 
           { !isLoading && subject.code != "" &&
             <Swiper direction={'vertical'}
@@ -144,6 +150,12 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
           }
 
           <Divider/>
+
+          { (isLoading || subject.code == "") && 
+          <div className={wamplifier.footerEmpty}>
+            <LoadingBox isLoading={isLoading} rows={1}/>
+          </div>
+          }
 
           { !isLoading && subject.code != "" && <div>
             <div className={wamplifier.controls}>

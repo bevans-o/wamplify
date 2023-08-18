@@ -1,5 +1,5 @@
 .body {
-    width: 100%;
+    width: var(--wamp-width);
     height: 100%;
     min-height: 20rem;
 
@@ -16,7 +16,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+    gap: var(--wamp-padding);
 
     height: 7.25rem;
 }
@@ -50,7 +51,6 @@
     border: none;
     color: var(--n400);
     cursor: pointer;
-    translate: 0 3px;
 
     transition: color 100ms ease;
 }
@@ -60,7 +60,8 @@
 }
 
 .header,
-.swiper {
+.swiper,
+.contentEmpty {
     border-bottom: 2px solid var(--n900);
 }
 
@@ -163,14 +164,21 @@
     text-align: right;
 }
 
-.body {
-    height: 100%;
-    width: var(--wamp-width);
-}
-
 .swiper {
     width: 100%;
 }
+
+.footerEmpty {
+    height: 235px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.footerEmpty > * {
+    rotate: 180deg;
+}
+
 
 @media (max-width: 800px) {
     .body {
@@ -225,5 +233,9 @@
     .assessments {
         grid-template-columns: minmax(0, 1fr);
         padding-top: 0.75rem;
+    }
+
+    .footerEmpty {
+        height: 173px;
     }
 }

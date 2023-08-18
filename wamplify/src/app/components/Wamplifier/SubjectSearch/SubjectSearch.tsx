@@ -22,6 +22,7 @@ function SubjectSearch({id, onSelect, resultLimit=6} : SubjectSearchProps) {
     const subjectSearchInput : HTMLElement | null = document.querySelector(`#SubjectSearch--${id} input`);
 
     subjectSearchInput?.setAttribute('disabled', 'disabled');
+    setValue(result.code);
     onSelect(result);
     setFocused(false);
   }
@@ -45,7 +46,7 @@ function SubjectSearch({id, onSelect, resultLimit=6} : SubjectSearchProps) {
       />
 
       {results.length != 0 && value != "" &&
-      <ul className={search.results}>
+      <ul className={search.results + " panel"}>
       {results?.map((result : SearchResult, index : number) =>
         <li tabIndex={-1} onClick={(event) =>  { onResultClick(result) }} className={search.result} key={index}>
             <h3>{result.name}</h3>
