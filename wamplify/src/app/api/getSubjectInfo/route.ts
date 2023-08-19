@@ -32,8 +32,8 @@ async function fetchSubjectPage(url: string) {
     const subjectInfo = assessmentTable?.querySelectorAll("tbody tr");
     let totalWeight = 0;
     subjectInfo?.forEach((assessment) => {
-        if (totalWeight < 100) {
-            const assessmentItem = parseAssessment(assessment);
+        const assessmentItem = parseAssessment(assessment);
+        if (totalWeight <= 100 - assessmentItem.weight) {
             assessmentItems.push(assessmentItem)
             totalWeight += assessmentItem.weight;
         }
