@@ -2,6 +2,7 @@ import './globals.css'
 import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
+  metadataBase: new URL('https://wamplify.me'),
   title: 'Wamplify',
   description: 'A subject score calculator for the University of Melbourne. Predict the future. Predict a H1.',
   applicationName: 'Wamplify',

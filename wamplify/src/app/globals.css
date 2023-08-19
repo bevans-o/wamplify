@@ -3,10 +3,16 @@
 
 :root {
   --pink100: #f6b9d6;
-  --pink300: #f369a9;
-  --pink500: #d63f88;
-  --pink700: #d83e79;
+  --pink300: #e771a8;
+  --pink500: #cf518e;
+  --pink700: #e64691;
   --pink900: #c24a9a40;
+
+  --purple100: #e8b9f6;
+  --purple300: #cc69f3;
+  --purple500: #923fd6;
+  --purple700: #8837ca;
+  --purple900: #784ac240;
 
   --orange100: #f6d5b9;
   --orange300: #f39569;
@@ -32,12 +38,6 @@
   --a500: var(--pink500);
   --a700: var(--pink700);
   --a900: var(--pink900);
-
-  --b100: #a5fbec;
-  --b300: #00f2d1;
-  --b500: #00dfb6;
-  --b700: #00bc93;
-  --b900: #008b62;
 
   --bad100: #fecfd5;
   --bad300: #e4797b;
