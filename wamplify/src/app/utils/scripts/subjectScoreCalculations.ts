@@ -49,5 +49,5 @@ export function getRemainingTarget(assessments: Assessment[], targetScore: numbe
         }
     })
 
-    return maxScore;
+    return Math.max(maxScore, 0);
 }

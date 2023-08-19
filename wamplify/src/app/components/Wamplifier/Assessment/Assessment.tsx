@@ -53,6 +53,7 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
     if (isNaN(a) || a > 100 || a < 0) {
       return false;
     }
+
     return true;
   }
 
@@ -69,9 +70,9 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
 
     //otherwise sets new input field value and assessment score
     if (isValid(score)) {
-      let subjectScore = getAssessmentScore(scoreInput.value);
-      setScoreInput(subjectScore.toString() + "%")
-      assessment.score = subjectScore
+      let assessmentScore = getAssessmentScore(scoreInput.value);
+      setScoreInput(assessmentScore.toString() + "%")
+      assessment.score = assessmentScore
       assessment.completed = true;
       onChange();
     }
@@ -92,10 +93,11 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
         </span>
       </div>
         <input 
-        placeholder={assessment.desiredScore?.toString() + "%"}
+        placeholder={(assessment.desiredScore ?? targetScore) + "%"}
         autoFocus={true}
         value={score} 
         onChange={(e) => setScoreInput(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur() }
         onBlur={(e) => onScoreChange(e)} 
         className={isValid(score) ? "" : assessmentItem.invalid}
         />
