@@ -76,7 +76,6 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
         weightRemaining -= assessment.weight;
       }
     })
-    //console.log("remaining target " + remainingTarget)
     let desiredScore = (remainingTarget/weightRemaining) * 100
     newSubject.assessments.forEach((assessment) => {
       if (!assessment.completed && assessment.weight > 0){
@@ -87,8 +86,6 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
     setSubject(newSubject);
 
   }
-
- // updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
   
   
 
