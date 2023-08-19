@@ -10,7 +10,7 @@ interface AssessmentProps {
   targetScore: number;
 }
 
-function Assessment({assessment, highlighted, onChange, targetScore} : AssessmentProps) {
+function Assessment({assessment, highlighted, onChange} : AssessmentProps) {
   const [score, setScoreInput] = useState("");
 
   const isValid = (score : string) => {
@@ -97,6 +97,7 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
         autoFocus={true}
         value={score} 
         onChange={(e) => setScoreInput(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur() }
         onBlur={(e) => onScoreChange(e)} 
         className={isValid(score) ? "" : assessmentItem.invalid}
         />
