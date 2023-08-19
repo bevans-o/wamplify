@@ -33,12 +33,6 @@
     color: var(--n300);
 }
 
-.container input {
-    width: 4rem;
-    height: 2.5rem;
-    z-index: 1;
-}
-
 .wire {
     position: absolute;
     width: 1.5px;
@@ -51,6 +45,42 @@
 .wire.wireHighlight {
     height: 2.75rem;
     background: linear-gradient(0deg, var(--n600) 0%, var(--a500) 100%);
+}
+
+.container input {
+    width: 4rem;
+    height: 2.5rem;
+    z-index: 1;
+    text-align: center;
+}
+
+.container input::placeholder {
+    color: var(--n300);
+}
+
+.container input:focus::placeholder {
+    color: transparent;
+}
+
+/* .predicted {
+
+} */
+
+.invalid {
+    border-color: var(--bad700);
+    outline: var(--bad700);
+    color: var(--bad100);
+}
+
+.complete {
+    background: var(--n700);
+    border-color: var(--a300);
+    color: var(--a300);
+}
+
+.complete:focus-within {
+    background-color: var(--n900);
+    color: var(--n50)
 }
 
 @media (max-width: 800px) {
