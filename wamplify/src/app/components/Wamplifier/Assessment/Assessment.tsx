@@ -10,7 +10,7 @@ interface AssessmentProps {
   targetScore: number;
 }
 
-function Assessment({assessment, highlighted, onChange} : AssessmentProps) {
+function Assessment({assessment, highlighted, onChange, targetScore} : AssessmentProps) {
   const [score, setScoreInput] = useState("");
 
   const isValid = (score : string) => {
@@ -93,7 +93,7 @@ function Assessment({assessment, highlighted, onChange} : AssessmentProps) {
         </span>
       </div>
         <input 
-        placeholder={assessment.desiredScore?.toString() + "%"}
+        placeholder={(assessment.desiredScore ?? targetScore) + "%"}
         autoFocus={true}
         value={score} 
         onChange={(e) => setScoreInput(e.target.value)}
