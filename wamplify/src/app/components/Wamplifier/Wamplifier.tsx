@@ -201,8 +201,9 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   onChange={(e) => {
                     !isNaN(Number(e.target.value)) && Number(e.target.value) <= 100 &&
                     setTargetScore(parseInt(e.target.value == "" ? "0" : e.target.value));
-                    updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
+                    // updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
                   }}
+                  onKeyDown={(e) => e.key == "Enter" && e.currentTarget.blur()}
                   onBlur={(e) => {
                     !isNaN(Number(e.target.value)) && Number(e.target.value) <= 100 &&
                     setTargetScore(parseInt(e.target.value == "" ? "0" : e.target.value));
