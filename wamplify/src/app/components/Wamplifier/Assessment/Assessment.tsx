@@ -80,6 +80,17 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
     
   }
 
+  const getStateName = (assessmentCompleted: boolean, score: string) => {
+      if (!isValid(score) && score != "") {
+        return assessmentItem.invalid
+      }
+      if (assessmentCompleted) {
+        return assessmentItem.complete
+      }
+
+      return assessmentItem.predicted
+  }
+
 
 
   return (
@@ -93,13 +104,13 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
         </span>
       </div>
         <input 
-        placeholder={(assessment.desiredScore ?? targetScore) + "%"}
+        placeholder={ (assessment.desiredScore ?? targetScore) + "%"}
         autoFocus={true}
         value={score} 
         onChange={(e) => setScoreInput(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur() }
         onBlur={(e) => onScoreChange(e)} 
-        className={isValid(score) ? "" : assessmentItem.invalid}
+        className={getStateName(assessment.completed, score)}
         />
 
       <div className={assessmentItem.wire + " " + (highlighted ? assessmentItem.wireHighlight : "")}></div>

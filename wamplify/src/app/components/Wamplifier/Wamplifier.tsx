@@ -56,7 +56,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
 
 
   useEffect(() => {
-    targetScore > maxScore && setTargetScore(maxScore); 
+    
   }, [maxScore])
 
   const onSubjectSelect = (subjectSelection: SearchResult) => {
@@ -76,11 +76,11 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
         weightRemaining -= assessment.weight;
       }
     })
+    //console.log("remaining target " + remainingTarget)
     let desiredScore = (remainingTarget/weightRemaining) * 100
     newSubject.assessments.forEach((assessment) => {
       if (!assessment.completed && assessment.weight > 0){
-        assessment.desiredScore = desiredScore;
-        console.log(desiredScore);
+        assessment.desiredScore = Math.round(desiredScore);
       }
     });
 
@@ -133,7 +133,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
               <SwiperSlide className={wamplifier.assessmentContainer}>
                   <div className={wamplifier.currentRate}>
                     <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
-                    <div className={wamplifier.currentScore}>{averageMark.toFixed(0)}</div>
+                    <div className={wamplifier.currentScore}>{Math.round(averageMark)}</div>
                   </div>
 
                   <div className={wamplifier.assessments}>
@@ -143,7 +143,10 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                         highlighted={index < 2} 
                         onChange={() =>  {
                           setAverageMark(calculateSubjectAverage(subject.assessments));
-                          setMaxScore(getMaxScore(subject.assessments));
+                          let newMax = getMaxScore(subject.assessments)
+                          setMaxScore(newMax);
+                          targetScore > newMax && setTargetScore(newMax); 
+                          targetScore > newMax ? updateDesiredScores(getRemainingTarget(subject.assessments, newMax)) :
                           updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
                         }} 
                       key={index} targetScore={targetScore}/>
@@ -179,9 +182,11 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   onChange={(e, value) => {
                     if (Array.isArray(value)) {
                       setTargetScore(value[0]);
+                      updateDesiredScores(getRemainingTarget(subject.assessments, value[0]));
                     }
                     else {
                       setTargetScore(value)
+                      updateDesiredScores(getRemainingTarget(subject.assessments, value));
                     }
                   }}
                 />
@@ -199,7 +204,14 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   onChange={(e) => {
                     !isNaN(Number(e.target.value)) && Number(e.target.value) <= 100 &&
                     setTargetScore(parseInt(e.target.value == "" ? "0" : e.target.value));
+                    updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
                   }}
+                  onBlur={(e) => {
+                    !isNaN(Number(e.target.value)) && Number(e.target.value) <= 100 &&
+                    setTargetScore(parseInt(e.target.value == "" ? "0" : e.target.value));
+                    updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
+                  }
+                  }
                   />
               </div>
             </div>
