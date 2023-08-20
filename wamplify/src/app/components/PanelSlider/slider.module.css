@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    border: 2px dashed transparent;
+    border: 2px dashed var(--n700);
 
     transition: border-color 200ms ease;
 }
@@ -46,10 +46,6 @@
         border-color: var(--a100);
         background: var(--a500);
     }
-
-    .addContainer:hover {
-        border-color: var(--n700);
-    }
 }
 
 
@@ -72,10 +68,6 @@
 
 
 @media (max-width: 800px) {
-    .addContainer {
-        border-color: var(--n700);
-    }
-
     .add:hover {
         color: var(--a500);
         border-color: var(--a500);
