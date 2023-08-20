@@ -3,7 +3,7 @@ import { useState } from 'react'
 import slider from './slider.module.css'
 import Wamplifier from '../Wamplifier/Wamplifier'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode } from 'swiper/modules';
+import { FreeMode, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import AddIcon from '@mui/icons-material/Add';
 import generateID from '@/app/utils/scripts/generateId';
@@ -51,8 +51,9 @@ function PanelSlider() {
           centeredSlides={mobile}
           freeMode={!mobile}
           preventClicks={false}
-          modules={[FreeMode]}
+          modules={[FreeMode, Mousewheel]}
           cssMode={mobile}
+          mousewheel={{forceToAxis: true}}
           className={slider.swiper}
         >
           {wamplifiers.map((id: string, index: number) => 

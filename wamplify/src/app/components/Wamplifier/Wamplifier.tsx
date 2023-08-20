@@ -122,7 +122,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
             <Swiper direction={'vertical'}
               slidesPerView={'auto'}
               freeMode={true}
-              mousewheel={true}
+              mousewheel={{forceToAxis: true}}
               grabCursor={true}
               modules={[FreeMode, Mousewheel]}
               className={wamplifier.swiper}
