@@ -81,6 +81,9 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
       if (!assessment.completed && assessment.weight > 0){
         assessment.desiredScore = Math.round(desiredScore);
       }
+      if (!assessment.completed && assessment.weight == 0){
+        assessment.desiredScore = 100;
+      }
     });
 
     setSubject(newSubject);
