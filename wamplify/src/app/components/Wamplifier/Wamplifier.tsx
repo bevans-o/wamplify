@@ -47,26 +47,43 @@ interface WamplifierProps {
 }
 
 function Wamplifier({id, onDelete}: WamplifierProps) {
+  const emptySubject = {name: "", code: "", assessments: []}
   const [targetScore, setTargetScore] = useState(50);
   const [maxScore, setMaxScore] = useState(100);
-  const [subject, setSubject] = useState<Subject>({name: "", code: "", assessments: []});
+  const [subject, setSubject] = useState<Subject>(emptySubject);
   const [averageMark, setAverageMark] =  useState(calculateSubjectAverage(subject.assessments));
   const [isLoading, setLoading] = useState(false);
 
+  const handleSave = (targetScore: Number, maxScore : Number, subject : Subject, averageMark : Number) => {
+    localStorage.setItem(id+'-target-score', targetScore.toFixed());
+    localStorage.setItem(id+'-max-score', maxScore.toFixed());
+    localStorage.setItem(id+'-subject', JSON.stringify(subject));
+    localStorage.setItem(id+'-average-mark', averageMark.toFixed());
+  }
+
+  const handleDelete = (id: string) => {
+    onDelete(id);
+    localStorage.removeItem(id+'-target-score');
+    localStorage.removeItem(id+'-max-score');
+    localStorage.removeItem(id+'-subject');
+    localStorage.removeItem(id+'-average-mark');
+  }
+
 
   useEffect(() => {
-    // localStorage.setItem('target-score', targetScore.toFixed());
-    // localStorage.setItem('max-score', maxScore.toFixed());
-    // localStorage.setItem('subject', JSON.stringify(subject));
-    // localStorage.setItem('average-mark', averageMark.toFixed());
+    setTargetScore(Number(localStorage.getItem(id+'-target-score')) ?? 50);
+    setMaxScore(Number(localStorage.getItem(id+'-max-score')) ?? 100);
+    setSubject(JSON.parse(localStorage.getItem(id+'-subject') ?? JSON.stringify(emptySubject)) ?? emptySubject);
+    setAverageMark(Number(localStorage.getItem(id+'-average-mark')) ?? calculateSubjectAverage(subject.assessments));
     
-  }, [maxScore])
+  }, [])
 
   const onSubjectSelect = (subjectSelection: SearchResult) => {
     setLoading(true);
     axios.post("/api/getSubjectInfo", subjectSelection)
     .then((res) => {
       setSubject(res.data);
+      handleSave(targetScore, maxScore, res.data, averageMark);
       setLoading(false);
     }).catch((error) => console.log(error));
   }
@@ -88,8 +105,9 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
         assessment.desiredScore = 100;
       }
     });
-
+  
     setSubject(newSubject);
+    handleSave(targetScore, maxScore, newSubject, averageMark);
 
   }
   
@@ -110,7 +128,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
             }
 
             <button className={wamplifier.close}>
-              <CloseIcon fontSize='medium' onClick={() => onDelete(id)}/>
+              <CloseIcon fontSize='medium' onClick={() => handleDelete(id)}/>
             </button>
           </div>
             
@@ -145,12 +163,15 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                         assessment={assessment} 
                         highlighted={index < 2} 
                         onChange={() =>  {
+                          let newAverage = calculateSubjectAverage(subject.assessments);
+                          let newMax = getMaxScore(subject.assessments);
+                          let newTargetScore = targetScore > newMax ? newMax : targetScore;
+
                           setAverageMark(calculateSubjectAverage(subject.assessments));
-                          let newMax = getMaxScore(subject.assessments)
                           setMaxScore(newMax);
-                          targetScore > newMax && setTargetScore(newMax); 
-                          targetScore > newMax ? updateDesiredScores(getRemainingTarget(subject.assessments, newMax)) :
-                          updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
+                          setTargetScore(newTargetScore);
+                          updateDesiredScores(getRemainingTarget(subject.assessments, newTargetScore));
+                          handleSave(newTargetScore, newMax, subject, newAverage);
                         }} 
                       key={index} targetScore={targetScore}/>
                     )}
@@ -185,10 +206,12 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   onChange={(e, value) => {
                     if (Array.isArray(value)) {
                       setTargetScore(value[0]);
+                      handleSave(value[0], maxScore, subject, averageMark);
                       updateDesiredScores(getRemainingTarget(subject.assessments, value[0]));
                     }
                     else {
                       setTargetScore(value)
+                      handleSave(value, maxScore, subject, averageMark);
                       updateDesiredScores(getRemainingTarget(subject.assessments, value));
                     }
                   }}
@@ -205,14 +228,18 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                 <input 
                   value={targetScore.toFixed(0)}
                   onChange={(e) => {
-                    !isNaN(Number(e.target.value)) && Number(e.target.value) <= 100 &&
-                    setTargetScore(parseInt(e.target.value == "" ? "0" : e.target.value));
+                    if (!isNaN(Number(e.target.value)) && Number(e.target.value) <= 100) {
+                      let targetScore = parseInt(e.target.value == "" ? "0" : e.target.value);
+                      handleSave(targetScore, maxScore, subject, averageMark);
+                    }
                     // updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
                   }}
                   onKeyDown={(e) => e.key == "Enter" && e.currentTarget.blur()}
                   onBlur={(e) => {
-                    !isNaN(Number(e.target.value)) && Number(e.target.value) <= 100 &&
-                    setTargetScore(parseInt(e.target.value == "" ? "0" : e.target.value));
+                    if (!isNaN(Number(e.target.value)) && Number(e.target.value) <= 100) {
+                      let targetScore = parseInt(e.target.value == "" ? "0" : e.target.value);
+                      handleSave(targetScore, maxScore, subject, averageMark);
+                    }
                     updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
                   }
                   }

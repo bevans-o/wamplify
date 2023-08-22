@@ -30,7 +30,7 @@ function PanelSlider() {
   }
 
   useEffect(() => {
-    setWamplifiers(JSON.parse(localStorage.getItem('wamplifiers') ?? '') ?? [generateID(32)]);
+    setWamplifiers(localStorage.getItem('wamplifiers') != '[]' ? JSON.parse(localStorage.getItem('wamplifiers')!) : [generateID(32)]);
 
     function handleResize() {
       if (window.innerWidth < 800) {
