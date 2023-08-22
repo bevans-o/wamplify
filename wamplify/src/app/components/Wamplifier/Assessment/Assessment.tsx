@@ -22,7 +22,7 @@ function Assessment({assessment, highlighted, onChange, id, index, targetScore} 
 
 
   useEffect(() => {
-    localStorage.getItem(index+'-'+id+'-score') ? setScoreInput(localStorage.getItem(index+'-'+id+'-score')!) : setScoreInput("");
+    localStorage.getItem(index+'-'+id+'-score') ? setScoreInput(localStorage.getItem(index+'-'+id+'-score')! + "%") : setScoreInput("");
 
   }, [])
 

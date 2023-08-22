@@ -82,6 +82,10 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
     localStorage.removeItem(id+'-max-score');
     localStorage.removeItem(id+'-subject');
     localStorage.removeItem(id+'-average-mark');
+    subject.assessments.forEach((assessment, index) => 
+      {console.log(index + '-' + id);
+      localStorage.removeItem(index+'-'+id+'-score')}
+    )
   }
 
 
