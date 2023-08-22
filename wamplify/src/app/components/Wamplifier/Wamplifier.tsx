@@ -16,7 +16,6 @@ import { FreeMode, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import LoadingBox from '../LoadingBox/LoadingBox'
-import Logo from '../Logo/Logo'
 
 
 const sliderMarks = [
@@ -56,6 +55,10 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
 
 
   useEffect(() => {
+    // localStorage.setItem('target-score', targetScore.toFixed());
+    // localStorage.setItem('max-score', maxScore.toFixed());
+    // localStorage.setItem('subject', JSON.stringify(subject));
+    // localStorage.setItem('average-mark', averageMark.toFixed());
     
   }, [maxScore])
 

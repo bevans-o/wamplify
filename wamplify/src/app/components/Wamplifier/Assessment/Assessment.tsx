@@ -13,6 +13,12 @@ interface AssessmentProps {
 function Assessment({assessment, highlighted, onChange, targetScore} : AssessmentProps) {
   const [score, setScoreInput] = useState("");
 
+  useEffect(() => {
+    // localStorage.setItem('score', score)
+
+  }, [score])
+
+
   const isValid = (score : string) => {
     //check numbera/numberb is a valid format
     let slashSplit = score.split('/');
