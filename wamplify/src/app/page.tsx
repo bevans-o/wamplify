@@ -31,7 +31,7 @@ export default function Home() {
 
       <PanelSlider/>
 
-      <Infobar version="1.0.0" message="All scores are estimates!"/>
+      <Infobar version="1.0.1" message="All scores are estimates!"/>
     </main>
   )
 }
