@@ -13,19 +13,18 @@ function PanelSlider() {
   const [wamplifiers, setWamplifiers] = useState<string[]>([generateID(32)]);
 
   const handleSave = (newWamplifiers: string[]) => {
+    setWamplifiers(newWamplifiers);
     localStorage.setItem('wamplifiers', JSON.stringify(newWamplifiers));
   }
 
   const newSubject = () => {
     var newArray: string[] = [...wamplifiers];
     newArray.push(generateID(32))
-    setWamplifiers(newArray);
     handleSave(newArray);
   }
 
   const removeSubject = (id: string) => {
     var newArray: string[] = wamplifiers.filter((item) => item != id);
-    setWamplifiers(newArray);
     handleSave(newArray);
   }
 

@@ -20,6 +20,10 @@ function Assessment({assessment, highlighted, onChange, id, index, targetScore} 
     setScoreInput(Math.round(newScore).toString() + "%");
   }
 
+  const handleDelete = () => {
+    localStorage.removeItem(index+ '-' + id + '-score');
+  }
+
 
   useEffect(() => {
     localStorage.getItem(index+'-'+id+'-score') ? setScoreInput(localStorage.getItem(index+'-'+id+'-score')! + "%") : setScoreInput("");
@@ -78,6 +82,7 @@ function Assessment({assessment, highlighted, onChange, id, index, targetScore} 
     if (scoreInput.value.length == 0){
       assessment.completed = false;
       assessment.score = 0;
+      handleDelete();
       onChange();
       return;
     } 
