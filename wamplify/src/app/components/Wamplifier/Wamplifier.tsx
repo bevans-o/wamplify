@@ -54,12 +54,27 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
   const [averageMark, setAverageMark] =  useState(calculateSubjectAverage(subject.assessments));
   const [isLoading, setLoading] = useState(false);
 
-  const handleSave = (targetScore: Number, maxScore : Number, subject : Subject, averageMark : Number) => {
-    localStorage.setItem(id+'-target-score', targetScore.toFixed());
-    localStorage.setItem(id+'-max-score', maxScore.toFixed());
-    localStorage.setItem(id+'-subject', JSON.stringify(subject));
-    localStorage.setItem(id+'-average-mark', averageMark.toFixed());
+  const handleSaveAverageMark = (newAverageMark : number) => {
+    localStorage.setItem(id+'-average-mark', newAverageMark.toFixed());
+    setAverageMark(newAverageMark);
   }
+
+  const handleSaveTargetScore = (newTargetScore: number) => {
+    localStorage.setItem(id+'-target-score',newTargetScore.toString());
+    setTargetScore(newTargetScore);
+  }
+
+  const handleSaveMaxScore = (newMaxScore: number) => {
+    localStorage.setItem(id+'-max-score',newMaxScore.toString());
+    setMaxScore(newMaxScore);
+  }
+
+  const handleSaveSubject = (newSubject: Subject) => {
+    localStorage.setItem(id+'-subject',JSON.stringify(newSubject));
+    setSubject(newSubject);
+  }
+
+
 
   const handleDelete = (id: string) => {
     onDelete(id);
@@ -71,10 +86,10 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
 
 
   useEffect(() => {
-    setTargetScore(Number(localStorage.getItem(id+'-target-score')) ?? 50);
-    setMaxScore(Number(localStorage.getItem(id+'-max-score')) ?? 100);
-    setSubject(JSON.parse(localStorage.getItem(id+'-subject') ?? JSON.stringify(emptySubject)) ?? emptySubject);
-    setAverageMark(Number(localStorage.getItem(id+'-average-mark')) ?? calculateSubjectAverage(subject.assessments));
+    localStorage.getItem(id+'-target-score') ? setTargetScore(Number(localStorage.getItem(id+'-target-score'))) : setTargetScore(50);
+    localStorage.getItem(id+'-max-score') ? setMaxScore(Number(localStorage.getItem(id+'-target-score'))) : setMaxScore(100);
+    localStorage.getItem(id+'-subject') ? setSubject(JSON.parse(localStorage.getItem(id+'-subject')!))  : setSubject(emptySubject);
+    localStorage.getItem(id+'-average-mark') ? setAverageMark(Number(localStorage.getItem(id+'-average-mark'))) : calculateSubjectAverage(subject.assessments);
     
   }, [])
 
@@ -82,8 +97,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
     setLoading(true);
     axios.post("/api/getSubjectInfo", subjectSelection)
     .then((res) => {
-      setSubject(res.data);
-      handleSave(targetScore, maxScore, res.data, averageMark);
+      handleSaveSubject(res.data);
       setLoading(false);
     }).catch((error) => console.log(error));
   }
@@ -106,8 +120,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
       }
     });
   
-    setSubject(newSubject);
-    handleSave(targetScore, maxScore, newSubject, averageMark);
+    handleSaveSubject(newSubject);
 
   }
   
@@ -168,12 +181,15 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                           let newTargetScore = targetScore > newMax ? newMax : targetScore;
 
                           setAverageMark(calculateSubjectAverage(subject.assessments));
-                          setMaxScore(newMax);
-                          setTargetScore(newTargetScore);
+                          handleSaveMaxScore(newMax);
+                          handleSaveTargetScore(newTargetScore);
                           updateDesiredScores(getRemainingTarget(subject.assessments, newTargetScore));
-                          handleSave(newTargetScore, newMax, subject, newAverage);
+                          handleSaveAverageMark(newAverage);
                         }} 
-                      key={index} targetScore={targetScore}/>
+                      id={id}
+                      key={index} 
+                      index={index}
+                      targetScore={targetScore}/>
                     )}
                   </div>
                 
@@ -205,13 +221,11 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   className="slider swiper-no-swiping"
                   onChange={(e, value) => {
                     if (Array.isArray(value)) {
-                      setTargetScore(value[0]);
-                      handleSave(value[0], maxScore, subject, averageMark);
+                      handleSaveTargetScore(value[0]);
                       updateDesiredScores(getRemainingTarget(subject.assessments, value[0]));
                     }
                     else {
-                      setTargetScore(value)
-                      handleSave(value, maxScore, subject, averageMark);
+                      handleSaveTargetScore(value);
                       updateDesiredScores(getRemainingTarget(subject.assessments, value));
                     }
                   }}
@@ -229,18 +243,18 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                   value={targetScore.toFixed(0)}
                   onChange={(e) => {
                     if (!isNaN(Number(e.target.value)) && Number(e.target.value) <= 100) {
-                      let targetScore = parseInt(e.target.value == "" ? "0" : e.target.value);
-                      handleSave(targetScore, maxScore, subject, averageMark);
+                      let newTargetScore = parseInt(e.target.value == "" ? "0" : e.target.value);
+                      handleSaveTargetScore(newTargetScore);
                     }
-                    // updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
                   }}
                   onKeyDown={(e) => e.key == "Enter" && e.currentTarget.blur()}
                   onBlur={(e) => {
+                    let newTargetScore = targetScore;
                     if (!isNaN(Number(e.target.value)) && Number(e.target.value) <= 100) {
-                      let targetScore = parseInt(e.target.value == "" ? "0" : e.target.value);
-                      handleSave(targetScore, maxScore, subject, averageMark);
+                      newTargetScore = parseInt(e.target.value == "" ? "0" : e.target.value);
+                      handleSaveTargetScore(newTargetScore);
                     }
-                    updateDesiredScores(getRemainingTarget(subject.assessments, targetScore));
+                    updateDesiredScores(getRemainingTarget(subject.assessments, newTargetScore));
                   }
                   }
                   />
