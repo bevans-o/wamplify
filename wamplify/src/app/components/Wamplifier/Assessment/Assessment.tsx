@@ -7,11 +7,29 @@ interface AssessmentProps {
   assessment: Assessment;
   highlighted: boolean;
   onChange: Function;
+  id: string;
+  index: number;
   targetScore: number;
 }
 
-function Assessment({assessment, highlighted, onChange, targetScore} : AssessmentProps) {
+function Assessment({assessment, highlighted, onChange, id, index, targetScore} : AssessmentProps) {
   const [score, setScoreInput] = useState("");
+
+  const handleSave = (newScore: number) => {
+    localStorage.setItem(index + '-' + id + '-score', Math.round(newScore).toString());
+    setScoreInput(Math.round(newScore).toString() + "%");
+  }
+
+  const handleDelete = () => {
+    localStorage.removeItem(index+ '-' + id + '-score');
+  }
+
+
+  useEffect(() => {
+    localStorage.getItem(index+'-'+id+'-score') ? setScoreInput(localStorage.getItem(index+'-'+id+'-score')! + "%") : setScoreInput("");
+
+  }, [])
+
 
   const isValid = (score : string) => {
     //check numbera/numberb is a valid format
@@ -64,6 +82,7 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
     if (scoreInput.value.length == 0){
       assessment.completed = false;
       assessment.score = 0;
+      handleDelete();
       onChange();
       return;
     } 
@@ -71,7 +90,7 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
     //otherwise sets new input field value and assessment score
     if (isValid(score)) {
       let assessmentScore = getAssessmentScore(scoreInput.value);
-      setScoreInput(assessmentScore.toString() + "%")
+      handleSave(assessmentScore);
       assessment.score = assessmentScore
       assessment.completed = true;
       onChange();
@@ -105,7 +124,6 @@ function Assessment({assessment, highlighted, onChange, targetScore} : Assessmen
       </div>
         <input 
         placeholder={ (assessment.desiredScore ?? targetScore) + "%"}
-        autoFocus={true}
         value={score} 
         onChange={(e) => setScoreInput(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur() }
