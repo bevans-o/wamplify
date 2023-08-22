@@ -91,7 +91,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
 
   useEffect(() => {
     localStorage.getItem(id+'-target-score') ? setTargetScore(Number(localStorage.getItem(id+'-target-score'))) : setTargetScore(50);
-    localStorage.getItem(id+'-max-score') ? setMaxScore(Number(localStorage.getItem(id+'-target-score'))) : setMaxScore(100);
+    localStorage.getItem(id+'-max-score') ? setMaxScore(Number(localStorage.getItem(id+'-max-score'))) : setMaxScore(100);
     localStorage.getItem(id+'-subject') ? setSubject(JSON.parse(localStorage.getItem(id+'-subject')!))  : setSubject(emptySubject);
     localStorage.getItem(id+'-average-mark') ? setAverageMark(Number(localStorage.getItem(id+'-average-mark'))) : calculateSubjectAverage(subject.assessments);
     
