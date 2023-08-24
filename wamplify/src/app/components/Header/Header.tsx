@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import header from './header.module.css'
 import Logo from '../Logo/Logo'
 import Button from '../Button/Button'
-import HelpDialog from '../HelpDialog/HelpDialog';
+import HelpDialog from '../HelpDialog/HelpDialog'
 
 function Header() {
     const [open, setOpen] = useState(false);
