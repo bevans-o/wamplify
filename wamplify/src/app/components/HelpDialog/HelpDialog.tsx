@@ -1,10 +1,9 @@
 import React from 'react'
 import Dialog from '@mui/material/Dialog'
 import ModalPanel from './HelpPanel'
-import Button from '../Button/Button';
+import Button from '../Button/Button'
 import help from './help.module.css'
-import Divider from '../Divider/Divider';
-import Logo from '../Logo/Logo';
+import Logo from '../Logo/Logo'
 
 interface HelpDialogProps {
     open: boolean;

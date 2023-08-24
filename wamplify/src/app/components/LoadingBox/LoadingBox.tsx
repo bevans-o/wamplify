@@ -1,7 +1,12 @@
 import React from 'react'
 import loading from './loading.module.css'
 
-function LoadingBox({isLoading, rows}: any) {
+interface LoadingBoxProps {
+  isLoading: boolean;
+  rows: number;
+}
+
+function LoadingBox({isLoading, rows}: LoadingBoxProps) {
   const lightsPerRow = 15;
 
   return (

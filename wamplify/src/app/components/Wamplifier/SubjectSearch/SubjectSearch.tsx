@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import search from './search.module.css'
-import { SearchResult } from '@/app/types/types';
-import { getPredictiveSearch } from '@/app/api/subjectSearch';
+import { SearchResult } from '@/app/types/types'
+import { getPredictiveSearch } from '@/app/api/subjectSearch'
 
 interface SubjectSearchProps {
   id: string,

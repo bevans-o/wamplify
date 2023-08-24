@@ -1,7 +1,14 @@
 import React from 'react'
 import button from './button.module.css'
 
-function Button({type, size, text, onClick} : any) {
+interface ButtonProps {
+    type?: string;
+    size?: string;
+    text: string;
+    onClick?: Function;
+}
+
+function Button({type = "primary", size = "medium", text, onClick = () => {}} : ButtonProps) {
     var typeClass : string = button.primary;
     var sizeClass : string = button.medium;
 
