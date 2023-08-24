@@ -184,7 +184,6 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
                           let newMax = getMaxScore(subject.assessments);
                           let newTargetScore = targetScore > newMax ? newMax : targetScore;
 
-                          setAverageMark(calculateSubjectAverage(subject.assessments));
                           handleSaveMaxScore(newMax);
                           handleSaveTargetScore(newTargetScore);
                           updateDesiredScores(getRemainingTarget(subject.assessments, newTargetScore));
