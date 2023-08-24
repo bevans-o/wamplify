@@ -7,24 +7,30 @@ import { FreeMode, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import AddIcon from '@mui/icons-material/Add';
 import generateID from '@/app/utils/scripts/generateId';
-
 function PanelSlider() {
 
   const [mobile, setMobile] = useState(false);
   const [wamplifiers, setWamplifiers] = useState<string[]>([generateID(32)]);
 
+  const handleSave = (newWamplifiers: string[]) => {
+    setWamplifiers(newWamplifiers);
+    localStorage.setItem('wamplifiers', JSON.stringify(newWamplifiers));
+  }
+
   const newSubject = () => {
     var newArray: string[] = [...wamplifiers];
     newArray.push(generateID(32))
-    setWamplifiers(newArray);
+    handleSave(newArray);
   }
 
   const removeSubject = (id: string) => {
     var newArray: string[] = wamplifiers.filter((item) => item != id);
-    setWamplifiers(newArray);
-  }  
+    handleSave(newArray);
+  }
 
   useEffect(() => {
+    localStorage.getItem('wamplifiers') ? setWamplifiers(JSON.parse(localStorage.getItem('wamplifiers')!)) : setWamplifiers([generateID(32)]);
+
     function handleResize() {
       if (window.innerWidth < 800) {
         setMobile(true);
@@ -40,6 +46,8 @@ function PanelSlider() {
     // unsubscribe on unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  
 
   return (
     <div className={slider.container}>

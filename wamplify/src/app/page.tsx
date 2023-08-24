@@ -3,7 +3,6 @@
 import wamplify from './page.module.css'
 import Infobar from './components/Infobar/Infobar'
 import PanelSlider from './components/PanelSlider/PanelSlider'
-import Wamplifier from './components/Wamplifier/Wamplifier'
 import { useEffect, useState } from 'react'
 import {Subject} from './types/types'
 import Header from './components/Header/Header'
@@ -32,7 +31,7 @@ export default function Home() {
 
       <PanelSlider/>
 
-      <Infobar version="1.0.0" message="All scores are estimates!"/>
+      <Infobar version="1.0.1" message="All scores are estimates!"/>
     </main>
   )
 }

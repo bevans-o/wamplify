@@ -20,7 +20,12 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Wamplify',
     description: 'A subject score calculator for the University of Melbourne. Predict the future. Predict a H1.'
-  }
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
 }
 
 export default function RootLayout({
@@ -30,6 +35,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      
+
       <body>
         {children}
         <Analytics/>
