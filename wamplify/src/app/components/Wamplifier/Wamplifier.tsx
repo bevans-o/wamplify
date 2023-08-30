@@ -81,8 +81,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
     localStorage.removeItem(id+'-subject');
     localStorage.removeItem(id+'-average-mark');
     subject.assessments.forEach((assessment, index) => 
-      {console.log(index + '-' + id);
-      localStorage.removeItem(index+'-'+id+'-score')}
+      {localStorage.removeItem(index+'-'+id+'-score')}
     )
   }
 
@@ -100,7 +99,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
     .then((res) => {
       handleSaveSubject(res.data);
       setLoading(false);
-    }).catch((error) => console.log(error));
+    }).catch((error) => console.error(error));
   }
 
   const updateDesiredScores = (remainingTarget: number) => {
