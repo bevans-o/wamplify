@@ -119,8 +119,12 @@
         gap: 0.125rem;
     }
 
-    .title {
+    .title,
+    .tooltip {
         font-size: 0.875rem;
+    }
+
+    .title {
         width: 12rem;
     }
 
@@ -148,6 +152,15 @@
 
     .container:last-child {
         border-bottom: none;
+    }
+
+    .tooltip {
+        width: auto;
+        min-width: 16rem;
+        max-width: 20rem;
+
+        padding: 0.625rem;
+        translate: calc(-0.625rem - 1px) calc(-0.625rem - 1px);
     }
     
 }
