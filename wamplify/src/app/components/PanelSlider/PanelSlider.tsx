@@ -7,6 +7,7 @@ import { FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import AddIcon from '@mui/icons-material/Add'
 import generateID from '@/app/utils/scripts/generateId'
+import Wamometer from '../Wamometer/Wamometer'
 
 
 function PanelSlider() {
@@ -66,6 +67,10 @@ function PanelSlider() {
           mousewheel={{forceToAxis: true}}
           className={slider.swiper}
         >
+          <SwiperSlide className={slider.swiperSlide}>
+            <Wamometer predictedWam={80}/>
+          </SwiperSlide>
+
           {wamplifiers.map((id: string, index: number) => 
             <SwiperSlide key={id} className={slider.swiperSlide}>
                 <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)}/>

@@ -1,0 +1,36 @@
+.body {
+    width: 20rem;
+    height: 100%;
+    min-height: 20rem;
+
+    padding: 2rem;
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: 1fr 5rem;
+    grid-template-areas: 
+            "left right"
+            "bottom bottom";
+    gap: 1rem;
+}
+
+.inputs {
+    background: red;
+    grid-area: left;
+}
+
+.thermo {
+    background: var(--n700);
+    border: 1px solid var(--n600);
+    border-radius: 5px;
+    grid-area: right;
+
+    box-shadow: 
+            0 1px 6px rgba(0, 0, 0, 0.2),
+            inset 0 0 32px -16px rgba(255, 255, 255, 0.05);
+}
+
+.footer {
+    background: yellow;
+    grid-area: bottom;
+}
