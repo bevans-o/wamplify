@@ -257,3 +257,14 @@
     color: var(--a100);
     text-shadow: 0 0 5px var(--a900);
 }
+
+
+@media (max-width: 800px) {
+    .body {
+        --thermo-padding: 1rem;
+    }
+
+    .wamScore {
+        font-size: 2rem;
+    }
+}
