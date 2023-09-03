@@ -1,36 +1,259 @@
 .body {
-    width: 20rem;
+    width: 16.5rem;
     height: 100%;
     min-height: 20rem;
 
-    padding: 2rem;
+    padding-top: 1rem;
     display: grid;
 
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: 1fr 5rem;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto auto;
     grid-template-areas: 
-            "left right"
-            "bottom bottom";
-    gap: 1rem;
+            "title"
+            "thermo"
+            "wam"
+            "bottom";
+
+    --thermo-padding: 1.5rem;
 }
 
-.inputs {
-    background: red;
-    grid-area: left;
-}
+.title {
+    grid-area: title;
+    font-size: 0.75rem;
+    color: var(--n500);
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
 
-.thermo {
-    background: var(--n700);
-    border: 1px solid var(--n600);
-    border-radius: 5px;
-    grid-area: right;
-
-    box-shadow: 
-            0 1px 6px rgba(0, 0, 0, 0.2),
-            inset 0 0 32px -16px rgba(255, 255, 255, 0.05);
+    translate: 0 0.5rem;
 }
 
 .footer {
-    background: yellow;
     grid-area: bottom;
+
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    border-top: 1px solid var(--n700);
+    padding: var(--thermo-padding);
+
+    color: var(--n300);
+    font-weight: 400;
+    font-size: 0.875rem;
+}
+
+.inputs {
+    color: var(--n100);
+
+    display: flex;
+    gap: 0.5rem;
+}
+
+.inputs > * {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.inputs input {
+    width: 100%;
+    color: var(--n300);
+    font-weight: 200;
+}
+
+.tip {
+    font-size: 0.85rem;
+}
+
+.wamContainer {
+    padding: var(--thermo-padding);
+    grid-area: wam;
+    border-bottom: 2px solid var(--n900);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wam {
+    padding: 0.5rem;
+
+    width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+
+    background: var(--n700);
+    border: 1px solid var(--n600);
+    border-radius: 3px;
+    box-shadow: 0 1px 8px var(--n900);
+
+    padding: 0.5rem 1rem;
+}
+
+.wamDiff {
+    color: var(--a100);
+}
+
+.wamScore {
+    color: var(--a300);
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+
+
+
+
+
+/* THERMO */
+.thermo {
+    position: relative;
+    grid-area: thermo;
+
+    isolation: isolate;
+
+    --track-width: 1.25rem;
+    --bulb-width: 2rem;
+    --thermo-edge: 0.4rem;
+}
+
+.thermo > * {
+    position: absolute;
+    inset: var(--thermo-padding);
+    bottom: 0;
+    /* left: calc(var(--thermo-padding) + 0.5rem);
+    right: calc(var(--thermo-padding) - 0.5rem); */
+}
+
+.thermoBulbBack {
+    position: absolute;
+
+    background: var(--n900);
+    border: 1px solid var(--n700);
+    width: var(--bulb-width);
+    height: var(--bulb-width);
+    border-radius: 99999px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+
+    z-index: 1;
+}
+
+.thermoBulbBack::before {
+    content: "";
+    position: absolute;
+    width: calc(var(--track-width) - 2px);
+    height: calc(var(--bulb-width) - 1rem);
+    background: var(--n900);
+
+    bottom: calc(var(--bulb-width) / 2);
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    z-index: 2;
+}
+
+.thermoBulbFront {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: var(--thermo-edge);
+    margin: auto;
+    background: var(--a700);
+    width: calc(var(--bulb-width) - var(--thermo-edge) - var(--thermo-edge));
+    height: calc(var(--bulb-width) - var(--thermo-edge) - var(--thermo-edge));
+    border-radius: 99999px;
+
+    z-index: 5;
+}
+
+.thermoTrackBack {
+    position: absolute;
+
+    background: var(--n900);
+    border: 1px solid var(--n700);
+    width: var(--track-width);
+    border-radius: 99999px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 1rem;
+    top: 0;
+
+    z-index: 0;
+}
+
+.thermoTrackContainer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(var(--bulb-width) / 2);
+    top: var(--thermo-edge);
+    margin: auto;
+
+    width: calc(var(--track-width) - var(--thermo-edge) - var(--thermo-edge));
+
+    z-index: 4;
+}
+
+.thermoTrackFront {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(var(--a300), var(--a700));
+    box-shadow: 0 0 8px var(--a900);
+    width: 100%;
+
+    border-radius: 99999px 99999px 0 0 ;
+}
+
+.thermoMarkers {
+    padding-bottom: calc(var(--bulb-width) / 2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thermoMarker {
+    position: relative;
+    height: 2px;
+    width: 3rem;
+    background: var(--n900);
+    border-bottom: 1px solid var(--n700);
+}
+
+.thermoMarker:nth-child(even) {
+    width: 2.5rem;
+}
+
+.thermoMarker:nth-child(1),
+.thermoMarker:nth-child(21) {
+    width: 0rem;
+}
+
+.thermoMarker p {
+    position: absolute;
+    color: var(--n500);
+    font-weight: 400;
+    font-size: 0.625rem;
+    bottom: 0;
+    margin: auto;
+
+    translate: -2rem 0.4rem;
+}
+
+.thermoMarkerActive p {
+    color: var(--a100);
+    text-shadow: 0 0 5px var(--a900);
 }
