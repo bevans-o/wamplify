@@ -8,7 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import CloseIcon from '@mui/icons-material/Close'
 import { Assessment, SearchResult, Subject } from '@/app/types/types'
 import SubjectSearch from './SubjectSearch/SubjectSearch';
-import { calculateSubjectAverage, getMaxScore, getRemainingTarget } from '@/app/utils/scripts/subjectScoreCalculations'
+import { calculateSubjectAverage, getMaxScore, getRemainingTarget } from '@/app/lib/scripts/subjectScoreCalculations'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Mousewheel } from 'swiper/modules';

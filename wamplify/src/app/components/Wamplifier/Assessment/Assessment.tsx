@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Assessment } from '@/app/types/types';
 import assessmentItem from './assessment.module.css'
-import getAssessmentScore from '@/app/utils/scripts/getAssessmentScore';
+import getAssessmentScore from '@/app/lib/scripts/getAssessmentScore';
 
 interface AssessmentProps {
   assessment: Assessment;
