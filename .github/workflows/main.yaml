@@ -1,0 +1,38 @@
+# Build and test
+
+name: Build and test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [19.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with: 
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Install dependencies
+        run: |
+         cd wamplify
+         npm install
+        
+      - name: Run the tests
+        run: | 
+         cd wamplify
+         npm run test
+        
+      - name: Build
+        run: |
+         cd wamplify
+         npm run build --if-present

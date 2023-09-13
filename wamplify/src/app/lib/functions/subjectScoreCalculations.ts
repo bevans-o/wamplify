@@ -1,5 +1,7 @@
 import { Assessment } from "@/app/types/types";
 
+
+
 export function calculateSubjectAverage(assessments :Assessment[]) {
     let sum = 0;
     let subjectScore = 0;

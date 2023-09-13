@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import AddIcon from '@mui/icons-material/Add'
-import generateID from '@/app/utils/scripts/generateId'
+import generateID from '@/app/lib/functions/generateId';
 import Wamometer from '../Wamometer/Wamometer'
 
 
