@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Assessment } from '@/app/types/types';
+import { Assessment } from '@/app/types/types'
 import assessmentItem from './assessment.module.css'
 import getAssessmentScore from '@/app/lib/functions/getAssessmentScore';
 
@@ -118,6 +118,9 @@ function Assessment({assessment, highlighted, onChange, id, index, targetScore} 
         <span className={assessmentItem.title}>
           {assessment.title}
         </span>
+        {assessment.title.length > 20 && 
+          <span className={assessmentItem.tooltip}>{assessment.title}</span>
+        }
         <span className={assessmentItem.description}>
           {assessment.weight > 0 ? assessment.weight + "%" : "No Weight"}
         </span>

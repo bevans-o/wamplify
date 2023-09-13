@@ -7,6 +7,7 @@ import { FreeMode, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import AddIcon from '@mui/icons-material/Add';
 import generateID from '@/app/lib/functions/generateId';
+        
 function PanelSlider() {
 
   const [mobile, setMobile] = useState(false);
