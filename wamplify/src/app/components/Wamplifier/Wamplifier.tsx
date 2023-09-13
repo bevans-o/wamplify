@@ -4,11 +4,10 @@ import wamplifier from './wamplifier.module.css'
 import Divider from '../Divider/Divider'
 import AssessmentInput from './Assessment/Assessment'
 import Slider from '@mui/material/Slider'
-import CircularProgress from '@mui/material/CircularProgress'
 import CloseIcon from '@mui/icons-material/Close'
 import { Assessment, SearchResult, Subject } from '@/app/types/types'
 import SubjectSearch from './SubjectSearch/SubjectSearch';
-import { calculateSubjectAverage, getMaxScore, getRemainingTarget } from '@/app/lib/scripts/subjectScoreCalculations'
+import { calculateSubjectAverage, getMaxScore, getRemainingTarget } from '@/app/lib/functions/subjectScoreCalculations'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Mousewheel } from 'swiper/modules';
