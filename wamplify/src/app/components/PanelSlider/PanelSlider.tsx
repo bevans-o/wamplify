@@ -2,13 +2,12 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import slider from './slider.module.css'
 import Wamplifier from '../Wamplifier/Wamplifier'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Mousewheel } from 'swiper/modules'
-import 'swiper/css'
-import AddIcon from '@mui/icons-material/Add'
-import generateID from '@/app/utils/scripts/generateId'
-
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode, Mousewheel } from 'swiper/modules';
+import 'swiper/css';
+import AddIcon from '@mui/icons-material/Add';
+import generateID from '@/app/lib/functions/generateId';
+        
 function PanelSlider() {
 
   const [mobile, setMobile] = useState(false);
