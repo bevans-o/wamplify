@@ -30,7 +30,7 @@ jobs:
       - name: Run the tests
         run: | 
          cd wamplify
-         npm test
+         npm run test
         
       - name: Build
         run: |
