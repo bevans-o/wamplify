@@ -13,8 +13,19 @@ import Wamometer from '../Wamometer/Wamometer'
 function PanelSlider() {
 
   const [mobile, setMobile] = useState(false);
+  const [totalTargetScore, setTotalTarget] = useState(0);
+  const [newCredits, setNewCredits] = useState(0);
   const [wamplifiers, setWamplifiers] = useState<string[]>([generateID(32)]);
 
+  
+  const updateTotalTarget = (prevTarget: number, newTarget: number) => {
+    setTotalTarget(totalTargetScore - prevTarget + newTarget)
+  }
+
+  const updateTotalCredits = (prevCredits: number, addedCredits: number) => {
+    setNewCredits(newCredits - prevCredits + addedCredits)
+  }
+  
   const handleSave = (newWamplifiers: string[]) => {
     setWamplifiers(newWamplifiers);
     localStorage.setItem('wamplifiers', JSON.stringify(newWamplifiers));
@@ -51,7 +62,7 @@ function PanelSlider() {
   }, []);
 
   
-
+  console.log(totalTargetScore + " " + newCredits + " " + "Prediction: " + totalTargetScore/newCredits);
   return (
     <div className={slider.container}>
 
@@ -68,12 +79,12 @@ function PanelSlider() {
           className={slider.swiper}
         >
           <SwiperSlide className={slider.swiperSlide}>
-            <Wamometer predictedWam={80}/>
+            <Wamometer predictedWam={isNaN(totalTargetScore/newCredits) ?  80 : totalTargetScore/newCredits}/>
           </SwiperSlide>
 
           {wamplifiers.map((id: string, index: number) => 
             <SwiperSlide key={id} className={slider.swiperSlide}>
-                <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)}/>
+                <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)} onUpdateTarget={(prevTarget: number, currentTarget: number) => updateTotalTarget(prevTarget, currentTarget)} onUpdateCredits={(prevCredits: number, newCredits: number) => updateTotalCredits(prevCredits, newCredits)}/>
             </SwiperSlide>
           )}
 

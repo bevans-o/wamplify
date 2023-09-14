@@ -44,10 +44,12 @@ const sliderMarks = [
 interface WamplifierProps {
   id: string; 
   onDelete: Function;
+  onUpdateTarget: Function;
+  onUpdateCredits: Function;
 }
 
-function Wamplifier({id, onDelete}: WamplifierProps) {
-  const emptySubject = {name: "", code: "", assessments: []}
+function Wamplifier({id, onDelete, onUpdateTarget, onUpdateCredits}: WamplifierProps) {
+  const emptySubject = {name: "", code: "", assessments: [], credits: 0}
   const [targetScore, setTargetScore] = useState(50);
   const [maxScore, setMaxScore] = useState(100);
   const [subject, setSubject] = useState<Subject>(emptySubject);
@@ -61,6 +63,7 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
 
   const handleSaveTargetScore = (newTargetScore: number) => {
     localStorage.setItem(id+'-target-score',newTargetScore.toString());
+    onUpdateTarget(targetScore*subject.credits, newTargetScore*subject.credits);
     setTargetScore(newTargetScore);
   }
 
@@ -75,6 +78,8 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
   }
 
   const handleDelete = (id: string) => {
+    onUpdateTarget(targetScore*subject.credits, 0);
+    onUpdateCredits(subject.credits, 0);
     onDelete(id);
     localStorage.removeItem(id+'-target-score');
     localStorage.removeItem(id+'-max-score');
@@ -99,6 +104,8 @@ function Wamplifier({id, onDelete}: WamplifierProps) {
     .then((res) => {
       handleSaveSubject(res.data);
       setLoading(false);
+      onUpdateTarget(0, targetScore*res.data.credits);
+      onUpdateCredits(0, res.data.credits);
     }).catch((error) => console.error(error));
   }
 
