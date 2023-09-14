@@ -42,6 +42,12 @@ function PanelSlider() {
     handleSave(newArray);
   }
 
+  const getWamPrediction = (currWam: string, currCredits: string) => {
+    const totalPoints = parseFloat(currWam)*parseFloat(currCredits)  + totalTargetScore
+    const totalCredits = parseFloat(currCredits) + newCredits
+    return (isNaN(totalPoints/totalCredits) ? 0 : totalPoints/totalCredits).toPrecision(2)
+  }
+
   useEffect(() => {
     localStorage.getItem('wamplifiers') ? setWamplifiers(JSON.parse(localStorage.getItem('wamplifiers')!)) : setWamplifiers([generateID(32)]);
 
@@ -79,7 +85,7 @@ function PanelSlider() {
           className={slider.swiper}
         >
           <SwiperSlide className={slider.swiperSlide}>
-            <Wamometer predictedWam={isNaN(totalTargetScore/newCredits) ?  80 : totalTargetScore/newCredits}/>
+            <Wamometer calcPredictedWam={getWamPrediction}/>
           </SwiperSlide>
 
           {wamplifiers.map((id: string, index: number) => 

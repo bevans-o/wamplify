@@ -4,31 +4,27 @@ import WamometerThermo from './WamometerThermo';
 import Divider from '../Divider/Divider';
 
 interface WamometerProps {
-    predictedWam: number;
-    onCurrentWamChange?: Function;
-    onCreditPointsChange?: Function;
+    calcPredictedWam: Function;
 }
 
-function Wamometer({predictedWam, onCurrentWamChange, onCreditPointsChange}: WamometerProps) {
-    const [currentWam, setCurrentWam] = useState("");
-    const [creditPoints, setCreditPoints] = useState("");
-    const active = (predictedWam && currentWam && creditPoints);
+function Wamometer({calcPredictedWam}: WamometerProps) {
+    const [currentWam, setCurrentWam] = useState("0");
+    const [creditPoints, setCreditPoints] = useState("0");
+    const active = (currentWam && creditPoints);
 
 
     function handleWamChange(e: React.SyntheticEvent) {
         let input = e.target as HTMLInputElement;
         setCurrentWam(input.value);
-
-        if (!onCurrentWamChange) return;
-        onCurrentWamChange(input.value);
     }
 
     function handleCreditChange(e: React.SyntheticEvent) {
         let input = e.target as HTMLInputElement;
         setCreditPoints(input.value);
+    }
 
-        if (!onCreditPointsChange) return;
-        onCreditPointsChange(input.value);
+    function getWamDiff() {
+        return (calcPredictedWam(currentWam, creditPoints) - parseFloat(currentWam)).toPrecision(2)
     }
 
   return (
@@ -36,12 +32,12 @@ function Wamometer({predictedWam, onCurrentWamChange, onCreditPointsChange}: Wam
         <div className={wamometer.title}>Your Wamometer</div>
         
         
-        <WamometerThermo markerSteps={20} value={predictedWam}/>
+        <WamometerThermo markerSteps={20} value={calcPredictedWam(currentWam, creditPoints)}/>
 
         <div className={wamometer.wamContainer}>
             <div className={wamometer.wam}>
-                <p className={wamometer.wamDiff}>({predictedWam - parseFloat(currentWam)})</p>
-                <p className={wamometer.wamScore}>{predictedWam}</p>
+                <p className={wamometer.wamDiff}>({getWamDiff()})</p>
+                <p className={wamometer.wamScore}>{calcPredictedWam(currentWam, creditPoints)}</p>
             </div>
         </div>
         
