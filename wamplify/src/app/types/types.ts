@@ -13,6 +13,7 @@ export interface Subject {
     name: string,
     code: string,
     assessments: Assessment[],
+    credits: number,
   }
 
 export interface SearchResult {
