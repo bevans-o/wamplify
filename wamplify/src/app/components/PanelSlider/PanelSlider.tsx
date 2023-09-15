@@ -42,9 +42,9 @@ function PanelSlider() {
     handleSave(newArray);
   }
 
-  const getWamPrediction = (currWam: string, currCredits: number) => {
-    const totalPoints = parseFloat(currWam)*currCredits  + totalTargetScore
-    const totalCredits = currCredits + newCredits
+  const getWamPrediction = (currWam: string, currCredits: string) => {
+    const totalPoints = parseFloat(currWam)*parseInt(currCredits)*12.5  + totalTargetScore
+    const totalCredits = parseInt(currCredits)*12.5 + newCredits
     return (isNaN(totalPoints/totalCredits) ? 0 : totalPoints/totalCredits).toFixed(2)
   }
 

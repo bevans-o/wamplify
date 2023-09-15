@@ -24,7 +24,7 @@ function Wamometer({calcPredictedWam}: WamometerProps) {
     }
 
     function getWamDiff() {
-        return (calcPredictedWam(currentWam, parseFloat(unitsCompleted)*12.5) - parseFloat(currentWam)).toFixed(2)
+        return (calcPredictedWam(currentWam, unitsCompleted) - parseFloat(currentWam)).toFixed(2)
     }
 
   return (
@@ -32,12 +32,12 @@ function Wamometer({calcPredictedWam}: WamometerProps) {
         <div className={wamometer.title}>Your Wamometer</div>
         
         
-        <WamometerThermo markerSteps={20} value={calcPredictedWam(currentWam, parseFloat(unitsCompleted)*12.5)}/>
+        <WamometerThermo markerSteps={20} value={calcPredictedWam(currentWam, unitsCompleted)}/>
 
         <div className={wamometer.wamContainer}>
             <div className={wamometer.wam}>
                 <p className={wamometer.wamDiff}>({getWamDiff()})</p>
-                <p className={wamometer.wamScore}>{calcPredictedWam(currentWam, parseFloat(unitsCompleted)*12.5)}</p>
+                <p className={wamometer.wamScore}>{calcPredictedWam(currentWam, unitsCompleted)}</p>
             </div>
         </div>
         
