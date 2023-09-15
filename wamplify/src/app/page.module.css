@@ -22,4 +22,9 @@
   .main {
     height: 100dvh;
   }
+
+  .main:has(input:focus-within) {
+    height: 100vh;
+    background: red;
+  }
 }
