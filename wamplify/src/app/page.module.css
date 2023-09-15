@@ -21,5 +21,6 @@
 @media (max-width: 800px) {
   .main {
     height: 100dvh;
+    min-height: 80vh;
   }
 }
