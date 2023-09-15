@@ -31,7 +31,7 @@ function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
     }
 
     useEffect(() => {
-        localStorage.getItem('current-wam') ? setCurrentWam(String(localStorage.getItem('cuurent-wam'))) : setCurrentWam("0")
+        localStorage.getItem('current-wam') ? setCurrentWam(String(localStorage.getItem('current-wam'))) : setCurrentWam("0")
         localStorage.getItem('units-completed') ? setUnitsCompleted(String(localStorage.getItem('units-completed'))) : setUnitsCompleted("0")
     }, [])
 
