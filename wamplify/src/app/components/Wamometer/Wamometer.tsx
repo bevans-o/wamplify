@@ -9,8 +9,8 @@ interface WamometerProps {
 
 function Wamometer({calcPredictedWam}: WamometerProps) {
     const [currentWam, setCurrentWam] = useState("0");
-    const [creditPoints, setCreditPoints] = useState("0");
-    const active = (currentWam && creditPoints);
+    const [unitsCompleted, setUnitsCompleted] = useState("0");
+    const active = (currentWam && unitsCompleted);
 
 
     function handleWamChange(e: React.SyntheticEvent) {
@@ -20,11 +20,11 @@ function Wamometer({calcPredictedWam}: WamometerProps) {
 
     function handleCreditChange(e: React.SyntheticEvent) {
         let input = e.target as HTMLInputElement;
-        setCreditPoints(input.value);
+        setUnitsCompleted(input.value);
     }
 
     function getWamDiff() {
-        return (calcPredictedWam(currentWam, creditPoints) - parseFloat(currentWam)).toFixed(2)
+        return (calcPredictedWam(currentWam, parseFloat(unitsCompleted)*12.5) - parseFloat(currentWam)).toFixed(2)
     }
 
   return (
@@ -32,12 +32,12 @@ function Wamometer({calcPredictedWam}: WamometerProps) {
         <div className={wamometer.title}>Your Wamometer</div>
         
         
-        <WamometerThermo markerSteps={20} value={calcPredictedWam(currentWam, creditPoints)}/>
+        <WamometerThermo markerSteps={20} value={calcPredictedWam(currentWam, parseFloat(unitsCompleted)*12.5)}/>
 
         <div className={wamometer.wamContainer}>
             <div className={wamometer.wam}>
                 <p className={wamometer.wamDiff}>({getWamDiff()})</p>
-                <p className={wamometer.wamScore}>{calcPredictedWam(currentWam, creditPoints)}</p>
+                <p className={wamometer.wamScore}>{calcPredictedWam(currentWam, parseFloat(unitsCompleted)*12.5)}</p>
             </div>
         </div>
         
@@ -52,8 +52,8 @@ function Wamometer({calcPredictedWam}: WamometerProps) {
                 </div>
 
                 <div>
-                    <label>Credit Points</label>
-                    <input value={creditPoints} onChange={(e) => handleCreditChange(e)}/>
+                    <label>Units</label>
+                    <input value={unitsCompleted} onChange={(e) => handleCreditChange(e)}/>
                 </div>
             </div>
         </div>
