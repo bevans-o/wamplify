@@ -88,7 +88,7 @@ function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
                 </div>
             </div>
 
-            <p className={wamometer.points}>{parseInt(unitsCompleted) * 12.5} points complete, {creditsInProgress} in progress.</p>
+            <p className={wamometer.points}>{isValidUnits(unitsCompleted) ? parseInt(unitsCompleted) * 12.5 : 0} points complete, {creditsInProgress} in progress.</p>
         </div>
     </div>
   )

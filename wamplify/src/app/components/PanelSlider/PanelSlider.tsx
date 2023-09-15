@@ -23,9 +23,9 @@ function PanelSlider() {
     localStorage.setItem('total-target', (totalTargetScore - prevTarget + newTarget).toString())
   }
 
-  const updateTotalCredits = (prevCredits: number, addedCredits: number) => {
+  const updateNewCredits = (prevCredits: number, addedCredits: number) => {
     setNewCredits(newCredits - prevCredits + addedCredits)
-    localStorage.setItem('total-credits', (newCredits - prevCredits + addedCredits).toString())
+    localStorage.setItem('new-credits', (newCredits - prevCredits + addedCredits).toString())
   }
   
   const handleSave = (newWamplifiers: string[]) => {
@@ -95,7 +95,7 @@ function PanelSlider() {
 
           {wamplifiers.map((id: string, index: number) => 
             <SwiperSlide key={id} className={slider.swiperSlide}>
-                <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)} onUpdateTarget={(prevTarget: number, currentTarget: number) => updateTotalTarget(prevTarget, currentTarget)} onUpdateCredits={(prevCredits: number, newCredits: number) => updateTotalCredits(prevCredits, newCredits)}/>
+                <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)} onUpdateTarget={(prevTarget: number, currentTarget: number) => updateTotalTarget(prevTarget, currentTarget)} onUpdateCredits={(prevCredits: number, newCredits: number) => updateNewCredits(prevCredits, newCredits)}/>
             </SwiperSlide>
           )}
 
