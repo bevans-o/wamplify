@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import wamometer from './wamometer.module.css'
 import WamometerThermo from './WamometerThermo';
 import Divider from '../Divider/Divider';
@@ -9,24 +9,27 @@ interface WamometerProps {
 }
 
 function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
-    const [currentWam, setCurrentWam] = useState("0");
-    const [unitsCompleted, setUnitsCompleted] = useState("0");
+    const [currentWam, setCurrentWam] = useState(localStorage.getItem('current-wam') ? String(localStorage.getItem('cuurent-wam')) : "0");
+    const [unitsCompleted, setUnitsCompleted] = useState(localStorage.getItem('units-completed') ? String(localStorage.getItem('units-completed')) : "0");
     const active = (currentWam && unitsCompleted);
 
 
     function handleWamChange(e: React.SyntheticEvent) {
         let input = e.target as HTMLInputElement;
+        localStorage.setItem('current-wam', input.value)
         setCurrentWam(input.value);
     }
 
     function handleCreditChange(e: React.SyntheticEvent) {
         let input = e.target as HTMLInputElement;
+        localStorage.setItem('units-completed', input.value)
         setUnitsCompleted(input.value);
     }
 
     function getWamDiff() {
         return (calcPredictedWam(currentWam, unitsCompleted) - parseFloat(currentWam)).toFixed(2)
     }
+
 
   return (
     <div className={wamometer.body + " panel"}>

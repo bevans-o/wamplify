@@ -20,10 +20,12 @@ function PanelSlider() {
   
   const updateTotalTarget = (prevTarget: number, newTarget: number) => {
     setTotalTarget(totalTargetScore - prevTarget + newTarget)
+    localStorage.setItem('total-target', (totalTargetScore - prevTarget + newTarget).toString())
   }
 
   const updateTotalCredits = (prevCredits: number, addedCredits: number) => {
     setNewCredits(newCredits - prevCredits + addedCredits)
+    localStorage.setItem('total-credits', (newCredits - prevCredits + addedCredits).toString())
   }
   
   const handleSave = (newWamplifiers: string[]) => {
@@ -50,6 +52,9 @@ function PanelSlider() {
 
   useEffect(() => {
     localStorage.getItem('wamplifiers') ? setWamplifiers(JSON.parse(localStorage.getItem('wamplifiers')!)) : setWamplifiers([generateID(32)]);
+    localStorage.getItem('total-target') ? setTotalTarget(Number(localStorage.getItem('total-target'))) : setTotalTarget(0);
+    localStorage.getItem('new-credits') ? setNewCredits(Number(localStorage.getItem('new-credits'))) : setNewCredits(0);
+    
 
     function handleResize() {
       if (window.innerWidth < 800) {
