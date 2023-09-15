@@ -24,6 +24,6 @@
   }
 
   .main:has(input[type="text"]:focus-within) {
-    height: 100vh;
+    height: 150vh;
   }
 }
