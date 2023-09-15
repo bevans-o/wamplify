@@ -11,7 +11,7 @@ import Wamometer from '../Wamometer/Wamometer'
 
 
 function PanelSlider() {
-
+  const CREDITS_PER_UNIT = 12.5;
   const [mobile, setMobile] = useState(false);
   const [totalTargetScore, setTotalTarget] = useState(0);
   const [newCredits, setNewCredits] = useState(0);
@@ -42,9 +42,9 @@ function PanelSlider() {
     handleSave(newArray);
   }
 
-  const getWamPrediction = (currWam: string, currCredits: string) => {
-    const totalPoints = parseFloat(currWam)*parseInt(currCredits)*12.5  + totalTargetScore
-    const totalCredits = parseInt(currCredits)*12.5 + newCredits
+  const getWamPrediction = (currWam: string, unitsCompleted: string) => {
+    const totalPoints = parseFloat(currWam)*parseInt(unitsCompleted)*CREDITS_PER_UNIT  + totalTargetScore
+    const totalCredits = parseInt(unitsCompleted)*CREDITS_PER_UNIT + newCredits
     return (isNaN(totalPoints/totalCredits) ? 0 : totalPoints/totalCredits).toFixed(2)
   }
 
