@@ -68,6 +68,10 @@
     font-size: 0.85rem;
 }
 
+.points {
+    font-size: 0.75rem;
+}
+
 .wamContainer {
     padding: var(--thermo-padding);
     grid-area: wam;
@@ -90,13 +94,10 @@
     justify-content: center;
     align-items: center;
     gap: 0.25rem;
+}
 
-    background: var(--n700);
-    border: 1px solid var(--n600);
-    border-radius: 3px;
-    box-shadow: 0 1px 8px var(--n900);
-
-    padding: 0.5rem 1rem;
+.wam.disabled {
+    opacity: 0;
 }
 
 .wamDiff {
@@ -249,8 +250,14 @@
     font-size: 0.625rem;
     bottom: 0;
     margin: auto;
+}
 
+.leftMarker {
     translate: -2rem 0.4rem;
+}
+
+.rightMarker {
+    translate: 3.5rem 0.4rem;
 }
 
 .thermoMarkerActive p {

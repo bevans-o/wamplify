@@ -11,7 +11,7 @@ interface WamometerProps {
 function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
     const [currentWam, setCurrentWam] = useState("0");
     const [unitsCompleted, setUnitsCompleted] = useState("0");
-    const active = (currentWam && unitsCompleted);
+    const active = (parseInt(currentWam) > 0 && parseInt(unitsCompleted) > 0);
 
 
     function handleWamChange(e: React.SyntheticEvent) {
@@ -39,19 +39,23 @@ function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
     <div className={wamometer.body + " panel"}>
         <div className={wamometer.title}>Your Wamometer</div>
         
+        {active &&
+            <WamometerThermo markerSteps={20} value={calcPredictedWam(currentWam, unitsCompleted)}/>
+        }
         
-        <WamometerThermo markerSteps={20} value={calcPredictedWam(currentWam, unitsCompleted)}/>
+        {!active &&
+            <WamometerThermo markerSteps={20} value={0}/>
+        }
 
         <div className={wamometer.wamContainer}>
-            <div className={wamometer.wam}>
-                <p className={wamometer.wamDiff}>({getWamDiff()})</p>
+            <div className={`${wamometer.wam} ${active ? "" : wamometer.disabled}`}>
+                <p className={wamometer.wamDiff}>{getWamDiff()} change</p>
                 <p className={wamometer.wamScore}>{calcPredictedWam(currentWam, unitsCompleted)}</p>
             </div>
         </div>
         
-        
         <div className={wamometer.footer}>
-            <p className={wamometer.tip}>Enter your WAM and completed credit points to see your Wamplified score.</p>
+            <p className={wamometer.tip}>Enter your WAM and completed units to see your Wamplified score.</p>
                 
             <div className={wamometer.inputs}>
                 <div>
@@ -64,6 +68,8 @@ function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
                     <input value={unitsCompleted} onChange={(e) => handleCreditChange(e)}/>
                 </div>
             </div>
+
+            <p className={wamometer.points}>{parseInt(unitsCompleted) * 12.5} points complete, {creditsInProgress} in progress.</p>
         </div>
     </div>
   )
