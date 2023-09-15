@@ -9,8 +9,8 @@ interface WamometerProps {
 }
 
 function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
-    const [currentWam, setCurrentWam] = useState(localStorage.getItem('current-wam') ? String(localStorage.getItem('cuurent-wam')) : "0");
-    const [unitsCompleted, setUnitsCompleted] = useState(localStorage.getItem('units-completed') ? String(localStorage.getItem('units-completed')) : "0");
+    const [currentWam, setCurrentWam] = useState("0");
+    const [unitsCompleted, setUnitsCompleted] = useState("0");
     const active = (currentWam && unitsCompleted);
 
 
@@ -30,6 +30,10 @@ function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
         return (calcPredictedWam(currentWam, unitsCompleted) - parseFloat(currentWam)).toFixed(2)
     }
 
+    useEffect(() => {
+        localStorage.getItem('current-wam') ? setCurrentWam(String(localStorage.getItem('cuurent-wam'))) : setCurrentWam("0")
+        localStorage.getItem('units-completed') ? setUnitsCompleted(String(localStorage.getItem('units-completed'))) : setUnitsCompleted("0")
+    }, [])
 
   return (
     <div className={wamometer.body + " panel"}>
