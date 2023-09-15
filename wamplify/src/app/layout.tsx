@@ -24,7 +24,7 @@ export const metadata = {
     width: 'device-width',
     initialScale: 1,
     maximumScale: 1,
-    interactiveWidget: 'resizes-content'
+    // interactiveWidget: 'resizes-content'
   },
 }
 
