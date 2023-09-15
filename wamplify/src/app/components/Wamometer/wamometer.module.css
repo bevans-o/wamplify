@@ -64,6 +64,12 @@
     font-weight: 200;
 }
 
+.invalid {
+    border-color: var(--bad700);
+    outline: var(--bad700);
+    color: var(--bad100);
+}
+
 .tip {
     font-size: 0.85rem;
 }

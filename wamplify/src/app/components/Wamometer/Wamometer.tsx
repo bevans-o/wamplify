@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import wamometer from './wamometer.module.css'
 import WamometerThermo from './WamometerThermo';
 import Divider from '../Divider/Divider';
+import { isValidUnits, isValidWam } from '@/app/lib/functions/inputValidation';
 
 interface WamometerProps {
     calcPredictedWam: Function;
@@ -28,6 +29,18 @@ function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
 
     function getWamDiff() {
         return (calcPredictedWam(currentWam, unitsCompleted) - parseFloat(currentWam)).toFixed(2)
+    }
+
+    function getWamStateName(currentWam : string) {
+        if(!isValidWam(currentWam) && currentWam != "") {
+            return wamometer.invalid
+        }
+    }
+
+    function getUnitsStateName(units : string) {
+        if(!isValidUnits(units) && units != "") {
+            return wamometer.invalid
+        }
     }
 
     useEffect(() => {
@@ -60,12 +73,18 @@ function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
             <div className={wamometer.inputs}>
                 <div>
                     <label>Current WAM</label>
-                    <input value={currentWam} onChange={(e) => handleWamChange(e)}/>
+                    <input 
+                    value={currentWam} 
+                    onChange={(e) => handleWamChange(e)}
+                    className={getWamStateName(currentWam)}/>
                 </div>
 
                 <div>
                     <label>Units</label>
-                    <input value={unitsCompleted} onChange={(e) => handleCreditChange(e)}/>
+                    <input 
+                    value={unitsCompleted}
+                    onChange={(e) => handleCreditChange(e)}
+                    className={getUnitsStateName(unitsCompleted)}/>
                 </div>
             </div>
 
