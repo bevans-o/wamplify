@@ -5,9 +5,10 @@ import Divider from '../Divider/Divider';
 
 interface WamometerProps {
     calcPredictedWam: Function;
+    creditsInProgress: number;
 }
 
-function Wamometer({calcPredictedWam}: WamometerProps) {
+function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
     const [currentWam, setCurrentWam] = useState("0");
     const [unitsCompleted, setUnitsCompleted] = useState("0");
     const active = (currentWam && unitsCompleted);

@@ -85,7 +85,7 @@ function PanelSlider() {
           className={slider.swiper}
         >
           <SwiperSlide className={slider.swiperSlide}>
-            <Wamometer calcPredictedWam={getWamPrediction}/>
+            <Wamometer calcPredictedWam={getWamPrediction} creditsInProgress={newCredits}/>
           </SwiperSlide>
 
           {wamplifiers.map((id: string, index: number) => 
