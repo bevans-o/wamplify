@@ -17,3 +17,14 @@
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto minmax(0, 1fr) auto;
 }
+
+@media (max-width: 800px) {
+  .main {
+    height: 100dvh;
+  }
+
+  .main:has(input[type="text"]:focus-within) {
+    height: 150vh;
+    max-height: 150vh;
+  }
+}
