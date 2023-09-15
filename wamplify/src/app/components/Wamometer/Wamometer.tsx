@@ -24,7 +24,7 @@ function Wamometer({calcPredictedWam}: WamometerProps) {
     }
 
     function getWamDiff() {
-        return (calcPredictedWam(currentWam, creditPoints) - parseFloat(currentWam)).toPrecision(2)
+        return (calcPredictedWam(currentWam, creditPoints) - parseFloat(currentWam)).toFixed(2)
     }
 
   return (

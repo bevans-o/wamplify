@@ -45,7 +45,7 @@ function PanelSlider() {
   const getWamPrediction = (currWam: string, currCredits: string) => {
     const totalPoints = parseFloat(currWam)*parseFloat(currCredits)  + totalTargetScore
     const totalCredits = parseFloat(currCredits) + newCredits
-    return (isNaN(totalPoints/totalCredits) ? 0 : totalPoints/totalCredits).toPrecision(2)
+    return (isNaN(totalPoints/totalCredits) ? 0 : totalPoints/totalCredits).toFixed(2)
   }
 
   useEffect(() => {
