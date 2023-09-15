@@ -15,7 +15,7 @@
     height: var(--light-size);
     border-radius: 99999px;
     background-color: var(--n900);
-    box-shadow: 0 0 6px 4px transparent;
+    box-shadow: 0 0 6px 3px transparent;
     border: 1px solid var(--n700);
 }
 
@@ -24,7 +24,7 @@
     height: var(--light-size);
     border-radius: 99999px;
     background-color: var(--n900);
-    box-shadow: 0 0 6px 4px transparent;
+    box-shadow: 0 0 6px 3px transparent;
     border: 1px solid var(--n700);
     animation: pulse 2700ms;
     animation-iteration-count: infinite;
@@ -33,17 +33,17 @@
 @keyframes pulse {
     from {
         background-color: var(--n900);
-        box-shadow: 0 0 6px 4px transparent;
+        box-shadow: 0 0 6px 3px transparent;
     }
 
     50% {
         background-color: var(--a300);
-        box-shadow: 0 0 6px 4px var(--a900);
+        box-shadow: 0 0 6px 3px var(--a900);
     }
 
     to {
         background-color: var(--n900);
-        box-shadow: 0 0 6px 4px transparent;
+        box-shadow: 0 0 6px 3px transparent;
     }
 }
 
