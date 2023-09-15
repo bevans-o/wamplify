@@ -126,6 +126,7 @@ function Assessment({assessment, highlighted, onChange, id, index, targetScore} 
         </span>
       </div>
         <input 
+        type="text"
         placeholder={ (assessment.desiredScore ?? targetScore) + "%"}
         value={score} 
         onChange={(e) => setScoreInput(e.target.value)}
