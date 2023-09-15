@@ -26,6 +26,9 @@ export const metadata = {
     initialScale: 1,
     maximumScale: 1,
   },
+  verification: {
+    google: "-Hh6YCn_Izp83pPyU625BWYl3po7DyvxsC9VLAr6jLA"
+  }
 }
 
 export default function RootLayout({
