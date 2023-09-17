@@ -12,8 +12,9 @@ function WamometerThermo({markerSteps, value}: {markerSteps: number, value: numb
 
     const rightMarkers = [...Array(markerSteps + 1)];
     rightMarkers[4] = "H1";
-    rightMarkers[6] = "H2";
-    rightMarkers[8] = "H3";
+    rightMarkers[5] = "H2A";
+    rightMarkers[6] = "H2B";
+    rightMarkers[7] = "H3";
     rightMarkers[10] = "P";
 
     return (

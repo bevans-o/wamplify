@@ -136,8 +136,6 @@
     position: absolute;
     inset: var(--thermo-padding);
     bottom: 0;
-    /* left: calc(var(--thermo-padding) + 0.5rem);
-    right: calc(var(--thermo-padding) - 0.5rem); */
 }
 
 .thermoBulbBack {
@@ -266,6 +264,14 @@
     translate: 3.5rem 0.4rem;
 }
 
+.thermoMarker:nth-child(even) .leftMarker {
+    translate: -2rem 0.4rem;
+}
+
+.thermoMarker:nth-child(even) .rightMarker {
+    translate: 3.25rem 0.4rem;
+}
+
 .thermoMarkerActive p {
     color: var(--a100);
     text-shadow: 0 0 5px var(--a900);
@@ -274,10 +280,27 @@
 
 @media (max-width: 800px) {
     .body {
-        --thermo-padding: 1rem;
+        --thermo-padding: 0.75rem;
+    }
+
+    .tip {
+        font-size: 0.75rem;
     }
 
     .wamScore {
-        font-size: 2rem;
+        font-size: 1.25rem;
+    }
+
+    .wamDiff {
+        font-size: 0.75rem;
+    }
+    
+    .wamContainer {
+        padding: 0;
+        padding-bottom: 0.25rem;
+    }
+
+    .thermoMarker p {
+        font-size: 0.5rem;
     }
 }
