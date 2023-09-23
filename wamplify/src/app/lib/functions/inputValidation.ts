@@ -42,3 +42,19 @@ export function isValidScore(score : string) {
     }
     return true;
 }
+
+export function isValidWam(wam: string) {
+  let a = parseFloat(wam);
+  if (isNaN(a) || a > 100 || a < 0) {
+    return false;
+  }
+  return true;
+}
+
+export function isValidUnits(units: string) {
+  let a = parseInt(units);
+  if (isNaN(a) || a > 100 || a < 0) {
+    return false;
+  }
+  return true;
+}

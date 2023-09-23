@@ -2,17 +2,32 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import slider from './slider.module.css'
 import Wamplifier from '../Wamplifier/Wamplifier'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Mousewheel } from 'swiper/modules';
-import 'swiper/css';
-import AddIcon from '@mui/icons-material/Add';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode, Mousewheel } from 'swiper/modules'
+import 'swiper/css'
+import AddIcon from '@mui/icons-material/Add'
 import generateID from '@/app/lib/functions/generateId';
-        
-function PanelSlider() {
+import Wamometer from '../Wamometer/Wamometer'
 
+
+function PanelSlider() {
+  const CREDITS_PER_UNIT = 12.5;
   const [mobile, setMobile] = useState(false);
+  const [totalTargetScore, setTotalTarget] = useState(0);
+  const [newCredits, setNewCredits] = useState(0);
   const [wamplifiers, setWamplifiers] = useState<string[]>([generateID(32)]);
 
+  
+  const updateTotalTarget = (prevTarget: number, newTarget: number) => {
+    setTotalTarget(totalTargetScore - prevTarget + newTarget)
+    localStorage.setItem('total-target', (totalTargetScore - prevTarget + newTarget).toString())
+  }
+
+  const updateNewCredits = (prevCredits: number, addedCredits: number) => {
+    setNewCredits(newCredits - prevCredits + addedCredits)
+    localStorage.setItem('new-credits', (newCredits - prevCredits + addedCredits).toString())
+  }
+  
   const handleSave = (newWamplifiers: string[]) => {
     setWamplifiers(newWamplifiers);
     localStorage.setItem('wamplifiers', JSON.stringify(newWamplifiers));
@@ -29,8 +44,17 @@ function PanelSlider() {
     handleSave(newArray);
   }
 
+  const getWamPrediction = (currWam: string, unitsCompleted: string) => {
+    const totalPoints = parseFloat(currWam)*parseInt(unitsCompleted)*CREDITS_PER_UNIT  + totalTargetScore
+    const totalCredits = parseInt(unitsCompleted)*CREDITS_PER_UNIT + newCredits
+    return (isNaN(totalPoints/totalCredits) ? 0 : totalPoints/totalCredits).toFixed(2)
+  }
+
   useEffect(() => {
     localStorage.getItem('wamplifiers') ? setWamplifiers(JSON.parse(localStorage.getItem('wamplifiers')!)) : setWamplifiers([generateID(32)]);
+    localStorage.getItem('total-target') ? setTotalTarget(Number(localStorage.getItem('total-target'))) : setTotalTarget(0);
+    localStorage.getItem('new-credits') ? setNewCredits(Number(localStorage.getItem('new-credits'))) : setNewCredits(0);
+    
 
     function handleResize() {
       if (window.innerWidth < 800) {
@@ -49,7 +73,7 @@ function PanelSlider() {
   }, []);
 
   
-
+  console.log(totalTargetScore + " " + newCredits + " " + "Prediction: " + totalTargetScore/newCredits);
   return (
     <div className={slider.container}>
 
@@ -65,9 +89,13 @@ function PanelSlider() {
           mousewheel={{forceToAxis: true}}
           className={slider.swiper}
         >
+          <SwiperSlide className={slider.swiperSlide}>
+            <Wamometer calcPredictedWam={getWamPrediction} creditsInProgress={newCredits}/>
+          </SwiperSlide>
+
           {wamplifiers.map((id: string, index: number) => 
             <SwiperSlide key={id} className={slider.swiperSlide}>
-                <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)}/>
+                <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)} onUpdateTarget={(prevTarget: number, currentTarget: number) => updateTotalTarget(prevTarget, currentTarget)} onUpdateCredits={(prevCredits: number, newCredits: number) => updateNewCredits(prevCredits, newCredits)}/>
             </SwiperSlide>
           )}
 
