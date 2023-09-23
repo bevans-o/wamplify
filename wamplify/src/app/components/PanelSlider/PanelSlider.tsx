@@ -6,17 +6,20 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import AddIcon from '@mui/icons-material/Add'
-import generateID from '@/app/lib/functions/generateId';
+import generateID from '@/app/lib/functions/generateId'
 import Wamometer from '../Wamometer/Wamometer'
+import { subjects } from '@/app/types/atoms'
+import { useAtom } from 'jotai'
+import { Subject } from '@/app/types/types'
 
 
 function PanelSlider() {
   const CREDITS_PER_UNIT = 12.5;
   const [mobile, setMobile] = useState(false);
+  const [subjectList, setSubjectList] = useAtom(subjects);
   const [totalTargetScore, setTotalTarget] = useState(0);
   const [newCredits, setNewCredits] = useState(0);
   const [wamplifiers, setWamplifiers] = useState<string[]>([generateID(32)]);
-
   
   const updateTotalTarget = (prevTarget: number, newTarget: number) => {
     setTotalTarget(totalTargetScore - prevTarget + newTarget)

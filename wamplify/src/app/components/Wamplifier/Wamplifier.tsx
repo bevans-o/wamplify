@@ -46,6 +46,7 @@ interface WamplifierProps {
   onDelete: Function;
   onUpdateTarget: Function;
   onUpdateCredits: Function;
+  //onUpdateSubject: Function;
 }
 
 function Wamplifier({id, onDelete, onUpdateTarget, onUpdateCredits}: WamplifierProps) {

@@ -3,6 +3,8 @@ import wamometer from './wamometer.module.css'
 import WamometerThermo from './WamometerThermo';
 import Divider from '../Divider/Divider';
 import { isValidUnits, isValidWam } from '@/app/lib/functions/inputValidation';
+import { currentWam, unitsCompleted } from '@/app/types/atoms';
+import { useAtom } from 'jotai/react';
 
 interface WamometerProps {
     calcPredictedWam: Function;
@@ -10,50 +12,43 @@ interface WamometerProps {
 }
 
 function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
-    const [currentWam, setCurrentWam] = useState("0");
-    const [unitsCompleted, setUnitsCompleted] = useState("0");
-    const active = (parseInt(currentWam) > 0 && parseInt(unitsCompleted) > 0);
+    const [currWam, setCurrWam] = useAtom(currentWam);
+    const [units, setUnits] = useAtom(unitsCompleted);
+    const active = (parseInt(currWam) > 0 && parseInt(units) > 0);
 
 
     function handleWamChange(e: React.SyntheticEvent) {
         let input = e.target as HTMLInputElement;
-        localStorage.setItem('current-wam', input.value)
-        setCurrentWam(input.value);
+        setCurrWam(input.value);
     }
 
     function handleCreditChange(e: React.SyntheticEvent) {
         let input = e.target as HTMLInputElement;
-        localStorage.setItem('units-completed', input.value)
-        setUnitsCompleted(input.value);
+        setUnits(input.value);
     }
 
     function getWamDiff() {
-        return (calcPredictedWam(currentWam, unitsCompleted) - parseFloat(currentWam)).toFixed(2)
+        return (calcPredictedWam(currWam, units) - parseFloat(currWam)).toFixed(2)
     }
 
-    function getWamStateName(currentWam : string) {
-        if(!isValidWam(currentWam) && currentWam != "") {
+    function getWamStateName() {
+        if(!isValidWam(currWam) && currWam != "") {
             return wamometer.invalid
         }
     }
 
-    function getUnitsStateName(units : string) {
+    function getUnitsStateName() {
         if(!isValidUnits(units) && units != "") {
             return wamometer.invalid
         }
     }
-
-    useEffect(() => {
-        localStorage.getItem('current-wam') ? setCurrentWam(String(localStorage.getItem('current-wam'))) : setCurrentWam("0")
-        localStorage.getItem('units-completed') ? setUnitsCompleted(String(localStorage.getItem('units-completed'))) : setUnitsCompleted("0")
-    }, [])
 
   return (
     <div className={wamometer.body + " panel"}>
         <div className={wamometer.title}>Your Wamometer</div>
         
         {active &&
-            <WamometerThermo markerSteps={20} value={calcPredictedWam(currentWam, unitsCompleted)}/>
+            <WamometerThermo markerSteps={20} value={calcPredictedWam(currWam, units)}/>
         }
         
         {!active &&
@@ -63,7 +58,7 @@ function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
         <div className={wamometer.wamContainer}>
             <div className={`${wamometer.wam} ${active ? "" : wamometer.disabled}`}>
                 <p className={wamometer.wamDiff}>{getWamDiff()} change</p>
-                <p className={wamometer.wamScore}>{calcPredictedWam(currentWam, unitsCompleted)}</p>
+                <p className={wamometer.wamScore}>{calcPredictedWam(currWam, units)}</p>
             </div>
         </div>
         
@@ -74,21 +69,21 @@ function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
                 <div>
                     <label>Current WAM</label>
                     <input 
-                    value={currentWam} 
+                    value={currWam} 
                     onChange={(e) => handleWamChange(e)}
-                    className={getWamStateName(currentWam)}/>
+                    className={getWamStateName()}/>
                 </div>
 
                 <div>
                     <label>Units</label>
                     <input 
-                    value={unitsCompleted}
+                    value={units}
                     onChange={(e) => handleCreditChange(e)}
-                    className={getUnitsStateName(unitsCompleted)}/>
+                    className={getUnitsStateName()}/>
                 </div>
             </div>
 
-            <p className={wamometer.points}>{isValidUnits(unitsCompleted) ? parseInt(unitsCompleted) * 12.5 : 0} points complete, {creditsInProgress} in progress.</p>
+            <p className={wamometer.points}>{isValidUnits(units) ? parseInt(units) * 12.5 : 0} points complete, {creditsInProgress} in progress.</p>
         </div>
     </div>
   )
