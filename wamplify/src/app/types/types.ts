@@ -15,7 +15,7 @@ export interface Subject {
     code: string,
     assessments: Assessment[],
     credits: number,
-    targetScore: number,
+    targetScore?: number,
   }
 
 export interface SearchResult {
