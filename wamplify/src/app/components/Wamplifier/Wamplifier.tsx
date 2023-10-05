@@ -8,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { Assessment, SearchResult, Subject } from '@/app/types/types'
 import SubjectSearch from './SubjectSearch/SubjectSearch';
 import { calculateSubjectAverage, getMaxScore, getRemainingTarget } from '@/app/lib/functions/subjectScoreCalculations'
-import { newSubjectAtom, updateSubjectAtom } from '@/app/types/store'
+import { updateSubjectAtom } from '@/app/types/store'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Mousewheel } from 'swiper/modules'

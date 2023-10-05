@@ -8,22 +8,16 @@ import 'swiper/css'
 import AddIcon from '@mui/icons-material/Add'
 import generateID from '@/app/lib/functions/generateId'
 import Wamometer from '../Wamometer/Wamometer'
-import { newSubjectAtom, subjectsAtom, addSubjectAtom, removeSubjectAtom } from '@/app/types/store'
+import { subjectsAtom, addSubjectAtom, removeSubjectAtom } from '@/app/types/store'
 import { useAtom } from 'jotai'
-import { Subject } from '@/app/types/types'
-import { PrimitiveAtom } from 'jotai'
 
 
 function PanelSlider() {
   const CREDITS_PER_UNIT = 12.5;
   const [mobile, setMobile] = useState(false);
-  const [blankSubject, setNewSubject] = useAtom(newSubjectAtom);
   const [subjectList, setSubjectList] = useAtom(subjectsAtom);
   const [, addSubject] = useAtom(addSubjectAtom);
   const [, deleteSubject] = useAtom(removeSubjectAtom);
-  const [totalTargetScore, setTotalTarget] = useState(0);
-  const [newCredits, setNewCredits] = useState(0);
-  const [wamplifiers, setWamplifiers] = useState<string[]>([generateID(32)]);
 
   const newSubject = () => {
     addSubject();
@@ -34,9 +28,18 @@ function PanelSlider() {
   }
 
   const getWamPrediction = (currWam: string, unitsCompleted: string) => {
-    const totalPoints = parseFloat(currWam)*parseInt(unitsCompleted)*CREDITS_PER_UNIT  + totalTargetScore
-    const totalCredits = parseInt(unitsCompleted)*CREDITS_PER_UNIT + newCredits
+    let totalPoints = parseFloat(currWam)*parseInt(unitsCompleted)*CREDITS_PER_UNIT
+    subjectList.forEach(subject => {
+      totalPoints += subject.credits*subject.targetScore
+    });
+    let totalCredits = parseInt(unitsCompleted)*CREDITS_PER_UNIT + getCreditsInProgress()
     return (isNaN(totalPoints/totalCredits) ? 0 : totalPoints/totalCredits).toFixed(2)
+  }
+
+  const getCreditsInProgress = () => {
+    let credits = 0
+    subjectList.forEach((subject) => credits += subject.credits)
+    return credits
   }
 
   useEffect(() => {
@@ -75,7 +78,7 @@ function PanelSlider() {
           className={slider.swiper}
         >
           <SwiperSlide className={slider.swiperSlide}>
-            <Wamometer calcPredictedWam={getWamPrediction} creditsInProgress={newCredits}/>
+            <Wamometer calcPredictedWam={getWamPrediction} creditsInProgress={getCreditsInProgress()}/>
           </SwiperSlide>
 
           {subjectList.map((subject , index ) => 
