@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import AddIcon from '@mui/icons-material/Add'
-import generateID from '@/app/lib/functions/generateId'
 import Wamometer from '../Wamometer/Wamometer'
 import { subjectsAtom, addSubjectAtom, removeSubjectAtom } from '@/app/types/store'
 import { useAtom } from 'jotai'
@@ -30,7 +29,7 @@ function PanelSlider() {
   const getWamPrediction = (currWam: string, unitsCompleted: string) => {
     let totalPoints = parseFloat(currWam)*parseInt(unitsCompleted)*CREDITS_PER_UNIT
     subjectList.forEach(subject => {
-      totalPoints += subject.credits*subject.targetScore
+      totalPoints += subject.credits*subject!.targetScore
     });
     let totalCredits = parseInt(unitsCompleted)*CREDITS_PER_UNIT + getCreditsInProgress()
     return (isNaN(totalPoints/totalCredits) ? 0 : totalPoints/totalCredits).toFixed(2)
@@ -83,7 +82,7 @@ function PanelSlider() {
 
           {subjectList.map((subject , index ) => 
             <SwiperSlide key={index} className={slider.swiperSlide}>
-                <Wamplifier subject={subject} id={generateID(32)} onDelete={removeSubject}/>
+                <Wamplifier subject={subject} onDelete={removeSubject}/>
             </SwiperSlide>
           )}
 

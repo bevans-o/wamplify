@@ -43,15 +43,11 @@ const sliderMarks = [
 ];
 
 interface WamplifierProps {
-  id: string; 
   onDelete: Function;
-  //onUpdateTarget: Function;
-  //onUpdateCredits: Function;
-  //onUpdateSubject: Function;
   subject: Subject
 }
 
-function Wamplifier({subject, id, onDelete} : WamplifierProps) {
+function Wamplifier({subject, onDelete} : WamplifierProps) {
   const [,updateSubject] = useAtom(updateSubjectAtom);
   const [isLoading, setLoading] = useState(false);
 
@@ -90,7 +86,7 @@ function Wamplifier({subject, id, onDelete} : WamplifierProps) {
   
 
   return (
-    <div className={wamplifier.body + " panel"} tabIndex={-1} id={`Wamplifier--${id}`}>
+    <div className={wamplifier.body + " panel"} tabIndex={-1} id={`Wamplifier--${subject.id}`}>
       <div className={wamplifier.header}>
         { subject.name != "" &&
         <div className='fc'>
@@ -100,7 +96,7 @@ function Wamplifier({subject, id, onDelete} : WamplifierProps) {
         }
         
         { (subject.name === "" || isLoading) &&
-          <SubjectSearch id={id} onSelect={(subject : SearchResult) => onSubjectSelect(subject)}/>  
+          <SubjectSearch id={subject.id} onSelect={(subject : SearchResult) => onSubjectSelect(subject)}/>  
         }
 
         <button className={wamplifier.close}>
@@ -138,14 +134,14 @@ function Wamplifier({subject, id, onDelete} : WamplifierProps) {
                   <AssessmentInput 
                     assessment={assessment} 
                     highlighted={index < 2} 
-                    onChange={() =>  {
+                    onChange={(assessment: Assessment) =>  {
                       let newMax = getMaxScore(subject.assessments);
                       let newTargetScore = subject.targetScore > newMax ? newMax : subject.targetScore;
-                      updateSubject(updateDesiredScores({...subject, targetScore: newTargetScore}))
+                      let newAssessments = subject.assessments
+                      newAssessments[index] = assessment
+                      updateSubject(updateDesiredScores({...subject, targetScore: newTargetScore, assessments: newAssessments}))
                     }} 
-                  id={id}
                   key={index} 
-                  index={index}
                   targetScore={subject.targetScore}/>
                 )}
               </div>
