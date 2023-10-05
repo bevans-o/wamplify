@@ -3,7 +3,7 @@ import wamometer from './wamometer.module.css'
 import WamometerThermo from './WamometerThermo';
 import Divider from '../Divider/Divider';
 import { isValidUnits, isValidWam } from '@/app/lib/functions/inputValidation';
-import { currentWam, unitsCompleted } from '@/app/types/atoms';
+import { currentWam, unitsCompleted } from '@/app/types/store';
 import { useAtom } from 'jotai/react';
 
 interface WamometerProps {
