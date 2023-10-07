@@ -2,35 +2,46 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import slider from './slider.module.css'
 import Wamplifier from '../Wamplifier/Wamplifier'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Mousewheel } from 'swiper/modules';
-import 'swiper/css';
-import AddIcon from '@mui/icons-material/Add';
-import generateID from '@/app/lib/functions/generateId';
-        
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode, Mousewheel } from 'swiper/modules'
+import 'swiper/css'
+import AddIcon from '@mui/icons-material/Add'
+import Wamometer from '../Wamometer/Wamometer'
+import { subjectsAtom, addSubjectAtom, removeSubjectAtom } from '@/app/types/store'
+import { useAtom } from 'jotai'
+
+
 function PanelSlider() {
-
+  const CREDITS_PER_UNIT = 12.5;
   const [mobile, setMobile] = useState(false);
-  const [wamplifiers, setWamplifiers] = useState<string[]>([generateID(32)]);
-
-  const handleSave = (newWamplifiers: string[]) => {
-    setWamplifiers(newWamplifiers);
-    localStorage.setItem('wamplifiers', JSON.stringify(newWamplifiers));
-  }
+  const [subjectList, setSubjectList] = useAtom(subjectsAtom);
+  const [, addSubject] = useAtom(addSubjectAtom);
+  const [, deleteSubject] = useAtom(removeSubjectAtom);
 
   const newSubject = () => {
-    var newArray: string[] = [...wamplifiers];
-    newArray.push(generateID(32))
-    handleSave(newArray);
+    addSubject();
   }
 
   const removeSubject = (id: string) => {
-    var newArray: string[] = wamplifiers.filter((item) => item != id);
-    handleSave(newArray);
+    deleteSubject(id)
+  }
+
+  const getWamPrediction = (currWam: string, unitsCompleted: string) => {
+    let totalPoints = parseFloat(currWam)*parseInt(unitsCompleted)*CREDITS_PER_UNIT
+    subjectList.forEach(subject => {
+      totalPoints += subject.credits*subject!.targetScore
+    });
+    let totalCredits = parseInt(unitsCompleted)*CREDITS_PER_UNIT + getCreditsInProgress()
+    return (isNaN(totalPoints/totalCredits) ? 0 : totalPoints/totalCredits).toFixed(2)
+  }
+
+  const getCreditsInProgress = () => {
+    let credits = 0
+    subjectList.forEach((subject) => credits += subject.credits)
+    return credits
   }
 
   useEffect(() => {
-    localStorage.getItem('wamplifiers') ? setWamplifiers(JSON.parse(localStorage.getItem('wamplifiers')!)) : setWamplifiers([generateID(32)]);
 
     function handleResize() {
       if (window.innerWidth < 800) {
@@ -65,9 +76,13 @@ function PanelSlider() {
           mousewheel={{forceToAxis: true}}
           className={slider.swiper}
         >
-          {wamplifiers.map((id: string, index: number) => 
-            <SwiperSlide key={id} className={slider.swiperSlide}>
-                <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)}/>
+          <SwiperSlide className={slider.swiperSlide}>
+            <Wamometer calcPredictedWam={getWamPrediction} creditsInProgress={getCreditsInProgress()}/>
+          </SwiperSlide>
+
+          {subjectList.map((subject , index ) => 
+            <SwiperSlide key={index} className={slider.swiperSlide}>
+                <Wamplifier subject={subject} onDelete={removeSubject}/>
             </SwiperSlide>
           )}
 
