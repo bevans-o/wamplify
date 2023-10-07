@@ -75,6 +75,7 @@ async function getSubjectInfo(subject: SearchResult) : Promise<Subject> {
         code : subject.code,
         assessments : assessments,
         credits : credits,
+        targetScore: 50,
     }
     return result
 }

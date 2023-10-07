@@ -6,7 +6,6 @@ export const metadata = {
   title: 'Wamplify',
   description: 'A subject score calculator for the University of Melbourne. Predict the future. Predict a H1.',
   applicationName: 'Wamplify',
-  keywords: ['unimelb', 'WAM', 'calculator', 'The University of Melbourne'],
   authors: [{ name: 'Risa' }, { name: 'Ben' }],
   openGraph: {
     title: 'Wamplify',
@@ -25,6 +24,7 @@ export const metadata = {
     width: 'device-width',
     initialScale: 1,
     maximumScale: 1,
+    // interactiveWidget: 'resizes-content'
   },
 }
 

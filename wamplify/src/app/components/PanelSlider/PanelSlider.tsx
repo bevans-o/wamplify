@@ -6,55 +6,42 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import AddIcon from '@mui/icons-material/Add'
-import generateID from '@/app/lib/functions/generateId';
 import Wamometer from '../Wamometer/Wamometer'
+import { subjectsAtom, addSubjectAtom, removeSubjectAtom } from '@/app/types/store'
+import { useAtom } from 'jotai'
 
 
 function PanelSlider() {
   const CREDITS_PER_UNIT = 12.5;
   const [mobile, setMobile] = useState(false);
-  const [totalTargetScore, setTotalTarget] = useState(0);
-  const [newCredits, setNewCredits] = useState(0);
-  const [wamplifiers, setWamplifiers] = useState<string[]>([generateID(32)]);
-
-  
-  const updateTotalTarget = (prevTarget: number, newTarget: number) => {
-    setTotalTarget(totalTargetScore - prevTarget + newTarget)
-    localStorage.setItem('total-target', (totalTargetScore - prevTarget + newTarget).toString())
-  }
-
-  const updateNewCredits = (prevCredits: number, addedCredits: number) => {
-    setNewCredits(newCredits - prevCredits + addedCredits)
-    localStorage.setItem('new-credits', (newCredits - prevCredits + addedCredits).toString())
-  }
-  
-  const handleSave = (newWamplifiers: string[]) => {
-    setWamplifiers(newWamplifiers);
-    localStorage.setItem('wamplifiers', JSON.stringify(newWamplifiers));
-  }
+  const [subjectList, setSubjectList] = useAtom(subjectsAtom);
+  const [, addSubject] = useAtom(addSubjectAtom);
+  const [, deleteSubject] = useAtom(removeSubjectAtom);
 
   const newSubject = () => {
-    var newArray: string[] = [...wamplifiers];
-    newArray.push(generateID(32))
-    handleSave(newArray);
+    addSubject();
   }
 
   const removeSubject = (id: string) => {
-    var newArray: string[] = wamplifiers.filter((item) => item != id);
-    handleSave(newArray);
+    deleteSubject(id)
   }
 
   const getWamPrediction = (currWam: string, unitsCompleted: string) => {
-    const totalPoints = parseFloat(currWam)*parseInt(unitsCompleted)*CREDITS_PER_UNIT  + totalTargetScore
-    const totalCredits = parseInt(unitsCompleted)*CREDITS_PER_UNIT + newCredits
+    let totalPoints = parseFloat(currWam)*parseInt(unitsCompleted)*CREDITS_PER_UNIT
+    subjectList.forEach(subject => {
+      totalPoints += subject.credits*subject!.targetScore
+    });
+    let totalCredits = parseInt(unitsCompleted)*CREDITS_PER_UNIT + getCreditsInProgress()
     return (isNaN(totalPoints/totalCredits) ? 0 : totalPoints/totalCredits).toFixed(2)
   }
 
+  const getCreditsInProgress = () => {
+    let credits = 0
+    subjectList.forEach((subject) => credits += subject.credits)
+    return credits
+  }
+
   useEffect(() => {
-    localStorage.getItem('wamplifiers') ? setWamplifiers(JSON.parse(localStorage.getItem('wamplifiers')!)) : setWamplifiers([generateID(32)]);
-    localStorage.getItem('total-target') ? setTotalTarget(Number(localStorage.getItem('total-target'))) : setTotalTarget(0);
-    localStorage.getItem('new-credits') ? setNewCredits(Number(localStorage.getItem('new-credits'))) : setNewCredits(0);
-    
 
     function handleResize() {
       if (window.innerWidth < 800) {
@@ -73,7 +60,7 @@ function PanelSlider() {
   }, []);
 
   
-  console.log(totalTargetScore + " " + newCredits + " " + "Prediction: " + totalTargetScore/newCredits);
+
   return (
     <div className={slider.container}>
 
@@ -90,12 +77,12 @@ function PanelSlider() {
           className={slider.swiper}
         >
           <SwiperSlide className={slider.swiperSlide}>
-            <Wamometer calcPredictedWam={getWamPrediction} creditsInProgress={newCredits}/>
+            <Wamometer calcPredictedWam={getWamPrediction} creditsInProgress={getCreditsInProgress()}/>
           </SwiperSlide>
 
-          {wamplifiers.map((id: string, index: number) => 
-            <SwiperSlide key={id} className={slider.swiperSlide}>
-                <Wamplifier id={id} onDelete={(idToRemove: string) => removeSubject(idToRemove)} onUpdateTarget={(prevTarget: number, currentTarget: number) => updateTotalTarget(prevTarget, currentTarget)} onUpdateCredits={(prevCredits: number, newCredits: number) => updateNewCredits(prevCredits, newCredits)}/>
+          {subjectList.map((subject , index ) => 
+            <SwiperSlide key={index} className={slider.swiperSlide}>
+                <Wamplifier subject={subject} onDelete={removeSubject}/>
             </SwiperSlide>
           )}
 

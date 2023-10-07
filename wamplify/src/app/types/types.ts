@@ -10,10 +10,12 @@ export interface Assessment {
 }
   
 export interface Subject {
+    id?: string,
     name: string,
     code: string,
     assessments: Assessment[],
     credits: number,
+    targetScore: number,
   }
 
 export interface SearchResult {
