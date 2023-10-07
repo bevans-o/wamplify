@@ -1,35 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Assessment } from '@/app/types/types';
+import { Assessment } from '@/app/types/types'
 import assessmentItem from './assessment.module.css'
-import getAssessmentScore from '@/app/utils/scripts/getAssessmentScore';
+import getAssessmentScore from '@/app/lib/functions/getAssessmentScore';
 
 interface AssessmentProps {
   assessment: Assessment;
   highlighted: boolean;
   onChange: Function;
-  id: string;
-  index: number;
   targetScore: number;
 }
 
-function Assessment({assessment, highlighted, onChange, id, index, targetScore} : AssessmentProps) {
-  const [score, setScoreInput] = useState("");
-
-  const handleSave = (newScore: number) => {
-    localStorage.setItem(index + '-' + id + '-score', Math.round(newScore).toString());
-    setScoreInput(Math.round(newScore).toString() + "%");
-  }
-
-  const handleDelete = () => {
-    localStorage.removeItem(index+ '-' + id + '-score');
-  }
-
-
-  useEffect(() => {
-    localStorage.getItem(index+'-'+id+'-score') ? setScoreInput(localStorage.getItem(index+'-'+id+'-score')! + "%") : setScoreInput("");
-
-  }, [])
-
+function Assessment({assessment, highlighted, onChange, targetScore} : AssessmentProps) {
+  const [score, setScoreInput] = useState(assessment.score > 0 ? assessment.score.toString() + "%": "");
 
   const isValid = (score : string) => {
     //check numbera/numberb is a valid format
@@ -80,20 +62,15 @@ function Assessment({assessment, highlighted, onChange, id, index, targetScore} 
 
     //resets subject if input is nothing
     if (scoreInput.value.length == 0){
-      assessment.completed = false;
-      assessment.score = 0;
-      handleDelete();
-      onChange();
+      onChange({...assessment, score:0, completed: false});
       return;
     } 
 
     //otherwise sets new input field value and assessment score
     if (isValid(score)) {
       let assessmentScore = getAssessmentScore(scoreInput.value);
-      handleSave(assessmentScore);
-      assessment.score = assessmentScore
-      assessment.completed = true;
-      onChange();
+      setScoreInput(assessmentScore.toString() + "%")
+      onChange({...assessment, score: assessmentScore, completed: true});
     }
 
     
@@ -118,11 +95,15 @@ function Assessment({assessment, highlighted, onChange, id, index, targetScore} 
         <span className={assessmentItem.title}>
           {assessment.title}
         </span>
+        {assessment.title.length > 20 && 
+          <span className={assessmentItem.tooltip}>{assessment.title}</span>
+        }
         <span className={assessmentItem.description}>
           {assessment.weight > 0 ? assessment.weight + "%" : "No Weight"}
         </span>
       </div>
         <input 
+        type="text"
         placeholder={ (assessment.desiredScore ?? targetScore) + "%"}
         value={score} 
         onChange={(e) => setScoreInput(e.target.value)}

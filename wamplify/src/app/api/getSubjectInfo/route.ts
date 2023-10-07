@@ -20,7 +20,7 @@ async function fetchSubjectPage(url: string) {
         .catch((error: AxiosError) => {
             console.error(error.toJSON());
         });
-
+    //console.log(await HTMLData)
     const dom = new JSDOM(await HTMLData);
 
     return  dom.window.document;
@@ -41,6 +41,14 @@ async function fetchSubjectPage(url: string) {
     return assessmentItems;
 }
 
+function extractCredits(document: Document) {
+    const creditTitle = document.querySelector(".header--course-and-subject__details")?.querySelectorAll("span")
+    const creditString = creditTitle ? creditTitle[1].innerHTML.split(" ") : ["12.5"]
+    const credits = creditString[creditString.length - 1]
+    return parseFloat(credits)
+}
+
+
 function parseAssessment(tableRow : Element) : Assessment {
     const fields = tableRow.querySelectorAll("td")
     let hurdle = fields[0].textContent?.includes("Hurdle") ? true : false ;
@@ -58,12 +66,16 @@ function parseTitle(title: Element) : string {
 }
 
 async function getSubjectInfo(subject: SearchResult) : Promise<Subject> {
-    const url = "https://handbook.unimelb.edu.au/2023/subjects/" + subject.code +"/assessment";
-    let assessments = extractData(await fetchSubjectPage(url));
+    const AssessmentUrl = "https://handbook.unimelb.edu.au/2023/subjects/" + subject.code +"/assessment";
+    const CreditsUrl = "https://handbook.unimelb.edu.au/2023/subjects/" + subject.code;
+    let assessments = extractData(await fetchSubjectPage(AssessmentUrl));
+    let credits = extractCredits(await fetchSubjectPage(CreditsUrl));
     let result : Subject = {
         name : subject.name,
         code : subject.code,
-        assessments : assessments
+        assessments : assessments,
+        credits : credits,
+        targetScore: 50,
     }
     return result
 }

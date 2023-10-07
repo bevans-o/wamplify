@@ -35,6 +35,25 @@
     transition: background 100ms ease, color 100ms ease, border-color 100ms ease;
 }
 
+.promptAdd {
+    animation: pulse 2700ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+    from {
+        border-color: var(--n700);
+    }
+
+    50% {
+        border-color: var(--a500);
+    }
+
+    to {
+        border-color: var(--n700);
+    }
+}
+
 .add svg {
     height: 3rem;
     width: 3rem;

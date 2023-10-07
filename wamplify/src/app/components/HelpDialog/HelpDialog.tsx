@@ -1,10 +1,9 @@
 import React from 'react'
 import Dialog from '@mui/material/Dialog'
 import ModalPanel from './HelpPanel'
-import Button from '../Button/Button';
+import Button from '../Button/Button'
 import help from './help.module.css'
-import Divider from '../Divider/Divider';
-import Logo from '../Logo/Logo';
+import Logo from '../Logo/Logo'
 
 interface HelpDialogProps {
     open: boolean;
@@ -22,7 +21,7 @@ function HelpDialog({open, onClose}: HelpDialogProps) {
         <h3 className={help.title}><Logo/></h3>
         <div className={help.body}>
             <p>Wamplify is a tool for students at the University of Melbourne to estimate their marks and set academic goals. </p>
-            <p>Enter your marks for the assessments you have completed and Wamplify will calculate your current average. Choose the overall mark you’re aiming for and Wamplify will show you what you need in your remaining assessments to reach that target.</p>
+            <p>Enter your marks for the assessments you have completed. Then, choose the overall mark you’re aiming for and Wamplify will show you what you need in your remaining assessments to reach that target, and how it will affect your WAM.</p>
             <p>Good luck on your assessments!</p>
 
             <Button

@@ -1,7 +1,12 @@
 import React from 'react'
 import infobar from './infobar.module.css'
 
-function Infobar({version, message} : any) {
+interface InfobarProps {
+  version: string;
+  message: string;
+}
+
+function Infobar({version, message} : InfobarProps) {
   return (
     <div className={infobar.container}>
       <div>

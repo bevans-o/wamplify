@@ -6,7 +6,6 @@ export const metadata = {
   title: 'Wamplify - A University of Melbourne WAM Calculator',
   description: 'Predict the future. Predict a H1. Wamplify is a subject and WAM score calculator for the University of Melbourne by Risa & Ben. It works on all standard UniMelb subjects.',
   applicationName: 'Wamplify',
-  keywords: ['unimelb', 'WAM', 'calculator', 'The University of Melbourne'],
   authors: [{ name: 'Risa' }, { name: 'Ben' }],
   openGraph: {
     title: 'Wamplify - A University of Melbourne WAM Calculator',
@@ -25,6 +24,7 @@ export const metadata = {
     width: 'device-width',
     initialScale: 1,
     maximumScale: 1,
+    // interactiveWidget: 'resizes-content'
   },
   verification: {
     google: "-Hh6YCn_Izp83pPyU625BWYl3po7DyvxsC9VLAr6jLA"

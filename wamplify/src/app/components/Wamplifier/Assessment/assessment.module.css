@@ -11,12 +11,14 @@
 }
 
 .text {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
 
-.title {
+.title,
+.tooltip {
     display: block;
     font-size: 1rem;
     font-weight: 400;
@@ -26,6 +28,34 @@
     width: 10rem;
     
     color: var(--n100);
+}
+
+.tooltip {
+    display: none;
+
+    position: absolute;
+    white-space: normal;
+    text-overflow: clip;
+    overflow: visible;
+    width: auto;
+    min-width: 16rem;
+    max-width: 20rem;
+
+    top: 0;
+    left: 0;
+    padding: 0.75rem;
+    translate: calc(-0.75rem - 1px) calc(-0.75rem - 1px);
+
+    background: var(--n700);
+    border: 1px solid var(--n600);
+    border-radius: 3px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+
+    z-index: 5;
+}
+
+.text:hover .tooltip {
+    display: block;
 }
 
 .description {
@@ -89,8 +119,12 @@
         gap: 0.125rem;
     }
 
-    .title {
+    .title,
+    .tooltip {
         font-size: 0.875rem;
+    }
+
+    .title {
         width: 12rem;
     }
 
@@ -118,6 +152,15 @@
 
     .container:last-child {
         border-bottom: none;
+    }
+
+    .tooltip {
+        width: auto;
+        min-width: 16rem;
+        max-width: 20rem;
+
+        padding: 0.625rem;
+        translate: calc(-0.625rem - 1px) calc(-0.625rem - 1px);
     }
     
 }

@@ -11,6 +11,7 @@ export function isValidScoreOutOf(score : string) {
       }
       return true
     } 
+    return false;
 }
 
 export function isValidScorePercentage(score : string) {
@@ -31,6 +32,7 @@ export function isValidScorePercentage(score : string) {
       }
       return true;
     }
+    return false;
 }
 
 export function isValidScore(score : string) {
@@ -38,4 +40,21 @@ export function isValidScore(score : string) {
     if (isNaN(a) || a > 100 || a < 0) {
       return false;
     }
+    return true;
+}
+
+export function isValidWam(wam: string) {
+  let a = parseFloat(wam);
+  if (isNaN(a) || a > 100 || a < 0) {
+    return false;
+  }
+  return true;
+}
+
+export function isValidUnits(units: string) {
+  let a = parseInt(units);
+  if (isNaN(a) || a > 100 || a < 0) {
+    return false;
+  }
+  return true;
 }
