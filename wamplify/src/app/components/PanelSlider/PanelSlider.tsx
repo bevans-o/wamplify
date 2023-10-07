@@ -72,6 +72,7 @@ function PanelSlider() {
           freeMode={!mobile}
           preventClicks={false}
           modules={[FreeMode, Mousewheel]}
+          
           cssMode={mobile}
           mousewheel={{forceToAxis: true}}
           className={slider.swiper}
@@ -87,7 +88,7 @@ function PanelSlider() {
           )}
 
           <SwiperSlide className={slider.swiperSlide}>
-            <div className={slider.addContainer}>
+            <div className={`${slider.addContainer} ${subjectList.length > 0 ? "" : slider.promptAdd}`}>
               <button onClick={() => newSubject()} className={slider.add + " swiper-no-swiping"}>
                 <AddIcon fontSize='large'/>
               </button>

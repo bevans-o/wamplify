@@ -55,6 +55,7 @@ function Wamometer({calcPredictedWam, creditsInProgress}: WamometerProps) {
             <WamometerThermo markerSteps={20} value={0}/>
         }
 
+
         <div className={wamometer.wamContainer}>
             <div className={`${wamometer.wam} ${active ? "" : wamometer.disabled}`}>
                 <p className={wamometer.wamDiff}>{getWamDiff()} change</p>
