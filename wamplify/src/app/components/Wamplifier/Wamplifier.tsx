@@ -138,6 +138,9 @@ function Wamplifier({subject, onDelete} : WamplifierProps) {
                       let newMax = getMaxScore(subject.assessments);
                       let newTargetScore = subject.targetScore > newMax ? newMax : subject.targetScore;
                       let newAssessments = subject.assessments
+                      let completedAssessments = 0
+                      newAssessments.forEach((assessment) => {if (assessment.completed) { completedAssessments += 1 }}) 
+                      if (completedAssessments == newAssessments.length) { newTargetScore = newMax}
                       newAssessments[index] = assessment
                       updateSubject(updateDesiredScores({...subject, targetScore: newTargetScore, assessments: newAssessments}))
                     }} 
