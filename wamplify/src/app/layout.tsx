@@ -3,13 +3,13 @@ import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
   metadataBase: new URL('https://wamplify.me'),
-  title: 'Wamplify - A University of Melbourne WAM Calculator',
-  description: 'Predict the future. Predict a H1. Wamplify is a subject and WAM score calculator for the University of Melbourne by Risa & Ben. It works on all standard UniMelb subjects.',
+  title: 'Wamplify - A Unimelb WAM Calculator',
+  description: 'Predict the future. Predict a H1. Wamplify is a subject and WAM score calculator for the University of Melbourne by Risa & Ben. It works on all standard Unimelb subjects.',
   applicationName: 'Wamplify',
   authors: [{ name: 'Risa' }, { name: 'Ben' }],
   openGraph: {
-    title: 'Wamplify - A University of Melbourne WAM Calculator',
-    description: 'Predict the future. Predict a H1. Wamplify is a subject and WAM score calculator for the University of Melbourne by Risa & Ben. It works on all standard UniMelb subjects.',
+    title: 'Wamplify - A Unimelb WAM Calculator',
+    description: 'Predict the future. Predict a H1. Wamplify is a subject and WAM score calculator for the University of Melbourne by Risa & Ben. It works on all standard Unimelb subjects.',
     url: 'https://wamplify.me',
     siteName: 'Wamplify',
     locale: 'en_AU',
@@ -17,8 +17,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Wamplify - A University of Melbourne WAM Calculator',
-    description: 'Predict the future. Predict a H1. Wamplify is a subject and WAM score calculator for the University of Melbourne by Risa & Ben. It works on all standard UniMelb subjects.'
+    title: 'Wamplify - A Unimelb WAM Calculator',
+    description: 'Predict the future. Predict a H1. Wamplify is a subject and WAM score calculator for the University of Melbourne by Risa & Ben. It works on all standard Unimelb subjects.'
   },
   viewport: {
     width: 'device-width',
