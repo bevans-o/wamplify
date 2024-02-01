@@ -17,6 +17,8 @@ npm i
 npm run dev
 ```
 
+Wamplify uses Node v18.13.0.
+
 ## Contributions, Bugs, and Feature Requests
 
 We are not currently seeking contributions. However, if you've got a feature request, bug, suggestion, or want to tell us how cool we are, feel free to open an issue!
