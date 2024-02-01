@@ -1,6 +1,6 @@
 # Wamplify
 
-![Wamplify Logo](/src/app/opengraph-image.png);
+![Wamplify Logo](wamplify/src/app/opengraph-image.png);
 Wamplify is a WAM Calculator for the University of Melbourne. It helps students set achievable academic goals and see how they might affect their overall marks. Wamplify is [available here](https://wamplify.me/).
 
 ## How it Works
@@ -17,7 +17,8 @@ npm i
 npm run dev
 ```
 
-Wamplify uses Node v18.13.0.
+> [!NOTE]
+> Wamplify uses Node v18.13.0.
 
 ## Contributions, Bugs, and Feature Requests
 
