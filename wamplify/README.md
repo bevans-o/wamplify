@@ -1,6 +1,6 @@
 # Wamplify
 
-![Wamplify Logo](wamplify/src/app/opengraph-image.png);
+![Wamplify Logo](https://wamplify.me/opengraph-image.png);
 Wamplify is a WAM Calculator for the University of Melbourne. It helps students set achievable academic goals and see how they might affect their overall marks. Wamplify is [available here](https://wamplify.me/).
 
 ## How it Works
