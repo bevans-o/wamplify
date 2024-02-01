@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
 
 :root {
   --pink100: #f6b9d6;
@@ -19,7 +19,6 @@
   --orange500: #d67b3f;
   --orange700: #ce6620;
   --orange900: #c27a4a25;
-
 
   --n50: #fffefc;
   --n100: #f0e9e2;
@@ -65,20 +64,21 @@
   scrollbar-color: var(--n600) var(--n950);
 }
 
-a, a:visited {
+a,
+a:visited {
   color: var(--n300);
 }
 
 body {
   background: var(--n950);
   color: var(--n50);
-  font-family: 'Cabin', sans-serif;
+  font-family: "Cabin", sans-serif;
 }
 
 input {
   background: var(--n900);
   border: 1px solid var(--n700);
-  
+
   max-width: 100%;
   color: var(--n50);
   border-radius: 2px;
@@ -107,7 +107,7 @@ input::-webkit-input-placeholder,
 }
 
 .text-stronger {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
 }
 
@@ -143,7 +143,7 @@ input::-webkit-input-placeholder,
 
 .panel {
   background: var(--n900);
-  background: linear-gradient(250deg, rgb(18, 20, 20)0%,var(--n800) 80%);
+  background: linear-gradient(250deg, rgb(18, 20, 20) 0%, var(--n800) 80%);
   border: 1px solid var(--n600);
   border-radius: 2px;
 }
@@ -156,17 +156,16 @@ input::-webkit-input-placeholder,
 *::-webkit-scrollbar {
   width: 0.3rem;
 }
- 
+
 *::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
- 
+
 *::-webkit-scrollbar-thumb {
   background-color: var(--n700);
   outline: 1px solid var(--n900);
   border-radius: 1px;
 }
-
 
 /* MUI slider */
 
@@ -262,7 +261,7 @@ input::-webkit-input-placeholder,
   :root {
     --wamp-width: 90vw;
   }
-  
+
   .slider .MuiSlider-mark {
     height: 1rem;
     translate: 1px 0.5rem;
