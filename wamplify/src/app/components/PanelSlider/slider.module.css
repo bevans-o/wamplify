@@ -1,99 +1,91 @@
 .container {
-    grid-area: main;
+  grid-area: main;
 
-    background: var(--n950);
-    box-shadow: inset 0 0 48px 4px rgba(0, 0, 0, 0.3);
+  background: var(--n950);
+  box-shadow: inset 0 0 48px 4px rgba(0, 0, 0, 0.3);
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .addContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-    border: 2px dashed var(--n700);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: 2px dashed var(--n700);
 
-    transition: border-color 200ms ease;
+  transition: border-color 200ms ease;
 }
 
 .add {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
 
-    border-radius: 99999px;
-    border: 4px solid var(--a500);
-    background: transparent;
-    cursor: pointer;
-    color: var(--a500);
-    font-family: inherit;
+  border-radius: 99999px;
+  border: 4px solid var(--a500);
+  background: var(--n950);
+  cursor: pointer;
+  color: var(--a500);
+  font-family: inherit;
 
-    transition: background 100ms ease, color 100ms ease, border-color 100ms ease;
+  transition: background 100ms ease, color 100ms ease, border-color 100ms ease;
 }
 
 .promptAdd {
-    animation: pulse 2700ms;
-    animation-iteration-count: infinite;
+  animation: pulse 2700ms;
+  animation-iteration-count: infinite;
 }
 
 @keyframes pulse {
-    from {
-        border-color: var(--n700);
-    }
+  from {
+    border-color: var(--n700);
+  }
 
-    50% {
-        border-color: var(--a500);
-    }
+  50% {
+    border-color: var(--a500);
+  }
 
-    to {
-        border-color: var(--n700);
-    }
+  to {
+    border-color: var(--n700);
+  }
 }
 
 .add svg {
-    height: 3rem;
-    width: 3rem;
+  height: 3rem;
+  width: 3rem;
 }
 
 @media (pointer: fine) {
-    .add:hover {
-        color: var(--a100);
-        border-color: var(--a100);
-        background: var(--a500);
-    }
+  .add:hover {
+    color: var(--a100);
+    border-color: var(--a100);
+    background: var(--a500);
+  }
 }
 
-
 .addContainer {
-    height: 100%;
-    width: var(--wamp-width);
+  height: 100%;
+  width: var(--wamp-width);
 }
 
 .swiper {
-    height: 100%;
-    padding: 0 0.5rem !important;
+  height: 100%;
+  padding: 0 0.5rem !important;
 }
 
 .swiperSlide {
-    width: auto !important;
-    height: 100%;
-  
-    padding: 0.5rem 0.5rem 1rem;
-  }
+  width: auto !important;
+  height: 100%;
 
+  padding: 0.5rem 0.5rem 1rem;
+}
 
 @media (max-width: 800px) {
-    .add:hover {
-        color: var(--a500);
-        border-color: var(--a500);
-        background: transparent;
-    }
-
-    .swiperSlide {
-        padding: 0 0.5rem 1rem;
-    }
+  .swiperSlide {
+    padding: 0 0.5rem 1rem;
+  }
 }
