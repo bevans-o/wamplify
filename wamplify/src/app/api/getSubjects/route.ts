@@ -76,7 +76,7 @@ function buildUrl(semesterSubstring: any, year: Number, page: Number) {
 }
 
 
-export async function getSubjectList() {
+async function getSubjectList() {
     const year = new Date().getFullYear();
 
     let subjectsList = Array();
