@@ -75,7 +75,7 @@ function Wamometer({ calcPredictedWam, creditsInProgress }: WamometerProps) {
             </div>
             <div>
               Enter your current WAM and the number of subjects you have
-              <strong> already completed</strong>. 25-point subjects count as
+              <strong> already completed</strong>. 25-credit subjects count as
               two subjects!
             </div>
           </div>
@@ -102,7 +102,7 @@ function Wamometer({ calcPredictedWam, creditsInProgress }: WamometerProps) {
         </div>
 
         <p className={wamometer.points}>
-          {isValidUnits(units) ? parseInt(units) * 12.5 : 0} points complete,{" "}
+          {isValidUnits(units) ? parseInt(units) * 12.5 : 0} credits complete,{" "}
           {creditsInProgress} in progress.
         </p>
       </div>
