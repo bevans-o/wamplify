@@ -1,306 +1,352 @@
 .body {
-    width: 16.5rem;
-    height: 100%;
-    min-height: 20rem;
+  width: 16.5rem;
+  height: 100%;
+  min-height: 20rem;
 
-    padding-top: 1rem;
-    display: grid;
+  padding-top: 1rem;
+  display: grid;
 
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto 1fr auto auto;
-    grid-template-areas: 
-            "title"
-            "thermo"
-            "wam"
-            "bottom";
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto auto;
+  grid-template-areas:
+    "title"
+    "thermo"
+    "wam"
+    "bottom";
 
-    --thermo-padding: 1.5rem;
+  --thermo-padding: 1.5rem;
 }
 
 .title {
-    grid-area: title;
-    font-size: 0.75rem;
-    color: var(--n500);
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: 300;
+  grid-area: title;
+  font-size: 0.75rem;
+  color: var(--n500);
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 300;
 
-    translate: 0 0.5rem;
+  translate: 0 0.5rem;
 }
 
 .footer {
-    grid-area: bottom;
+  grid-area: bottom;
 
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-    border-top: 1px solid var(--n700);
-    padding: var(--thermo-padding);
+  border-top: 1px solid var(--n700);
+  padding: var(--thermo-padding);
 
-    color: var(--n300);
-    font-weight: 400;
-    font-size: 0.875rem;
+  color: var(--n300);
+  font-weight: 400;
+  font-size: 0.875rem;
 }
 
 .inputs {
-    color: var(--n100);
+  color: var(--n100);
 
-    display: flex;
-    gap: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .inputs > * {
-    flex-grow: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .inputs input {
-    width: 100%;
-    color: var(--n300);
-    font-weight: 200;
+  width: 100%;
+  color: var(--n300);
+  font-weight: 200;
 }
 
 .invalid {
-    border-color: var(--bad700);
-    outline: var(--bad700);
-    color: var(--bad100);
-}
-
-.tip {
-    font-size: 0.85rem;
+  border-color: var(--bad700);
+  outline: var(--bad700);
+  color: var(--bad100);
 }
 
 .points {
-    font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
 .wamContainer {
-    padding: var(--thermo-padding);
-    grid-area: wam;
-    border-bottom: 2px solid var(--n900);
+  padding: var(--thermo-padding);
+  grid-area: wam;
+  border-bottom: 2px solid var(--n900);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .wam {
-    padding: 0.5rem;
+  padding: 0.5rem;
 
-    width: fit-content;
+  width: fit-content;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .wam.disabled {
-    opacity: 0;
+  opacity: 0;
 }
 
 .wamDiff {
-    color: var(--a100);
+  color: var(--a100);
 }
 
 .wamScore {
-    color: var(--a300);
-    font-size: 2.5rem;
-    font-weight: 900;
+  color: var(--a300);
+  font-size: 2.5rem;
+  font-weight: 900;
 }
-
-
-
-
 
 /* THERMO */
 .thermo {
-    position: relative;
-    grid-area: thermo;
+  position: relative;
+  grid-area: thermo;
 
-    isolation: isolate;
+  isolation: isolate;
 
-    --track-width: 1.25rem;
-    --bulb-width: 2rem;
-    --thermo-edge: 0.4rem;
+  --track-width: 1.25rem;
+  --bulb-width: 2rem;
+  --thermo-edge: 0.4rem;
 }
 
 .thermo > * {
-    position: absolute;
-    inset: var(--thermo-padding);
-    bottom: 0;
+  position: absolute;
+  inset: var(--thermo-padding);
+  bottom: 0;
 }
 
 .thermoBulbBack {
-    position: absolute;
+  position: absolute;
 
-    background: var(--n900);
-    border: 1px solid var(--n700);
-    width: var(--bulb-width);
-    height: var(--bulb-width);
-    border-radius: 99999px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    bottom: 0;
+  background: var(--n900);
+  border: 1px solid var(--n700);
+  width: var(--bulb-width);
+  height: var(--bulb-width);
+  border-radius: 99999px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
 
-    z-index: 1;
+  z-index: 1;
 }
 
 .thermoBulbBack::before {
-    content: "";
-    position: absolute;
-    width: calc(var(--track-width) - 2px);
-    height: calc(var(--bulb-width) - 1rem);
-    background: var(--n900);
+  content: "";
+  position: absolute;
+  width: calc(var(--track-width) - 2px);
+  height: calc(var(--bulb-width) - 1rem);
+  background: var(--n900);
 
-    bottom: calc(var(--bulb-width) / 2);
-    left: 0;
-    right: 0;
-    margin: auto;
+  bottom: calc(var(--bulb-width) / 2);
+  left: 0;
+  right: 0;
+  margin: auto;
 
-    z-index: 2;
+  z-index: 2;
 }
 
 .thermoBulbFront {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: var(--thermo-edge);
-    margin: auto;
-    background: var(--a700);
-    width: calc(var(--bulb-width) - var(--thermo-edge) - var(--thermo-edge));
-    height: calc(var(--bulb-width) - var(--thermo-edge) - var(--thermo-edge));
-    border-radius: 99999px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--thermo-edge);
+  margin: auto;
+  background: var(--a700);
+  width: calc(var(--bulb-width) - var(--thermo-edge) - var(--thermo-edge));
+  height: calc(var(--bulb-width) - var(--thermo-edge) - var(--thermo-edge));
+  border-radius: 99999px;
 
-    z-index: 5;
+  z-index: 5;
 }
 
 .thermoTrackBack {
-    position: absolute;
+  position: absolute;
 
-    background: var(--n900);
-    border: 1px solid var(--n700);
-    width: var(--track-width);
-    border-radius: 99999px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    bottom: 1rem;
-    top: 0;
+  background: var(--n900);
+  border: 1px solid var(--n700);
+  width: var(--track-width);
+  border-radius: 99999px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 1rem;
+  top: 0;
 
-    z-index: 0;
+  z-index: 0;
 }
 
 .thermoTrackContainer {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: calc(var(--bulb-width) / 2);
-    top: var(--thermo-edge);
-    margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--bulb-width) / 2);
+  top: var(--thermo-edge);
+  margin: auto;
 
-    width: calc(var(--track-width) - var(--thermo-edge) - var(--thermo-edge));
+  width: calc(var(--track-width) - var(--thermo-edge) - var(--thermo-edge));
 
-    z-index: 4;
+  z-index: 4;
 }
 
 .thermoTrackFront {
-    position: absolute;
-    bottom: 0;
-    background: linear-gradient(var(--a300), var(--a700));
-    box-shadow: 0 0 8px var(--a900);
-    width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(var(--a300), var(--a700));
+  box-shadow: 0 0 8px var(--a900);
+  width: 100%;
 
-    border-radius: 99999px 99999px 0 0 ;
+  border-radius: 99999px 99999px 0 0;
 }
 
 .thermoMarkers {
-    padding-bottom: calc(var(--bulb-width) / 2);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  padding-bottom: calc(var(--bulb-width) / 2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .thermoMarker {
-    position: relative;
-    height: 2px;
-    width: 3rem;
-    background: var(--n900);
-    border-bottom: 1px solid var(--n700);
+  position: relative;
+  height: 2px;
+  width: 3rem;
+  background: var(--n900);
+  border-bottom: 1px solid var(--n700);
 }
 
 .thermoMarker:nth-child(even) {
-    width: 2.5rem;
+  width: 2.5rem;
 }
 
 .thermoMarker:nth-child(1),
 .thermoMarker:nth-child(21) {
-    width: 0rem;
+  width: 0rem;
 }
 
 .thermoMarker p {
-    position: absolute;
-    color: var(--n500);
-    font-weight: 400;
-    font-size: 0.625rem;
-    bottom: 0;
-    margin: auto;
+  position: absolute;
+  color: var(--n500);
+  font-weight: 400;
+  font-size: 0.625rem;
+  bottom: 0;
+  margin: auto;
 }
 
 .leftMarker {
-    translate: -2rem 0.4rem;
+  translate: -2rem 0.4rem;
 }
 
 .rightMarker {
-    translate: 3.5rem 0.4rem;
+  translate: 3.5rem 0.4rem;
 }
 
 .thermoMarker:nth-child(even) .leftMarker {
-    translate: -2rem 0.4rem;
+  translate: -2rem 0.4rem;
 }
 
 .thermoMarker:nth-child(even) .rightMarker {
-    translate: 3.25rem 0.4rem;
+  translate: 3.25rem 0.4rem;
 }
 
 .thermoMarkerActive p {
-    color: var(--a100);
-    text-shadow: 0 0 5px var(--a900);
+  color: var(--a100);
+  text-shadow: 0 0 5px var(--a900);
 }
 
+.tip {
+  font-size: 0.85rem;
+  position: relative;
+}
+
+.tip svg {
+  width: 16px;
+  height: 16px;
+  translate: 0 1px;
+  fill: var(--n500);
+}
+
+.tipTitle {
+  font-weight: 600;
+  color: var(--n300);
+
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tooltip {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  width: calc(100% + 1rem + 2px);
+
+  top: 0;
+  left: 0;
+  padding: 0.5rem;
+  translate: calc(-0.5rem - 1px) calc(-0.5rem - 1px);
+
+  background: var(--n700);
+  border: 1px solid var(--n600);
+  border-radius: 3px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+
+  z-index: 5;
+}
+
+.tooltip .tipTitle {
+  color: var(--n200);
+}
+
+.tooltip strong {
+  color: var(--a300);
+}
+
+.tip:hover .tooltip {
+  display: flex;
+}
 
 @media (max-width: 800px) {
-    .body {
-        --thermo-padding: 0.75rem;
-    }
+  .body {
+    --thermo-padding: 0.75rem;
+  }
 
-    .tip {
-        font-size: 0.75rem;
-    }
+  .tip {
+    font-size: 0.75rem;
+  }
 
-    .wamScore {
-        font-size: 1.25rem;
-    }
+  .wamScore {
+    font-size: 1.25rem;
+  }
 
-    .wamDiff {
-        font-size: 0.75rem;
-    }
-    
-    .wamContainer {
-        padding: 0;
-        padding-bottom: 0.25rem;
-    }
+  .wamDiff {
+    font-size: 0.75rem;
+  }
 
-    .thermoMarker p {
-        font-size: 0.5rem;
-    }
+  .wamContainer {
+    padding: 0;
+    padding-bottom: 0.25rem;
+  }
+
+  .thermoMarker p {
+    font-size: 0.5rem;
+  }
 }
