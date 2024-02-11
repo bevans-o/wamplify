@@ -8,13 +8,18 @@ export interface Assessment {
     completed: boolean,
     desiredScore?: number,
 }
+
+export interface AssessmentSet {
+  period: "none" | string
+  assessments: Assessment[]
+}
   
 export interface Subject {
     id?: string,
-    period: StudyPeriod,
     name: string,
     code: string,
-    assessments: Assessment[],
+    assessmentSets: AssessmentSet[],
+    activeStudyPeriod: number,
     credits: number,
     targetScore: number,
   }

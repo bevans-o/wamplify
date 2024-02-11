@@ -9,7 +9,7 @@ export const unitsCompleted = atomWithStorage('unitsCompleted', '')
 
 //subject list related atoms
 // update default in sem 2
-const emptySubject = {name: "", code: "", period: StudyPeriod.SEM_ONE, assessments: [], credits: 0, targetScore: 50}
+const emptySubject = {name: "", code: "", assessmentSets: [], activeStudyPeriod: 0, credits: 0, targetScore: 50}
 export const newSubjectAtom = atom<Subject>(emptySubject);
 export const subjectsAtom = atomWithStorage<Subject[]>('subjects', []);
 

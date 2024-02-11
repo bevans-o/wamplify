@@ -17,6 +17,7 @@ import 'swiper/css'
 import 'swiper/css/free-mode'
 import LoadingBox from '../LoadingBox/LoadingBox'
 import { useAtom } from 'jotai'
+import { get } from 'http'
 
 
 const sliderMarks = [
@@ -51,6 +52,14 @@ function Wamplifier({subject, onDelete} : WamplifierProps) {
   const [,updateSubject] = useAtom(updateSubjectAtom);
   const [isLoading, setLoading] = useState(false);
 
+  const getActiveAssessmentSet = (subject : Subject) => {
+    return subject.assessmentSets[subject.activeStudyPeriod]
+  }
+
+  const getActiveAssessments = (subject : Subject) => {
+    return getActiveAssessmentSet(subject).assessments
+  }
+
   //Function to load subject assessments from API
   const onSubjectSelect = (subjectSelection: SearchResult) => {
     setLoading(true);
@@ -63,16 +72,16 @@ function Wamplifier({subject, onDelete} : WamplifierProps) {
 
   //Updates assessment default input based on target and current assessment
   const updateDesiredScores = (subject: Subject) => {
-    let remainingTarget = getRemainingTarget(subject.assessments, subject.targetScore)
+    let remainingTarget = getRemainingTarget(getActiveAssessments(subject), subject.targetScore)
     let newSubject = {...subject}
     let weightRemaining = 100;
-    newSubject.assessments.forEach((assessment) => {
+    getActiveAssessments(newSubject).forEach((assessment) => {
       if (assessment.completed) {
         weightRemaining -= assessment.weight;
       }
     })
     let desiredScore = (remainingTarget/weightRemaining) * 100
-    newSubject.assessments.forEach((assessment) => {
+    getActiveAssessments(newSubject).forEach((assessment) => {
       if (!assessment.completed && assessment.weight > 0){
         assessment.desiredScore = Math.round(desiredScore);
       }
@@ -126,16 +135,17 @@ function Wamplifier({subject, onDelete} : WamplifierProps) {
           <SwiperSlide className={wamplifier.assessmentContainer}>
               <div className={wamplifier.currentRate}>
                 <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
-                <div className={wamplifier.currentScore}>{Math.round(calculateSubjectAverage(subject.assessments))}</div>
+                <div className={wamplifier.currentScore}>{Math.round(calculateSubjectAverage(getActiveAssessments(subject)))}</div>
               </div>
 
               <div className={wamplifier.assessments}>
-                {subject.assessments.map((assessment: Assessment, index: number) => 
+                {getActiveAssessments(subject).map((assessment: Assessment, index: number) => 
                   <AssessmentInput 
                     assessment={assessment} 
                     highlighted={index < 2} 
                     onChange={(assessment: Assessment) =>  {
-                      let newAssessments = subject.assessments
+                      let newAssessmentSets = subject.assessmentSets
+                      let newAssessments = getActiveAssessments(subject)
                       newAssessments[index] = assessment
                       let newMax = getMaxScore(newAssessments);
                       let newTargetScore = subject.targetScore > newMax ? newMax : subject.targetScore;
@@ -144,7 +154,8 @@ function Wamplifier({subject, onDelete} : WamplifierProps) {
                       if (completedAssessments == newAssessments.length) { 
                         newTargetScore = newMax
                       }
-                      updateSubject(updateDesiredScores({...subject, targetScore: newTargetScore, assessments: newAssessments}))
+                      newAssessmentSets[subject.activeStudyPeriod].assessments = newAssessments
+                      updateSubject(updateDesiredScores({...subject, targetScore: newTargetScore, assessmentSets: newAssessmentSets}))
                     }} 
                   key={index} 
                   targetScore={subject.targetScore}/>
@@ -173,7 +184,7 @@ function Wamplifier({subject, onDelete} : WamplifierProps) {
               value={subject.targetScore}
               step={1}
               min={50}
-              max={getMaxScore(subject.assessments)}
+              max={getMaxScore(getActiveAssessments(subject))}
               valueLabelDisplay="auto"
               marks={sliderMarks}
               className="slider swiper-no-swiping"

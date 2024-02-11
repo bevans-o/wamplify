@@ -66,23 +66,17 @@ function parseTitle(title: Element) : string {
     return sentences[0];
 }
 
-function extractSubjectPeriods(document: Document) {
-    const studyPeriods = document.querySelector(".course__overview-box")?.querySelectorAll("td > div")
-    studyPeriods?.forEach((element) => console.log(element.textContent))
-}
-
 async function getSubjectInfo(subject: SearchResult) : Promise<Subject> {
     const assessmentUrl = "https://handbook.unimelb.edu.au/2024/subjects/" + subject.code +"/assessment";
     const overviewUrl = "https://handbook.unimelb.edu.au/2024/subjects/" + subject.code;
     const subjectOverview = await fetchSubjectPage(overviewUrl);
-    const subjectPeriods = extractSubjectPeriods(subjectOverview);
     let assessments = extractData(await fetchSubjectPage(assessmentUrl));
     let credits = extractCredits(subjectOverview);
     let result : Subject = {
         name : subject.name,
         code : subject.code,
-        period: StudyPeriod.SEM_ONE,
-        assessments : assessments,
+        activeStudyPeriod: 0,
+        assessmentSets : [{period: "none", assessments: assessments}],
         credits : credits,
         targetScore: 50,
     }
