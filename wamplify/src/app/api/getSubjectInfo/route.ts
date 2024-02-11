@@ -29,11 +29,19 @@ async function fetchSubjectPage(url: string) {
 
  function extractData(document: Document) {
     let assessmentSets : Array<AssessmentSet> = []
-    const studyPeriods = document.querySelectorAll(".assessment-table > h3")
+    let studyPeriodTitles = document.querySelectorAll(".assessment-table > h3")
+    let studyPeriods : Array<string | null> = []
+    studyPeriodTitles.forEach((title) => {
+        studyPeriods.push(title.textContent)
+    })
+
+    if (studyPeriods.length == 0) {
+        studyPeriods = ["none"]
+    }
     const assessmentTable = document.querySelectorAll(".assessment-details")
 
     assessmentTable.forEach((assessmentTable, index) => {
-        assessmentSets.push({period: studyPeriods[index].textContent ?? "none", assessments: getAssessments(assessmentTable)})
+        assessmentSets.push({period: studyPeriods[index] ?? "none", assessments: getAssessments(assessmentTable)})
     })
     
     return assessmentSets;
