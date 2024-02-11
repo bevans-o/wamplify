@@ -21,6 +21,7 @@ export interface Subject {
     assessmentSets: AssessmentSet[],
     activeStudyPeriod: number,
     credits: number,
+    assessments? : Assessment[], //for backwards compatibility
     targetScore: number,
   }
 

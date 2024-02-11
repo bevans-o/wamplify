@@ -53,6 +53,9 @@ function Wamplifier({subject, onDelete} : WamplifierProps) {
   const [isLoading, setLoading] = useState(false);
 
   const getActiveAssessmentSet = (subject : Subject) => {
+    if (subject.activeStudyPeriod === undefined) {
+      updateSubject({...subject, activeStudyPeriod: 0, assessmentSets: [{ period: "none", assessments: subject.assessments!}]})
+    }
     return subject.assessmentSets[subject.activeStudyPeriod]
   }
 
