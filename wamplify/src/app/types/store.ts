@@ -1,5 +1,5 @@
 import { splitAtom, atomWithStorage } from 'jotai/utils'
-import { Subject, Assessment } from './types'
+import { Subject, Assessment, StudyPeriod } from './types'
 import { PrimitiveAtom, atom } from 'jotai'
 import generateID from '../lib/functions/generateId'
 
@@ -8,7 +8,8 @@ export const currentWam = atomWithStorage('currentWam', '')
 export const unitsCompleted = atomWithStorage('unitsCompleted', '')
 
 //subject list related atoms
-const emptySubject = {name: "", code: "", assessments: [], credits: 0, targetScore: 50}
+// update default in sem 2
+const emptySubject = {name: "", code: "", period: StudyPeriod.SEM_ONE, assessments: [], credits: 0, targetScore: 50}
 export const newSubjectAtom = atom<Subject>(emptySubject);
 export const subjectsAtom = atomWithStorage<Subject[]>('subjects', []);
 

@@ -1,7 +1,8 @@
 import axios, { AxiosError } from 'axios';
 import {JSDOM} from 'jsdom';
-import { Assessment, SearchResult, Subject, SubjectInfoRequest } from '../../types/types';
+import { Assessment, SearchResult, StudyPeriod, Subject, SubjectInfoRequest } from '../../types/types';
 import { NextResponse } from 'next/server';
+import { ST } from 'next/dist/shared/lib/utils';
 
 
 export async function POST(req: Request, res: Response) {
@@ -73,6 +74,7 @@ async function getSubjectInfo(subject: SearchResult) : Promise<Subject> {
     let result : Subject = {
         name : subject.name,
         code : subject.code,
+        period: StudyPeriod.SEM_ONE,
         assessments : assessments,
         credits : credits,
         targetScore: 50,

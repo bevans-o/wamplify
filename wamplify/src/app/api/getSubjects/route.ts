@@ -2,7 +2,7 @@ import {JSDOM} from 'jsdom';
 import axios, { AxiosError } from 'axios';
 import { NextResponse } from 'next/server';
 import { map } from 'cheerio/lib/api/traversing';
-import { StudyPeriod } from '@/app/types/types';
+import { StudyPeriod, StudyPeriodUrls } from '@/app/types/types';
 import { ST } from 'next/dist/shared/lib/utils';
 import { PieChartOutline } from '@mui/icons-material';
 import { val } from 'cheerio/lib/api/attributes';
@@ -75,16 +75,23 @@ function buildUrl(semesterSubstring: any, year: Number, page: Number) {
     return handbookUrl
 }
 
+function getUrls() : Array<keyof typeof StudyPeriod> {
+    let values = Array();
+    (Object.keys(StudyPeriod) as Array<keyof typeof StudyPeriod>).forEach((element : keyof typeof StudyPeriod) => {
+        let key : keyof typeof StudyPeriod = element 
+        console.log(StudyPeriodUrls[key])
+        values.push(StudyPeriodUrls[key])
+    })
+    return values
+}
+
 
 async function getSubjectList() {
     const year = new Date().getFullYear();
 
     let subjectsList = Array();
-    let values = Array();
-    (Object.keys(StudyPeriod) as Array<keyof typeof StudyPeriod>).forEach((element : keyof typeof StudyPeriod) => {
-        let key : keyof typeof StudyPeriod = element 
-        values.push(StudyPeriod[key])
-    })
+    let values = getUrls();
+    
 
     for(let url in values) {
         let pageNum = 1
@@ -92,6 +99,7 @@ async function getSubjectList() {
         let document = await fetchSubjectsPage(handbookUrl)
         const numPages = getNumPages(document)
         subjectsList = subjectsList.concat(getSubjects(document))
+        console.log(subjectsList)
         pageNum++
         while (pageNum <= numPages) {
             handbookUrl = buildUrl(values[url], year, pageNum)
