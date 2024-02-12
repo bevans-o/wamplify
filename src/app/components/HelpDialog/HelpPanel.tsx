@@ -1,13 +1,8 @@
-import React from 'react'
-import help from '../HelpDialog/help.module.css'
+import React, { ReactNode } from "react";
+import help from "../HelpDialog/help.module.css";
 
-function ModalPanel({children} : any) {
-   
-  return (
-    <div className={`${help.panel} panel`}>
-      {children}
-    </div>
-  )
+function ModalPanel({ children }: { children?: ReactNode }) {
+  return <div className={`${help.panel} panel`}>{children}</div>;
 }
 
-export default ModalPanel
+export default ModalPanel;

@@ -17,22 +17,22 @@ jobs:
 
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
-        with: 
+        with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Install dependencies
         run: |
-         cd wamplify
-         npm install
-        
+          cd wamplify
+          npm install
+
       - name: Run the tests
-        run: | 
-         cd wamplify
-         npm run test
-        
+        run: |
+          cd wamplify
+          npm run test
+
       - name: Build
         run: |
-         cd wamplify
-         npm run build --if-present
+          cd wamplify
+          npm run build --if-present

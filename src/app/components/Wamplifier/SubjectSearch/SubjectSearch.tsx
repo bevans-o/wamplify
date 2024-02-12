@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import search from "./search.module.css";
 import { SearchResult } from "@/app/types/types";
 import { getPredictiveSearch } from "@/app/api/subjectSearch";
 
-interface SubjectSearchProps {
+function SubjectSearch({
+  id,
+  onSelect,
+  resultLimit = 6,
+}: {
   id: string | undefined;
   onSelect: Function;
   resultLimit?: number;
-}
-
-function SubjectSearch({ id, onSelect, resultLimit = 6 }: SubjectSearchProps) {
+}) {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);

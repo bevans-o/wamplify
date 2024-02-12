@@ -227,7 +227,9 @@ input::-webkit-input-placeholder,
   padding-top: 1rem;
   translate: 1px;
 
-  transition: color 500ms ease, text-shadow 500ms ease;
+  transition:
+    color 500ms ease,
+    text-shadow 500ms ease;
 }
 
 .slider .MuiSlider-markLabelActive {

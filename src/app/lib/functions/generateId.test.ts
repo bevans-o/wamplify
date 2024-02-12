@@ -1,6 +1,5 @@
-import generateID from './generateId'
+import generateID from "./generateId";
 
-test('returns unique output', () => {
-    const testLength = 32
-    expect(generateID(testLength)).not.toEqual(testLength);
-  });
+test("returns unique output", () => {
+  expect(generateID()).not.toEqual(generateID());
+});

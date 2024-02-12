@@ -161,7 +161,9 @@
   align-items: center;
   gap: 1rem;
   border: 2px solid var(--a500);
-  box-shadow: 0 2px 6px var(--n950), 0 2px 0 var(--a700);
+  box-shadow:
+    0 2px 6px var(--n950),
+    0 2px 0 var(--a700);
   border-radius: 4px;
 
   translate: 0 -2px;
@@ -180,7 +182,9 @@
   width: 4.5rem;
   height: 2.5rem;
   border-radius: 5px;
-  box-shadow: inset 0 2px 6px var(--n950), inset 0 2px 0 var(--a700);
+  box-shadow:
+    inset 0 2px 6px var(--n950),
+    inset 0 2px 0 var(--a700);
   border: 2px solid var(--a500);
   background: linear-gradient(var(--a900), var(--a900)),
     linear-gradient(var(--n800), var(--n800));
@@ -228,7 +232,10 @@
   cursor: pointer;
   border-radius: 3px;
 
-  transition: background 100ms ease, border-color 100ms ease, color 100ms ease;
+  transition:
+    background 100ms ease,
+    border-color 100ms ease,
+    color 100ms ease;
 }
 
 .studyPeriod:hover {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import wamplifier from "./wamplifier.module.css";
 import Divider from "../Divider/Divider";
@@ -21,7 +21,6 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import LoadingBox from "../LoadingBox/LoadingBox";
 import { useAtom } from "jotai";
-import { get } from "http";
 
 const sliderMarks = [
   {
@@ -46,12 +45,13 @@ const sliderMarks = [
   },
 ];
 
-interface WamplifierProps {
+function Wamplifier({
+  subject,
+  onDelete,
+}: {
   onDelete: Function;
   subject: Subject;
-}
-
-function Wamplifier({ subject, onDelete }: WamplifierProps) {
+}) {
   const [, updateSubject] = useAtom(updateSubjectAtom);
   const [isLoading, setLoading] = useState(false);
 
@@ -271,7 +271,10 @@ function Wamplifier({ subject, onDelete }: WamplifierProps) {
                 onChange={(e, value) => {
                   if (Array.isArray(value)) {
                     updateSubject(
-                      updateDesiredScores({ ...subject, targetScore: value[0] })
+                      updateDesiredScores({
+                        ...subject,
+                        targetScore: value[0],
+                      })
                     );
                   } else {
                     updateSubject(

@@ -32,7 +32,10 @@
   color: var(--a500);
   font-family: inherit;
 
-  transition: background 100ms ease, color 100ms ease, border-color 100ms ease;
+  transition:
+    background 100ms ease,
+    color 100ms ease,
+    border-color 100ms ease;
 }
 
 .promptAdd {
