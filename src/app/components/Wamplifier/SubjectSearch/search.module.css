@@ -10,7 +10,9 @@
   min-height: 3rem;
   outline: none;
 
-  transition: color 150ms ease, border-color 150ms ease;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease;
 }
 
 .search input:focus-visible {

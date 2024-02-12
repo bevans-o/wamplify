@@ -1,16 +1,12 @@
 .main {
   width: 100vw;
   height: 100vh;
-
   max-width: 100vw;
   max-height: 100vh;
-
   font-weight: 600;
-
   overflow: hidden;
-
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
     "top"
     "main"
     "bottom";

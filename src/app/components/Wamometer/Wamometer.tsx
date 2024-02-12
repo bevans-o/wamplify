@@ -6,12 +6,13 @@ import { isValidUnits, isValidWam } from "@/app/lib/functions/inputValidation";
 import { currentWam, unitsCompleted } from "@/app/types/store";
 import { useAtom } from "jotai/react";
 
-interface WamometerProps {
+function Wamometer({
+  calcPredictedWam,
+  creditsInProgress,
+}: {
   calcPredictedWam: Function;
   creditsInProgress: number;
-}
-
-function Wamometer({ calcPredictedWam, creditsInProgress }: WamometerProps) {
+}) {
   const [currWam, setCurrWam] = useAtom(currentWam);
   const [units, setUnits] = useAtom(unitsCompleted);
   const active = parseInt(currWam) > 0 && parseInt(units) > 0;

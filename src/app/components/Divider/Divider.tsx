@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Divider() {
-  return (
-    <span className='divider'></span>
-  )
+  return <span className="divider"></span>;
 }
 
-export default Divider
+export default Divider;

@@ -1,54 +1,55 @@
 .container {
-    --column-count: 15;
-    --light-size: 8px;
-    padding: var(--wamp-padding);
-    display: grid;
-    grid-template-columns: repeat(var(--column-count), var(--light-size));
-    gap: calc(
-        (100% - (var(--column-count) * var(--light-size)))
-         / (var(--column-count) - 1));
-    height: 10rem;
+  --column-count: 15;
+  --light-size: 8px;
+  padding: var(--wamp-padding);
+  display: grid;
+  grid-template-columns: repeat(var(--column-count), var(--light-size));
+  gap: calc(
+    (100% - (var(--column-count) * var(--light-size))) /
+      (var(--column-count) - 1)
+  );
+  height: 10rem;
 }
 
 .lightOff {
-    width: var(--light-size);
-    height: var(--light-size);
-    border-radius: 99999px;
-    background-color: var(--n900);
-    box-shadow: 0 0 6px 3px transparent;
-    border: 1px solid var(--n700);
+  width: var(--light-size);
+  height: var(--light-size);
+  border-radius: 99999px;
+  background-color: var(--n900);
+  box-shadow: 0 0 6px 3px transparent;
+  border: 1px solid var(--n700);
 }
 
 .lightOn {
-    width: var(--light-size);
-    height: var(--light-size);
-    border-radius: 99999px;
-    background-color: var(--n900);
-    box-shadow: 0 0 6px 3px transparent;
-    border: 1px solid var(--n700);
-    animation: pulse 2700ms;
-    animation-iteration-count: infinite;
+  width: var(--light-size);
+  height: var(--light-size);
+  border-radius: 99999px;
+  background-color: var(--n900);
+  box-shadow: 0 0 6px 3px transparent;
+  border: 1px solid var(--n700);
+  animation: pulse 2700ms;
+  animation-iteration-count: infinite;
 }
 
 @keyframes pulse {
-    from {
-        background-color: var(--n900);
-        box-shadow: 0 0 6px 3px transparent;
-    }
+  from {
+    background-color: var(--n900);
+    box-shadow: 0 0 6px 3px transparent;
+  }
 
-    50% {
-        background-color: var(--a300);
-        box-shadow: 0 0 6px 3px var(--a900);
-    }
+  50% {
+    background-color: var(--a300);
+    box-shadow: 0 0 6px 3px var(--a900);
+  }
 
-    to {
-        background-color: var(--n900);
-        box-shadow: 0 0 6px 3px transparent;
-    }
+  to {
+    background-color: var(--n900);
+    box-shadow: 0 0 6px 3px transparent;
+  }
 }
 
 @media screen and (max-width: 800px) {
-    .container {
-        height: 6rem;
-    }
+  .container {
+    height: 6rem;
+  }
 }

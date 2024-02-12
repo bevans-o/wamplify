@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const nodeExternals = require('webpack-node-externals');
+const nodeExternals = require("webpack-node-externals");
 
 const nextConfig = {
   reactStrictMode: true,
@@ -12,8 +12,8 @@ module.exports = {
     if (!isServer) {
       config.externals = [nodeExternals()];
       config.node = {
-        net: 'empty'
-      }
+        net: "empty",
+      };
     }
 
     return config;
