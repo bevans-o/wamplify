@@ -1,0 +1,298 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+
+:root {
+  --pink100: #f6b9d6;
+  --pink300: #e771a8;
+  --pink500: #cf518e;
+  --pink700: #e64691;
+  --pink900: #c24a9a40;
+
+  --purple100: #e8b9f6;
+  --purple300: #cc69f3;
+  --purple500: #923fd6;
+  --purple700: #8837ca;
+  --purple900: #784ac240;
+
+  --orange100: #f6d5b9;
+  --orange300: #f39569;
+  --orange500: #d67b3f;
+  --orange700: #ce6620;
+  --orange900: #c27a4a25;
+
+  --teal100: #b9eff6;
+  --teal300: #71dfe7;
+  --teal500: #51cfbe;
+  --teal700: #46e6be;
+  --teal900: #4ac2ae40;
+
+  --blue100: #b9c7f6;
+  --blue300: #7fbcee;
+  --blue500: #6fb3eb;
+  --blue700: #609dec;
+  --blue900: #568ace40;
+
+  --yellow100: #f6ebb9;
+  --yellow300: #e7d171;
+  --yellow500: #cfb851;
+  --yellow700: #e6bb46;
+  --yellow900: #c2b64a40;
+
+  --peach100: #f6b9b9;
+  --peach300: #f57171;
+  --peach500: #f36464;
+  --peach700: #e76060;
+  --peach900: #c2524a25;
+
+  --n50: #fffefc;
+  --n100: #f0e9e2;
+  --n200: #c5c0b8;
+  --n300: #857f77;
+  --n400: #6b6861;
+  --n500: #4b4d4c;
+  --n600: #222424;
+  --n700: #1b1d1d;
+  --n800: #141414;
+  --n900: #0f0f0f;
+  --n950: #020202;
+
+  --a100: var(--pink100);
+  --a300: var(--pink300);
+  --a500: var(--pink500);
+  --a700: var(--pink700);
+  --a900: var(--pink900);
+
+  --bad100: #fecfd5;
+  --bad300: #e4797b;
+  --bad500: #f44c43;
+  --bad700: #d33a3b;
+  --bad900: #b82a29;
+
+  --good100: #d7edca;
+  --good300: #a2d585;
+  --good500: #79c350;
+  --good700: #579f3e;
+  --good900: #226823;
+
+  --border-colour: var(--n800);
+  --wamp-width: 36rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--n600) var(--n950);
+}
+
+a,
+a:visited {
+  color: var(--n300);
+}
+
+body {
+  background: var(--n950);
+  color: var(--n50);
+  font-family: "Cabin", sans-serif;
+}
+
+input {
+  background: var(--n900);
+  border: 1px solid var(--n700);
+
+  max-width: 100%;
+  color: var(--n50);
+  border-radius: 2px;
+  width: 60%;
+  padding: 0.3rem 0.6rem;
+  font-family: inherit;
+  font-weight: 500;
+
+  transition: all 200ms ease;
+}
+
+::-moz-placeholder,
+input::-webkit-input-placeholder,
+::-webkit-input-placeholder,
+::placeholder {
+  color: var(--n300);
+}
+
+.fc {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-fix {
+  padding-left: 2px !important;
+}
+
+.text-stronger {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.warning {
+  color: var(--bad500);
+  font-weight: 500;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--n600);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+
+  transition: background 200ms ease;
+}
+
+.logo {
+  width: 8rem;
+  padding-top: 0.5rem;
+  color: var(--a500);
+
+  transition: color 200ms ease;
+}
+
+.logo svg {
+  width: 100%;
+}
+
+.logo:hover {
+  color: var(--a300);
+}
+
+.panel {
+  background: var(--n900);
+  background: linear-gradient(250deg, rgb(18, 20, 20) 0%, var(--n800) 80%);
+  border: 1px solid var(--n600);
+  border-radius: 2px;
+}
+
+.debug {
+  background: #961d1d !important;
+  border: 1px solid #a62929 !important;
+}
+
+*::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+*::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--n700);
+  outline: 1px solid var(--n900);
+  border-radius: 1px;
+}
+
+/* MUI slider */
+
+.slider {
+  color: var(--a300);
+  height: 0.4rem;
+  transition: all 200ms ease;
+  overflow: visible;
+
+  isolation: isolate;
+}
+
+.slider:hover {
+  color: var(--a300);
+}
+
+.slider .MuiSlider-thumb {
+  background: var(--a300);
+  border: none;
+  height: 14px;
+  width: 14px;
+
+  transition: all 200ms ease;
+}
+
+.slider:hover .MuiSlider-thumb {
+  background: var(--a100);
+  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slider .MuiSlider-track {
+  color: var(--a300);
+}
+
+.slider .MuiSlider-rail {
+  --padding: 3px;
+  opacity: 1;
+  background: var(--n900);
+  border: 1px solid var(--n700);
+  height: calc(0.4rem + 2 * var(--padding));
+  width: calc(100% + 2 * var(--padding));
+  translate: calc(-1 * var(--padding));
+  transition: all 200ms ease;
+}
+
+.slider .MuiSlider-mark {
+  background: var(--n900);
+  border-left: 1px solid var(--n700);
+  width: 2px;
+  border-radius: 0;
+  height: 2rem;
+  translate: 1px 0.5rem;
+  z-index: -1;
+}
+
+.slider .MuiSlider-markLabel {
+  color: var(--n400);
+  font-family: inherit;
+  padding-top: 1rem;
+  translate: 1px;
+
+  transition: color 500ms ease, text-shadow 500ms ease;
+}
+
+.slider .MuiSlider-markLabelActive {
+  color: var(--a100);
+  text-shadow: 0 0 10px var(--a900);
+}
+
+.slider .MuiSlider-thumb:hover {
+  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slider .MuiSlider-thumb.Mui-active,
+.slider .MuiSlider-thumb.Mui-focusVisible {
+  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slider .MuiSlider-valueLabel {
+  display: none;
+}
+
+.slider .MuiSlider-valueLabel::before {
+  display: none;
+}
+
+.MuiDialog-container {
+  width: 100vw;
+  padding-bottom: 15%;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --wamp-width: 90vw;
+  }
+
+  .slider .MuiSlider-mark {
+    height: 1rem;
+    translate: 1px 0.5rem;
+  }
+
+  .slider .MuiSlider-markLabel {
+    padding-top: 0.1rem;
+    font-size: 0.75rem;
+  }
+}
