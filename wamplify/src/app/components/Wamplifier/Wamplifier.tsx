@@ -218,6 +218,7 @@ function Wamplifier({ subject, onDelete }: WamplifierProps) {
               <div className={wamplifier.studyPeriods}>
                 {subject.assessmentSets.map((set, i) => (
                   <button
+                    key={i}
                     className={`${wamplifier.studyPeriod} ${
                       i === subject.activeStudyPeriod
                         ? wamplifier.studyPeriodActive

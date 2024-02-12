@@ -226,8 +226,9 @@
   color: var(--n400);
   font-family: inherit;
   cursor: pointer;
+  border-radius: 3px;
 
-  transition: background 200ms ease, border-color 200ms ease;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
 .studyPeriod:hover {
@@ -235,11 +236,11 @@
 }
 
 .studyPeriod:first-of-type {
-  border-radius: 99999px 3px 3px 99999px;
+  border-radius: 1rem 3px 3px 1rem;
 }
 
 .studyPeriod:last-of-type {
-  border-radius: 3px 99999px 99999px 3px;
+  border-radius: 3px 1rem 1rem 3px;
 }
 
 .studyPeriodActive {
