@@ -56,7 +56,7 @@ function Wamplifier({ subject, onDelete }: WamplifierProps) {
   const [isLoading, setLoading] = useState(false);
 
   const getActiveAssessmentSet = (subject: Subject) => {
-    //for backwards compatibility
+    // for backwards compatibility
     if (subject.activeStudyPeriod === undefined) {
       updateSubject({
         ...subject,
@@ -71,7 +71,7 @@ function Wamplifier({ subject, onDelete }: WamplifierProps) {
     return getActiveAssessmentSet(subject).assessments;
   };
 
-  //Function to load subject assessments from API
+  // loads subject assessments from API
   const onSubjectSelect = (subjectSelection: SearchResult) => {
     setLoading(true);
     axios
@@ -87,7 +87,7 @@ function Wamplifier({ subject, onDelete }: WamplifierProps) {
       .catch((error) => console.error(error));
   };
 
-  //Updates assessment default input based on target and current assessment
+  // updates assessment default input based on target and current assessment
   const updateDesiredScores = (subject: Subject) => {
     let remainingTarget = getRemainingTarget(
       getActiveAssessments(subject),
@@ -206,7 +206,7 @@ function Wamplifier({ subject, onDelete }: WamplifierProps) {
                           })
                         );
                       }}
-                      key={index}
+                      key={`${subject.activeStudyPeriod}-${index}`}
                       targetScore={subject.targetScore}
                     />
                   )
@@ -225,7 +225,12 @@ function Wamplifier({ subject, onDelete }: WamplifierProps) {
                         : ""
                     } swiper-no-swiping`}
                     onClick={() =>
-                      updateSubject({ ...subject, activeStudyPeriod: i })
+                      updateSubject(
+                        updateDesiredScores({
+                          ...subject,
+                          activeStudyPeriod: i,
+                        })
+                      )
                     }
                   >
                     {set.period}
