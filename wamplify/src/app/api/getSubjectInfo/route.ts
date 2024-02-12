@@ -1,7 +1,8 @@
 import axios, { AxiosError } from 'axios';
 import {JSDOM} from 'jsdom';
-import { Assessment, SearchResult, Subject, SubjectInfoRequest } from '../../types/types';
+import { Assessment, AssessmentSet, SearchResult, StudyPeriod, Subject, SubjectInfoRequest } from '../../types/types';
 import { NextResponse } from 'next/server';
+import { ST } from 'next/dist/shared/lib/utils';
 
 
 export async function POST(req: Request, res: Response) {
@@ -23,13 +24,32 @@ async function fetchSubjectPage(url: string) {
     //console.log(await HTMLData)
     const dom = new JSDOM(await HTMLData);
 
-    return  dom.window.document;
+    return  dom.window.document;    
 }
 
  function extractData(document: Document) {
-    let assessmentItems : Array<Assessment> = []
-    const assessmentTable = document.querySelector(".assessment-details")
-    const subjectInfo = assessmentTable?.querySelectorAll("tbody tr");
+    let assessmentSets : Array<AssessmentSet> = []
+    let studyPeriodTitles = document.querySelectorAll(".assessment-table > h3")
+    let studyPeriods : Array<string | null> = []
+    studyPeriodTitles.forEach((title) => {
+        studyPeriods.push(title.textContent)
+    })
+
+    if (studyPeriods.length == 0) {
+        studyPeriods = ["none"]
+    }
+    const assessmentTable = document.querySelectorAll(".assessment-details")
+
+    assessmentTable.forEach((assessmentTable, index) => {
+        assessmentSets.push({period: studyPeriods[index] ?? "none", assessments: getAssessments(assessmentTable)})
+    })
+    
+    return assessmentSets;
+}
+
+function getAssessments(table: Element) : Array<Assessment> {
+    const assessmentItems : Array<Assessment> = [];
+    const subjectInfo = table?.querySelectorAll("tbody tr");
     let totalWeight = 0;
     subjectInfo?.forEach((assessment) => {
         const assessmentItem = parseAssessment(assessment);
@@ -38,7 +58,7 @@ async function fetchSubjectPage(url: string) {
             totalWeight += assessmentItem.weight;
         }
     });
-    return assessmentItems;
+    return assessmentItems
 }
 
 function extractCredits(document: Document) {
@@ -66,14 +86,16 @@ function parseTitle(title: Element) : string {
 }
 
 async function getSubjectInfo(subject: SearchResult) : Promise<Subject> {
-    const AssessmentUrl = "https://handbook.unimelb.edu.au/2023/subjects/" + subject.code +"/assessment";
-    const CreditsUrl = "https://handbook.unimelb.edu.au/2023/subjects/" + subject.code;
-    let assessments = extractData(await fetchSubjectPage(AssessmentUrl));
-    let credits = extractCredits(await fetchSubjectPage(CreditsUrl));
+    const assessmentUrl = "https://handbook.unimelb.edu.au/2024/subjects/" + subject.code +"/assessment";
+    const overviewUrl = "https://handbook.unimelb.edu.au/2024/subjects/" + subject.code;
+    const subjectOverview = await fetchSubjectPage(overviewUrl);
+    let assessmentSets = extractData(await fetchSubjectPage(assessmentUrl));
+    let credits = extractCredits(subjectOverview);
     let result : Subject = {
         name : subject.name,
         code : subject.code,
-        assessments : assessments,
+        activeStudyPeriod: 0,
+        assessmentSets : assessmentSets,
         credits : credits,
         targetScore: 50,
     }

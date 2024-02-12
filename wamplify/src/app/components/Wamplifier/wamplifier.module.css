@@ -1,263 +1,314 @@
 .body {
-    position: relative;
-    width: var(--wamp-width);
-    height: 100%;
-    min-height: 20rem;
+  position: relative;
+  width: var(--wamp-width);
+  height: 100%;
+  min-height: 20rem;
 
-    display: grid;
-    grid-template-rows: auto auto minmax(0, 1fr) auto;
-    user-select: none;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  user-select: none;
 
-    --wamp-padding: 2rem;
+  --wamp-padding: 2rem;
 }
 
 .body::after,
 .body::before {
-    content: "";
-    position: absolute;
+  content: "";
+  position: absolute;
 
-    background: linear-gradient(0deg, var(--n800) 0%, var(--n700) 100%);
-    box-shadow: 0 0 8px var(--a900);
-    height: 3px;
-    width: 1rem;
+  background: linear-gradient(0deg, var(--n800) 0%, var(--n700) 100%);
+  box-shadow: 0 0 8px var(--a900);
+  height: 3px;
+  width: 1rem;
 
-    right: calc(100% + 1px);
+  right: calc(100% + 1px);
 }
 
 .body::after {
-    top: 3.5rem;
+  top: 3.5rem;
 }
 
 .body::before {
-    bottom: 2rem;
+  bottom: 2rem;
 }
 
 .header {
-    max-width: var(--wamp-width);
-    padding: var(--wamp-padding);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--wamp-padding);
+  max-width: var(--wamp-width);
+  padding: var(--wamp-padding);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--wamp-padding);
 
-    height: 7.25rem;
+  height: 7.25rem;
 }
 
 .header > div {
-    max-width: 90%;
-    flex-grow: 2;
+  max-width: 90%;
+  flex-grow: 2;
 }
 
 .title {
-    font-size: 1.375rem;
-    font-weight: 100;
-    letter-spacing: 0.3px;
-    line-height: 130%;
-    padding-bottom: 0.2rem;
+  font-size: 1.375rem;
+  font-weight: 100;
+  letter-spacing: 0.3px;
+  line-height: 130%;
+  padding-bottom: 0.2rem;
 
-    
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .code {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--n400);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--n400);
 }
 
 .close {
-    background: none;
-    border: none;
-    color: var(--n400);
-    cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--n400);
+  cursor: pointer;
 
-    transition: color 100ms ease;
+  transition: color 100ms ease;
 }
 
 .close:hover {
-    color: var(--n200);
+  color: var(--n200);
 }
 
 .header,
 .swiper,
 .contentEmpty {
-    border-bottom: 2px solid var(--n900);
+  border-bottom: 2px solid var(--n900);
 }
 
 .assessmentContainer {
-    padding: var(--wamp-padding);
-    gap: 1rem;
-    height: auto;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+  padding: var(--wamp-padding);
+  gap: 1rem;
+  height: auto;
+  min-height: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .currentRate {
-    width: 100%;
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
 
-    padding: 0.625rem 0.5rem 0.5rem 1rem;
-    border: 1.5px solid var(--a300);
-    background: var(--n900);
-    border-radius: 6px;
+  padding: 0.625rem 0.5rem 0.5rem 1rem;
+  border: 1.5px solid var(--a300);
+  background: var(--n900);
+  border-radius: 6px;
 
-    color: var(--n200);
-    font-size: 0.85rem;
+  color: var(--n200);
+  font-size: 0.85rem;
 }
 
 .currentScore {
-    border: 2px solid var(--a500);
-    padding: 0.25rem 0.75rem;
-    color: var(--a500);
-    background: var(--a900);
-    border-radius: 5px;
-    box-shadow: 0 2px 0 var(--a700);
-    translate: 0 -2px;
-    font-size: 1rem;
+  border: 2px solid var(--a500);
+  padding: 0.25rem 0.75rem;
+  color: var(--a500);
+  background: var(--a900);
+  border-radius: 5px;
+  box-shadow: 0 2px 0 var(--a700);
+  translate: 0 -2px;
+  font-size: 1rem;
 }
 
 .assessments {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    row-gap: 0;
-    column-gap: 1.5rem;
-    padding-top: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  row-gap: 0;
+  column-gap: 1.5rem;
+  padding-top: 2rem;
 }
 
 .note {
-    font-size: 0.875rem;
-    font-weight: 200;
-    color: var(--n300);
-    padding-bottom: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 200;
+  color: var(--n300);
+  padding-bottom: 0.75rem;
 }
 
 .controls {
-    padding: var(--wamp-padding)
+  padding: var(--wamp-padding);
 }
 
 .slider {
-    padding-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .footer {
-    padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 .target {
-    width: 100%;
-    background: var(--a700);
-    padding: 0.5rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1rem;
-    border: 2px solid var(--a500);
-    box-shadow: 0 2px 6px var(--n950), 0 2px 0 var(--a700);
-    border-radius: 4px;
+  width: 100%;
+  background: var(--a700);
+  padding: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  border: 2px solid var(--a500);
+  box-shadow: 0 2px 6px var(--n950), 0 2px 0 var(--a700);
+  border-radius: 4px;
 
-    translate: 0 -2px;
+  translate: 0 -2px;
 }
 
 .targetText {
-    color: var(--n600);
+  color: var(--n600);
 }
 
 .targetText span {
-    color: var(--n700);
-    font-weight: 900;
+  color: var(--n700);
+  font-weight: 900;
 }
 
 .target input {
-    width: 4.5rem;
-    height: 2.5rem;
-    border-radius: 5px;
-    box-shadow: inset 0 2px 6px var(--n950), inset 0 2px 0 var(--a700);
-    border: 2px solid var(--a500);
-    background:  linear-gradient(var(--a900), var(--a900)), linear-gradient(var(--n800), var(--n800));
+  width: 4.5rem;
+  height: 2.5rem;
+  border-radius: 5px;
+  box-shadow: inset 0 2px 6px var(--n950), inset 0 2px 0 var(--a700);
+  border: 2px solid var(--a500);
+  background: linear-gradient(var(--a900), var(--a900)),
+    linear-gradient(var(--n800), var(--n800));
 
-    font-size: 1.625rem;
-    font-weight: 100;
-    text-align: right;
+  font-size: 1.625rem;
+  font-weight: 100;
+  text-align: right;
 }
 
 .swiper {
-    width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .footerEmpty {
-    height: 235px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  height: 235px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .footerEmpty > * {
-    rotate: 180deg;
+  rotate: 180deg;
 }
 
+.studyPeriods {
+  width: 100%;
+  height: 2rem;
+  background: var(--n900);
+  border-radius: 99999px;
+  display: flex;
+  padding: 2px;
+  gap: 2px;
+}
+
+.studyPeriod {
+  height: 100%;
+  flex-grow: 1;
+  outline: none;
+  border: 1px solid var(--n700);
+  background: var(--n800);
+  color: var(--n400);
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 3px;
+
+  transition: background 100ms ease, border-color 100ms ease, color 100ms ease;
+}
+
+.studyPeriod:hover {
+  background: var(--n700);
+}
+
+.studyPeriod:first-of-type {
+  border-radius: 1rem 3px 3px 1rem;
+}
+
+.studyPeriod:last-of-type {
+  border-radius: 3px 1rem 1rem 3px;
+}
+
+.studyPeriodActive {
+  background: var(--a700);
+  border-color: var(--a500);
+  color: var(--n100);
+}
+
+.studyPeriodActive:hover {
+  background: var(--a700);
+}
 
 @media (max-width: 800px) {
-    .body {
-        --wamp-padding: 1rem;
-    }
+  .body {
+    --wamp-padding: 1rem;
+  }
 
-    .header {
-        height: 4.5rem;
-    }
+  .header {
+    height: 4.5rem;
+  }
 
-    .currentRate {
-        font-size: 0.75rem;
-        padding: 0.5rem;
-    }
+  .currentRate {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
 
-    .note {
-        font-size: 0.75rem;
-        padding-bottom: 0;
-    }
+  .note {
+    font-size: 0.75rem;
+    padding-bottom: 0;
+  }
 
-    .slider {
-        padding: 0 0.5rem;
-    }
+  .slider {
+    padding: 0 0.5rem;
+  }
 
-    .target {
-        padding: 0.25rem;
-        gap: 0.5rem;
-    }
+  .target {
+    padding: 0.25rem;
+    gap: 0.5rem;
+  }
 
-    .targetText {
-        font-size: 0.875rem;
-    }
+  .targetText {
+    font-size: 0.875rem;
+  }
 
-    .target input {
-        width: 3.9rem;
-        height: 2rem;
-        font-size: 1.375rem;
-    }
+  .target input {
+    width: 3.9rem;
+    height: 2rem;
+    font-size: 1.375rem;
+  }
 
-    .title {
-        font-size: 1rem;
-    }
+  .title {
+    font-size: 1rem;
+  }
 
-    .controls {
-        padding-bottom: 0;
-    }
+  .controls {
+    padding-bottom: 0;
+  }
 
-    .code {
-        font-size: 0.9rem;
-    }
+  .code {
+    font-size: 0.9rem;
+  }
 
-    .assessments {
-        grid-template-columns: minmax(0, 1fr);
-        padding-top: 0.75rem;
-    }
+  .assessments {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 0.75rem;
+  }
 
-    .footerEmpty {
-        height: 173px;
-    }
+  .footerEmpty {
+    height: 173px;
+  }
 }
