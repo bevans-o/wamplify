@@ -28,7 +28,7 @@ export default function Home() {
 
       <PanelSlider />
 
-      <Infobar version="1.1.0" message="All scores are estimates!" />
+      <Infobar version="1.2.0" message="2024 subjects are here!" />
     </main>
   );
 }

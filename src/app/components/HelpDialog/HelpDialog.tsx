@@ -20,7 +20,7 @@ function HelpDialog({ open, onClose }: { open: boolean; onClose: Function }) {
           Enter your marks for the assessments you have completed. Then, choose
           the overall mark you’re aiming for and Wamplify will show you what you
           need in your remaining assessments to reach that target, and how it
-          will affect your WAM.
+          will affect your WAM. All scores are estimates!
         </p>
         <p>Good luck on your assessments!</p>
 

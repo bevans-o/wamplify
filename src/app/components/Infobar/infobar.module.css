@@ -29,6 +29,11 @@
   font-weight: 300;
 }
 
+.message {
+  font-weight: 500;
+  color: var(--a300);
+}
+
 .version::after {
   content: "|";
   padding: 0 0.6rem;

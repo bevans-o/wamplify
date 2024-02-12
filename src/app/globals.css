@@ -20,6 +20,30 @@
   --orange700: #ce6620;
   --orange900: #c27a4a25;
 
+  --teal100: #b9eff6;
+  --teal300: #71dfe7;
+  --teal500: #51cfbe;
+  --teal700: #46e6be;
+  --teal900: #4ac2ae40;
+
+  --blue100: #b9c7f6;
+  --blue300: #7fbcee;
+  --blue500: #6fb3eb;
+  --blue700: #609dec;
+  --blue900: #568ace40;
+
+  --yellow100: #f6ebb9;
+  --yellow300: #e7d171;
+  --yellow500: #cfb851;
+  --yellow700: #e6bb46;
+  --yellow900: #c2b64a40;
+
+  --peach100: #f6b9b9;
+  --peach300: #f57171;
+  --peach500: #f36464;
+  --peach700: #e76060;
+  --peach900: #c2524a25;
+
   --n50: #fffefc;
   --n100: #f0e9e2;
   --n200: #c5c0b8;
@@ -227,9 +251,7 @@ input::-webkit-input-placeholder,
   padding-top: 1rem;
   translate: 1px;
 
-  transition:
-    color 500ms ease,
-    text-shadow 500ms ease;
+  transition: color 500ms ease, text-shadow 500ms ease;
 }
 
 .slider .MuiSlider-markLabelActive {
