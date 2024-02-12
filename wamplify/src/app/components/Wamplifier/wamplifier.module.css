@@ -228,7 +228,7 @@
   cursor: pointer;
   border-radius: 3px;
 
-  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+  transition: background 100ms ease, border-color 100ms ease, color 100ms ease;
 }
 
 .studyPeriod:hover {
