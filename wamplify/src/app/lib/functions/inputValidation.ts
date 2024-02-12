@@ -36,11 +36,15 @@ export function isValidScorePercentage(score : string) {
 }
 
 export function isValidScore(score : string) {
-    let a = parseInt(score);
+  if (score.split('/').length < 2 && score.split('%').length < 2) {
+     let a = parseInt(score);
+    console.log(a)
     if (isNaN(a) || a > 100 || a < 0) {
       return false;
     }
     return true;
+  }
+  return false
 }
 
 export function isValidWam(wam: string) {
