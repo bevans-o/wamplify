@@ -60,5 +60,6 @@ export function isValidUnits(units: string) {
   if (isNaN(a) || a > 100 || a < 0) {
     return false;
   }
+  // easter egg
   return true;
 }
