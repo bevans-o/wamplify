@@ -57,13 +57,24 @@ function Wamplifier({
 
   const getActiveAssessmentSet = (subject: Subject) => {
     // for backwards compatibility
-    if (subject.activeStudyPeriod === undefined) {
+    if (
+      subject.activeStudyPeriod === undefined ||
+      subject.assessmentSets === undefined ||
+      subject.assessmentSets?.length === 0
+    ) {
       updateSubject({
         ...subject,
         activeStudyPeriod: 0,
         assessmentSets: [{ period: "none", assessments: subject.assessments! }],
       });
+
+      return { period: "none", assessments: subject.assessments! };
     }
+
+    if (subject.activeStudyPeriod > subject.assessmentSets.length - 1) {
+      return subject.assessmentSets[0];
+    }
+
     return subject.assessmentSets[subject.activeStudyPeriod];
   };
 
@@ -178,7 +189,7 @@ function Wamplifier({
                       assessment={assessment}
                       highlighted={index < 2}
                       onChange={(assessment: Assessment) => {
-                        let newAssessmentSets = subject.assessmentSets;
+                        let newAssessmentSets = subject.assessmentSets ?? [];
                         let newAssessments = getActiveAssessments(subject);
                         newAssessments[index] = assessment;
                         let newMax = getMaxScore(newAssessments);
@@ -214,7 +225,7 @@ function Wamplifier({
               </div>
             </div>
 
-            {subject.assessmentSets.length > 1 && (
+            {subject?.assessmentSets?.length > 1 && (
               <div className={wamplifier.studyPeriods}>
                 {subject.assessmentSets.map((set, i) => (
                   <button
