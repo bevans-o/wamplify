@@ -15,7 +15,7 @@ function Infobar({ version, message }: { version: string; message: string }) {
           Risa
         </a>
         <span> & </span>
-        <a target="_blank" href="https://bevans.land/">
+        <a target="_blank" href="https://www.linkedin.com/in/bevans-o/">
           Ben
         </a>
       </div>
