@@ -1,11 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { JSDOM } from "jsdom";
-import {
-  Assessment,
-  AssessmentSet,
-  SearchResult,
-  Subject,
-} from "../../types/types";
+import { Assessment, AssessmentSet, SearchResult, Subject } from "../../types/types";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request, res: Response) {
@@ -67,12 +62,8 @@ function getAssessments(table: Element): Array<Assessment> {
 }
 
 function extractCredits(document: Document) {
-  const creditTitle = document
-    .querySelector(".header--course-and-subject__details")
-    ?.querySelectorAll("span");
-  const creditString = creditTitle
-    ? creditTitle[1].innerHTML.split(" ")
-    : ["12.5"];
+  const creditTitle = document.querySelector(".header--course-and-subject__details")?.querySelectorAll("span");
+  const creditString = creditTitle ? creditTitle[1].innerHTML.split(" ") : ["12.5"];
   const credits = creditString[creditString.length - 1];
   return parseFloat(credits);
 }
@@ -102,12 +93,9 @@ function parseTitle(title: Element): string {
 }
 
 async function getSubjectInfo(subject: SearchResult): Promise<Subject> {
-  const assessmentUrl =
-    "https://handbook.unimelb.edu.au/2024/subjects/" +
-    subject.code +
-    "/assessment";
-  const overviewUrl =
-    "https://handbook.unimelb.edu.au/2024/subjects/" + subject.code;
+  const year = new Date().getFullYear();
+  const assessmentUrl = `https://handbook.unimelb.edu.au/${year}/subjects/${subject.code}/assessment`;
+  const overviewUrl = `https://handbook.unimelb.edu.au/${year}/subjects/${subject.code}`;
   const subjectOverview = await fetchSubjectPage(overviewUrl);
   let assessmentSets = extractData(await fetchSubjectPage(assessmentUrl));
   let credits = extractCredits(subjectOverview);
