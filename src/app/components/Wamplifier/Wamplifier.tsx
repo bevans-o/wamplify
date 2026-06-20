@@ -65,10 +65,10 @@ function Wamplifier({
       updateSubject({
         ...subject,
         activeStudyPeriod: 0,
-        assessmentSets: [{ period: "none", assessments: subject.assessments! }],
+        assessmentSets: [{ period: "none", assessments: subject.assessments ?? [] }],
       });
 
-      return { period: "none", assessments: subject.assessments! };
+      return { period: "none", assessments: subject.assessments ?? [] };
     }
 
     if (subject.activeStudyPeriod > subject.assessmentSets.length - 1) {
@@ -170,18 +170,25 @@ function Wamplifier({
         >
           <SwiperSlide className={wamplifier.assessmentContainer}>
             <div>
-              <div className={wamplifier.currentRate}>
-                <label>
-                  Enter the results from your past assignments. At this rate,
-                  you’ll get a...
-                </label>
-                <div className={wamplifier.currentScore}>
-                  {Math.round(
-                    calculateSubjectAverage(getActiveAssessments(subject))
-                  )}
+              {getActiveAssessments(subject).length > 0 ? (
+                <div className={wamplifier.currentRate}>
+                  <label>Enter the results from your past assignments. At this rate, you’ll get a...</label>
+                  <div className={wamplifier.currentScore}>
+                    {Math.round(calculateSubjectAverage(getActiveAssessments(subject)))}
+                  </div>
                 </div>
-              </div>
-
+              ) : (
+                <div
+                  className={wamplifier.currentRate}
+                  style={{ flexDirection: "column", alignItems: "start", gap: "1rem" }}
+                >
+                  <p style={{ lineHeight: "140%" }}>
+                    The University has made it harder for third-party applications like Wamplify to access the handbook,
+                    so you might not see assessments 🥹. You can still enter subject scores and use the Wamometer.
+                  </p>
+                  <p>We&apos;ll try to find a solution, but sorry for the inconvenience!</p>
+                </div>
+              )}
               <div className={wamplifier.assessments}>
                 {getActiveAssessments(subject).map(
                   (assessment: Assessment, index: number) => (

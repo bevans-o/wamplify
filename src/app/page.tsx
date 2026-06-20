@@ -26,7 +26,7 @@ export default function Home() {
 
       <PanelSlider />
 
-      <Infobar version="1.3.0" message="2025 subjects are here!" />
+      <Infobar version="1.3.1" message="Assessments might not load correctly..." />
     </main>
   );
 }

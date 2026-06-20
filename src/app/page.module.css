@@ -17,10 +17,10 @@
 .error {
   width: 100vw;
   height: 100vh;
-  max-width: 100vw;
   max-height: 100vh;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
@@ -42,6 +42,7 @@
 .error a {
   color: var(--a300);
   transition: color 200ms ease;
+  cursor: pointer;
 }
 
 .error a:hover {
